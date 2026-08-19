@@ -1,0 +1,32 @@
+--- Function 1 ---
+Metrics -> GP Mean: -0.000239, GP Std: 0.000940, Acq Score: 0.003052
+Coordinate String: 0.712949-0.458517
+
+--- Function 2 ---
+Metrics -> GP Mean: 0.643903, GP Std: 0.060146, Acq Score: 0.020353
+Coordinate String: 0.698318-0.000001
+
+--- Function 3 ---
+Metrics -> GP Mean: -0.005413, GP Std: 0.021160, Acq Score: 0.029300
+Coordinate String: 0.471699-0.521043-0.421162
+
+--- Function 4 ---
+Metrics -> GP Mean: 0.392627, GP Std: 0.285345, Acq Score: 1.391333
+Coordinate String: 0.413842-0.453610-0.374447-0.418995
+
+--- Function 5 ---
+Metrics -> GP Mean: 8556.138182, GP Std: 342.487780, Acq Score: 90.020440
+Coordinate String: 0.999999-0.999999-0.000001-0.000001
+
+--- Function 6 ---
+Metrics -> GP Mean: -1.206825, GP Std: 0.424432, Acq Score: 0.278689
+Coordinate String: 0.379348-0.000001-0.999999-0.000001-0.000001
+
+--- Function 7 ---
+Metrics -> GP Mean: 1.583691, GP Std: 0.070463, Acq Score: 1.795079
+Coordinate String: 0.000001-0.269055-0.374113-0.312202-0.395631-0.822076
+
+--- Function 8 ---
+Metrics -> GP Mean: 10.076086, GP Std: 0.076988, Acq Score: 10.307050
+Coordinate String: 0.158730-0.047156-0.156523-0.000001-0.999999-0.495016-0.257704-0.000001
+

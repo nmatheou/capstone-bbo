@@ -1,0 +1,55 @@
+
+--- Run Timestamp: 2026-08-19T07:12:30.664921 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+
+--- Run Timestamp: 2026-08-19T07:13:12.324710 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.5        0.02740813]
+  Suggestion: 0.712949-0.458517 | Acq Score: 0.003052
+
+Func 2: Dataset size: 14 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+
+--- Run Timestamp: 2026-08-19T07:13:28.920168 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.5        0.02740813]
+  Suggestion: 0.712949-0.458517 | Acq Score: 0.003052
+
+Func 2: Dataset size: 14 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.04682281 4.60769776]
+  Suggestion: 0.698318-0.000001 | Acq Score: 0.020353
+
+Func 3: Dataset size: 19 | Best Y: -0.034835
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [1.15110633 1.54278182 0.25920346]
+  Suggestion: 0.471699-0.521043-0.421162 | Acq Score: 0.029300
+
+Func 4: Dataset size: 34 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.37267881 3.0702972  3.05421573 3.18145451]
+  Suggestion: 0.413842-0.453610-0.374447-0.418995 | Acq Score: 0.070431
+
+Func 5: Dataset size: 24 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [  0.36669064   1.67102528 100.          20.54932953]
+  Suggestion: 0.999999-0.999999-0.000001-0.000001 | Acq Score: 90.020440
+
+Func 6: Dataset size: 24 | Best Y: -0.714265
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.48854901 0.79975059 0.8914864  1.09419385 0.85873571]
+  Suggestion: 0.379348-0.000001-0.999999-0.000001-0.000001 | Acq Score: 0.278689
+
+Func 7: Dataset size: 34 | Best Y: 1.482614
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.11066333 2.63104482 5.         0.51886256 0.22408577 0.18980912]
+  Suggestion: 0.000001-0.269055-0.374113-0.312202-0.395631-0.822076 | Acq Score: 0.094336
+
+Func 8: Dataset size: 44 | Best Y: 9.900336
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 4.34416209  6.39429472  3.38854449  8.33862042 21.01761258  6.26002636
+  4.28924613 50.        ]
+  Suggestion: 0.158730-0.047156-0.156523-0.000001-0.999999-0.495016-0.257704-0.000001 | Acq Score: 0.166180
+

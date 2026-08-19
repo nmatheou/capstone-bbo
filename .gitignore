@@ -1,19 +1,14 @@
-# Ignore everything at the root directory
-/*
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
 
-# Explicitly allow the files and folders requested by the user
-!/progress_tracker_week_1/
-!/progress_tracker_week_2/
-!/progress_tracker_week_3/
-!/Readme
-!/README*
-!/results_week1/
-!/results_week2/
-!/results_week3/
-!/Week1_submission/
-!/Week2_submission/
-!/Week3_submission/
-!/Week4_submission/
-!/.gitignore
-!/bbo_optimize.py
-!/next_week_data/
+# Environments
+.env
+.venv
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
