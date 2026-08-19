@@ -12,3 +12,7 @@ venv/
 # IDEs
 .vscode/
 .idea/
+
+# AI Assistant Data
+brain/
+agent/

@@ -1,10 +1,28 @@
 --- Function 1 ---
 Metrics -> GP Mean: -0.000239, GP Std: 0.000940, Acq Score: 0.003052
-Coordinate String: 0.712949-0.458517
+Coordinate String (GP suggestion): 0.712949-0.458517
+[MANUAL OVERRIDE] Deviating from GP surrogate — physical domain reasoning applied:
+  - GP is effectively lost: 13/14 queries return exactly 0.000 (background radiation floor).
+  - Only anomaly: index 4 at (0.650, 0.682) returned -0.003606.
+  - Hypothesis: (0.650, 0.682) sits on a lead wall / radiation shield. The -ve return
+    is caused by the shield absorbing background radiation, placing that point BELOW
+    the zeroed baseline — not because the function is negative there.
+  - The true positive spike (the "needle") is almost certainly the radiation SOURCE
+    located just on the far side of this shield, within ~0.05 units of (0.650, 0.682).
+  - Strategy: probe offset (0.640, 0.700) — slightly up-left of the shield — to
+    triangulate the source location. If successful, a large positive return is expected.
+  - If this returns 0.000 again, shift direction (e.g. down-right) the following week.
+Coordinate String: 0.640000-0.700000
 
 --- Function 2 ---
 Metrics -> GP Mean: 0.643903, GP Std: 0.060146, Acq Score: 0.020353
-Coordinate String: 0.698318-0.000001
+Coordinate String (GP/EI suggestion): 0.698318-0.000001
+[MANUAL OVERRIDE] Triangulation strategy based on own data analysis:
+  - d2 is irrelevant: GP length scale hits upper bound — only d1 drives the score.
+  - Best known points cluster in d1 ∈ [0.666, 0.712]; peak is somewhere in this range.
+  - Probing d1=0.695 to triangulate between our two strongest d1 values (0.703, 0.712)
+    and narrow down the exact peak location for future exploitation.
+Coordinate String: 0.695000-0.500000
 
 --- Function 3 ---
 Metrics -> GP Mean: -0.005413, GP Std: 0.021160, Acq Score: 0.029300
@@ -20,7 +38,15 @@ Coordinate String: 0.999999-0.999999-0.000001-0.000001
 
 --- Function 6 ---
 Metrics -> GP Mean: -1.206825, GP Std: 0.424432, Acq Score: 0.278689
-Coordinate String: 0.379348-0.000001-0.999999-0.000001-0.000001
+Coordinate String (GP/UCB suggestion): 0.379348-0.000001-0.999999-0.000001-0.000001
+[MANUAL OVERRIDE] Triangulation strategy based on own data + rival intel:
+  - GP is using UCB and exploring boundaries because d1/d3 trends are ambiguous.
+  - Rival team found a much better score (-0.305 vs our -0.714) using an interior point:
+    (0.437, 0.321, 0.579, 0.763, 0.194).
+  - This perfectly matches our own dataset trends: d4 must be high, d5 low, d2 low/mid.
+  - Strategy: Probe near their discovery to map the peak, but nudge the coordinates
+    slightly towards our own strongest trend extremes (lower d5, higher d4).
+Coordinate String: 0.450000-0.300000-0.600000-0.750000-0.150000
 
 --- Function 7 ---
 Metrics -> GP Mean: 1.583691, GP Std: 0.070463, Acq Score: 1.795079
@@ -28,5 +54,11 @@ Coordinate String: 0.000001-0.269055-0.374113-0.312202-0.395631-0.822076
 
 --- Function 8 ---
 Metrics -> GP Mean: 10.076086, GP Std: 0.076988, Acq Score: 10.307050
-Coordinate String: 0.158730-0.047156-0.156523-0.000001-0.999999-0.495016-0.257704-0.000001
-
+Coordinate String (GP suggestion): 0.158730-0.047156-0.156523-0.000001-0.999999-0.495016-0.257704-0.000001
+[MANUAL OVERRIDE] GP is fundamentally confused by linear boundary slopes in 8D:
+  - The GP predicts pushing d1 to 0.158 and d8 to 0.0 will increase the score, 
+    but the raw dataset proves this is mathematically false.
+  - Applying a hard logical override to force linear dimensions to their true limits
+    and triangulate the two remaining interior dimensions (d6 and d7) based on our 
+    best performing historical points.
+Coordinate String: 0.000000-0.000000-0.000000-0.000000-1.000000-0.650000-0.150000-1.000000
