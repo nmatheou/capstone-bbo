@@ -20,11 +20,15 @@
 ## Performance
 *   **Summarize your results across the eight functions. What metrics did you use?** 
     *   **Metrics:** The sole metric is the target deterministic scalar output ($Y$) representing the optimization objective, measured against the severely constrained query budget. 
-    *   **Results (As of Week 10):**
-        *   **F1 (Sparse Needle):** Escaped the $0.0$ baseline noise floor, mapping the steep cliff to `0.012+`.
-        *   **F2, F3, F4, F6, F7:** Successfully unblinded the ARD models and perfectly bracketed the absolute ceilings of local topological pockets, routinely scoring highly competitive optimums.
-        *   **F5:** Completely solved (locked to absolute theoretical upper bounds).
-        *   **F8 (8D Hyperparameters):** Reached a score of `9.958`, resting at $99.58\%$ of the theoretical absolute maximum of $10.0$ via the "Splicing Strategy".
+    *   **Results (Current Winning Scores as of Week 9 Returns):**
+        *   **F1 (2D Sparse Needle):** `0.012282` (Successfully escaped the zero-baseline noise floor via NN data pruning).
+        *   **F2 (2D Noisy Sim):** `0.641577` (Unblinded ARD via intentional boundary sacrifice).
+        *   **F3 (3D Drug Discovery):** `-0.006152` (Perfectly bracketed local ceiling near the theoretical 0.0 maximum).
+        *   **F4 (4D Warehouse):** `0.639193` (Successfully exploited interior pocket via GP trust-region).
+        *   **F5 (4D Chemical Yield):** `8662.405001` (Solved by locking to absolute theoretical upper boundaries).
+        *   **F6 (5D Cake Composite):** `-0.127381` (Triangulated the absolute midpoint of the local dimensional ridge).
+        *   **F7 (6D ML Hyperparameters):** `1.875426` (NN micro-nudge exploit to safely avoid GP boundary traps).
+        *   **F8 (8D ML Hyperparameters):** `9.958940` (Resting at 99.58% of the absolute theoretical maximum of 10.0 via the Splicing Strategy).
 
 ## Assumptions and Limitations
 *   **What assumptions underlie your strategy?** 
