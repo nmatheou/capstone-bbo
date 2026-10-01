@@ -16,3 +16,11 @@ venv/
 # AI Assistant Data
 brain/
 agent/
+
+#General folders
+Archive/
+
+#Temp removal
+data/
+results/
+logs/
