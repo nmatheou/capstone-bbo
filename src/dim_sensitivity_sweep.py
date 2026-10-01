@@ -32,13 +32,16 @@ warnings.filterwarnings("ignore")
 plt.style.use("dark_background")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--week', type=int, required=True, help="Target week (e.g. 5)")
+args, unknown = parser.parse_known_args()
+TARGET_WEEK = args.week
+
 BASE_DIR   = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/M12/Data/M12"
 OUTPUT_DIR = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
-WEEKS_DIRS = {
-    1: os.path.join(OUTPUT_DIR, "results_week1"),
-    2: os.path.join(OUTPUT_DIR, "results_week2"),
-    3: os.path.join(OUTPUT_DIR, "results_week3"),
-}
+WEEKS_DIRS = {w: os.path.join(OUTPUT_DIR, "data", f"week_{w}_returns") for w in range(1, TARGET_WEEK + 1)}
+
 DIMS = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 FUNC_NAMES = {
     1: "F1 — 2D Sparse Needle",
@@ -134,7 +137,7 @@ def main():
             latest_week = w
 
     tracker_dir = os.path.join(OUTPUT_DIR,
-                               f"progress_tracker_week_{latest_week}")
+                               f"results/week_{latest_week}/progress")
     os.makedirs(tracker_dir, exist_ok=True)
 
     print("\nFitting GPs and running sensitivity sweeps...")

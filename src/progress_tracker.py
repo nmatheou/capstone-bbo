@@ -26,21 +26,17 @@ warnings.filterwarnings("ignore")
 plt.style.use("dark_background")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-TARGET_WEEK = 4
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('--week', type=int, required=True, help="Target week (e.g. 5)")
+args, unknown = parser.parse_known_args()
+TARGET_WEEK = args.week
+
 BASE_DIR   = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/M12/Data/M12"
 OUTPUT_DIR = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
-WEEKS_DIRS = {
-    1: os.path.join(OUTPUT_DIR, "results_week1"),
-    2: os.path.join(OUTPUT_DIR, "results_week2"),
-    3: os.path.join(OUTPUT_DIR, "results_week3"),
-    4: os.path.join(OUTPUT_DIR, "results_week4"),
-}
-RESULTS_FILES = {
-    1: os.path.join(OUTPUT_DIR, "Week1_submission", "results_week1.txt"),
-    2: os.path.join(OUTPUT_DIR, "Week2_submission", "results_week2.txt"),
-    3: os.path.join(OUTPUT_DIR, "Week3_submission", "results_week3.txt"),
-    4: os.path.join(OUTPUT_DIR, "Week4_submission", "results_week4.txt"),
-}
+WEEKS_DIRS = {w: os.path.join(OUTPUT_DIR, "data", f"week_{w}_returns") for w in range(1, TARGET_WEEK + 1)}
+RESULTS_FILES = {w: os.path.join(OUTPUT_DIR, "submissions", f"week_{w}", f"results_week{w}.txt" if w < 5 else "suggestions.txt") for w in range(1, TARGET_WEEK + 1)}
+
 DIMS = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 FUNC_NAMES = {
     1: "F1 — 2D Sparse Needle",
@@ -160,7 +156,7 @@ def main():
     completed_weeks = sorted(
         {w for fi in range(1, 9) for w in best_by_week[fi] if w > 0})
     latest_week = completed_weeks[-1] if completed_weeks else 0
-    tracker_dir = os.path.join(OUTPUT_DIR, f"progress_tracker_week_{latest_week}")
+    tracker_dir = os.path.join(OUTPUT_DIR, f"results/week_{latest_week}/progress")
     os.makedirs(tracker_dir, exist_ok=True)
     print(f"Saving outputs to: {tracker_dir}\n")
     available_weeks = completed_weeks

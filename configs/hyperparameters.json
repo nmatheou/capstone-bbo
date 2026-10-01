@@ -1,8 +1,9 @@
 {
-    "KAPPA_GROUP_A": 3.5,
-    "KAPPA_GROUP_B": 2.0,
-    "KAPPA_GROUP_C": 3.0,
-    "XI_DEFAULT": 0.01,
-    "XI_F3": 0.001,
-    "LHS_SEED": 42
+    "KAPPA_GROUP_A":  3.5,
+    "KAPPA_GROUP_B":  2.0,
+    "KAPPA_GROUP_C":  3.0,
+    "XI_DEFAULT":  0.01,
+    "XI_F3":  0.001,
+    "LHS_SEED":  42,
+    "XI_F1":  0.0001
 }

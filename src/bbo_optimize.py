@@ -41,6 +41,10 @@ from sklearn.svm import SVC
 from scipy.stats import qmc, norm
 from scipy.optimize import minimize
 import warnings
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
 
 warnings.filterwarnings("ignore")
 
@@ -71,6 +75,67 @@ def obj_func_ei(x, gp, f_best, xi):
     return -ei(x, gp, f_best, xi).item()
 
 # ── Main ──────────────────────────────────────────────────────────────────────
+
+
+def train_and_optimize_nn(X, y, func_idx):
+    X_t = torch.tensor(X, dtype=torch.float32)
+    y_t = torch.tensor(y, dtype=torch.float32).view(-1, 1)
+
+    # F1 Pruning Logic
+    if func_idx == 1:
+        mask = (X[:, 0] >= 0.65) & (X[:, 0] <= 0.67) & (X[:, 1] >= 0.64) & (X[:, 1] <= 0.67)
+        if np.sum(mask) > 0:
+            X_t = torch.tensor(X[mask], dtype=torch.float32)
+            y_t = torch.tensor(y[mask], dtype=torch.float32).view(-1, 1)
+
+    y_mean = y_t.mean()
+    y_std = y_t.std() + 1e-8
+    y_norm = (y_t - y_mean) / y_std
+
+    d = X_t.shape[1]
+    
+    class ShallowNN(nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.net = nn.Sequential(
+                nn.Linear(d, 64),
+                nn.ReLU(),
+                nn.Linear(64, 64),
+                nn.ReLU(),
+                nn.Linear(64, 1)
+            )
+        def forward(self, x):
+            return self.net(x)
+    
+    torch.manual_seed(42)
+    model = ShallowNN()
+    optimizer = optim.Adam(model.parameters(), lr=0.01)
+    loss_fn = nn.MSELoss()
+
+    for epoch in range(1500):
+        optimizer.zero_grad()
+        pred = model(X_t)
+        loss = loss_fn(pred, y_norm)
+        loss.backward()
+        optimizer.step()
+        
+    best_idx = torch.argmax(y_t).item()
+    best_x = X_t[best_idx].clone().detach().requires_grad_(True)
+    opt_max = optim.LBFGS([best_x], lr=0.01, max_iter=1000)
+
+    def closure():
+        opt_max.zero_grad()
+        loss = -model(best_x)
+        loss.backward()
+        return loss
+
+    opt_max.step(closure)
+    with torch.no_grad():
+        final_x = torch.clamp(best_x, 0.0, 1.0)
+        pred_y_norm = model(final_x)
+        pred_y = pred_y_norm * y_std + y_mean
+        
+    return final_x.numpy(), pred_y.item()
 
 def run_bbo(week: int):
     output_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
@@ -125,6 +190,7 @@ def run_bbo(week: int):
     KAPPA_GROUP_C = config.get("KAPPA_GROUP_C", 3.0)
     XI_DEFAULT    = config.get("XI_DEFAULT", 0.01)
     XI_F3         = config.get("XI_F3", 0.001)
+    XI_F1         = config.get("XI_F1", 0.0001)
     LHS_SEED      = config.get("LHS_SEED", 42)
 
     with open(results_file, 'w') as f_out, open(log_file, 'a') as f_log:
@@ -135,7 +201,10 @@ def run_bbo(week: int):
             d = dims[func_idx]
 
             # ── Kappa / Xi ────────────────────────────────────────────────────
-            if func_idx in [1, 2, 4, 5, 6]:
+            if func_idx == 1:
+                kappa = KAPPA_GROUP_A
+                xi    = XI_F1
+            elif func_idx in [2, 4, 5, 6]:
                 kappa = KAPPA_GROUP_A
                 xi    = XI_DEFAULT
             elif func_idx == 3:
@@ -168,7 +237,7 @@ def run_bbo(week: int):
 
             # ── Trust Region Bounds (Functions 7 & 8) ─────────────────────────
             base_bounds = [(1e-6, 0.999999) for _ in range(d)]
-            if func_idx in [7, 8]:
+            if func_idx in [4, 6, 7, 8]:
                 best_idx  = np.argmax(y)
                 x_best    = X[best_idx]
                 top3_idx  = np.argsort(y)[-3:]
@@ -240,8 +309,8 @@ def run_bbo(week: int):
 
             # Exploitation-phase LHS for F3: tighten around known best region
             if func_idx == 3:
-                lhs_lower = np.array([0.05, 0.35, 0.25])
-                lhs_upper = np.array([0.95, 0.85, 0.55])
+                lhs_lower = np.array([0.05, 0.40, 0.30])
+                lhs_upper = np.array([0.95, 0.65, 0.50])
             else:
                 lhs_lower = np.array([b[0] for b in base_bounds])
                 lhs_upper = np.array([b[1] for b in base_bounds])
@@ -254,17 +323,15 @@ def run_bbo(week: int):
                     X_sample = X_sample[preds == 1]
 
             # ── Evaluate Acquisition ──────────────────────────────────────────
-            if func_idx in [2, 3, 4, 5, 7, 8]:
-                f_best   = np.max(y)
-                acq_vals = ei(X_sample, gp, f_best, xi)
-            else:
-                acq_vals = ucb(X_sample, gp, kappa)
+            # All functions now use EI (exploitation phase)
+            f_best   = np.max(y)
+            acq_vals = ei(X_sample, gp, f_best, xi)
 
             # ── Multi-Start L-BFGS-B (top 50 seeds) ──────────────────────────
             n_seeds    = min(50, len(X_sample))
             top_X      = X_sample[np.argsort(acq_vals)[-n_seeds:]]
             if func_idx == 3:
-                full_bounds = [(0.05, 0.95), (0.35, 0.85), (0.25, 0.55)]
+                full_bounds = [(0.05, 0.95), (0.40, 0.65), (0.30, 0.50)]
             else:
                 full_bounds = [(1e-6, 0.999999) for _ in range(d)]
 
@@ -272,14 +339,9 @@ def run_bbo(week: int):
             best_val = -np.inf
 
             for x0 in top_X:
-                if func_idx in [2, 3, 4, 5, 7, 8]:
-                    res = minimize(obj_func_ei, x0,
-                                   args=(gp, f_best, xi),
-                                   bounds=full_bounds, method="L-BFGS-B")
-                else:
-                    res = minimize(obj_func_ucb, x0,
-                                   args=(gp, kappa),
-                                   bounds=base_bounds, method="L-BFGS-B")
+                res = minimize(obj_func_ei, x0,
+                               args=(gp, f_best, xi),
+                               bounds=full_bounds, method="L-BFGS-B")
 
                 if -res.fun > best_val:
                     if svc_model is not None:
@@ -298,10 +360,7 @@ def run_bbo(week: int):
             mean_val = mean_val[0]
             std_val  = std_val[0]
 
-            if func_idx in [2, 3, 5]:
-                acq_score = ei(best_x, gp, f_best, xi)[0]
-            else:
-                acq_score = mean_val + kappa * std_val
+            acq_score = ei(best_x, gp, f_best, xi)[0]
 
             metrics_str = (f"Metrics -> GP Mean: {mean_val:.6f}, "
                            f"GP Std: {std_val:.6f}, Acq Score: {acq_score:.6f}")
@@ -311,9 +370,21 @@ def run_bbo(week: int):
             print(f"Coordinate String: {coord_str}\n")
             f_out.write(metrics_str + "\n")
             f_out.write(f"Coordinate String: {coord_str}\n\n")
+
+            # --- Neural Network Validation ---
+            try:
+                nn_best_x, nn_pred_y = train_and_optimize_nn(X, y, func_idx)
+                nn_coord_str = "-".join([f"{x:.6f}" for x in nn_best_x])
+                nn_str = f"NN Metrics -> Predicted Max Score: {nn_pred_y:.6f}\nNN Coordinate String: {nn_coord_str}"
+                print(nn_str + "\n")
+                f_out.write(nn_str + "\n\n")
+                f_log.write(f"  NN Suggestion: {nn_coord_str} | NN Pred: {nn_pred_y:.6f}\n")
+            except Exception as e:
+                print(f"NN Training Failed: {e}")
+                f_log.write(f"  NN Training Failed: {e}\n")
             
             # --- Logging ---
-            acq_name = 'EI' if func_idx in [2, 3, 4, 5, 7, 8] else 'UCB'
+            acq_name = 'EI'
             f_log.write(f"Func {func_idx}: Dataset size: {len(X)} | Best Y: {np.max(y):.6f}\n")
             f_log.write(f"  Acquisition: {acq_name} | Kappa: {kappa} | Xi: {xi}\n")
             if hasattr(gp.kernel_, 'k1') and hasattr(gp.kernel_.k1, 'k2'):
