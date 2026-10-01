@@ -8,6 +8,8 @@ The repository is anchored by a comprehensive README designed to serve as an exe
 
 For a deep dive into the methodology and to reproduce the results, please refer to the specific documentation files:
 
+*   [**Datasheet**](docs/datasheet.md): Details on why the data set was developed, what it contains, how it's processed, collected and maintained.
+*   [**Model Card**](docs/model_card.md): Details on model's purpose, design, limitations, performance, usage and ethical considerations.
 *   [**Architecture Flow**](docs/architecture.md): A detailed breakdown of the Oracle -> Data -> GP -> Acquisition -> Submission pipeline.
 *   [**Reproducibility Guide**](docs/reproducibility.md): Instructions on how to set up the environment and run the optimizer for any given week.
 *   [**Diagnostics & Overrides**](docs/diagnostics_and_overrides.md): Details the logic behind CV thresholds, EI vs UCB switching, and how manual overrides (like triangulation and boundary locking) were applied to combat GP limitations.
@@ -36,7 +38,8 @@ The implementation relies heavily on the core Python data science stack, specifi
 My repository is structured around the weekly workflow of the BBO capstone. At the core is my optimisation engine (src/bbo_optimize.py) and supporting diagnostic scripts. All historical oracle data is stored in the data/ directory, which accumulates baseline samples and weekly returns.
 
 Weekly outputs are separated into two areas:
-*   esults/: Contains the suggested queries generated for each week, alongside plots and progress trackers.
+*   
+esults/: Contains the suggested queries generated for each week, alongside plots and progress trackers.
 *   submissions/: Stores the files I actually submitted to the oracle.
 
 This structure reflects the iterative nature of the project: new data arrives weekly, I update the optimiser, review diagnostics, and prepare the submission.
