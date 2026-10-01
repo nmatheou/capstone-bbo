@@ -25,6 +25,7 @@ data/
 results/
 logs/
 Archive/
+submissions/
 src/bbo_optimize - Copy.py
 src/check_dups.py
 src/compare_models.py
