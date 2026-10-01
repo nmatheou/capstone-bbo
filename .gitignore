@@ -24,3 +24,13 @@ Archive/
 data/
 results/
 logs/
+Archive/
+src/bbo_optimize - Copy.py
+src/check_dups.py
+src/compare_models.py
+src/data_manager.py
+src/f3_history.py
+src/f4_history.py
+src/plot_f3_surface.py
+src/plot_f8.py
+src/SKILL.py
