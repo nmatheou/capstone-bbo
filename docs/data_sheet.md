@@ -214,7 +214,7 @@ Future users must beware of four silent GP failure modes documented in this repo
 
 ---
 
-## Module 21 Datasheet Reference Summary (Motivation, Composition, Collection, Preprocessing & Maintenance)
+## Datasheet Reference Summary (Motivation, Composition, Collection, Preprocessing & Maintenance)
 
 *   **Motivation:** Iterative empirical dataset generation to characterise and maximise 8 unknown black-box functions under a 13-week sequential budget.
 *   **Composition:** 8 subsets ($F_1$–$F_8$, $2\text{D}\text{	ext{--}}8\text{D}$), containing 23, 23, 28, 43, 29, 33, 43, and 53 observations respectively (**275 total evaluations**), stored in `.npy` and `.csv` formats under [`data/accumulated/`](../data/accumulated/) and raw `.txt` files under [`data/week_<1..13>_returns/`](../data/).
