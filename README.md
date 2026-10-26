@@ -137,5 +137,5 @@ Across the 13-week campaign, **every single function achieved significant gains 
 
 ## Contact Details
 
-*   **Author:** Nicholas Matheou
+*   **Author:** Nicolas Matheou
 *   **GitHub Repository:** [https://github.com/nmatheou/capstone-bbo](https://github.com/nmatheou/capstone-bbo)
