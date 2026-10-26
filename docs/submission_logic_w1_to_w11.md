@@ -32,8 +32,8 @@ While the Gaussian Process (GP) is a powerful surrogate model, relying purely on
 *   **W8 (The Crash):** The GP, blind to $d_2$, violently pushed $d_1$ to `0.759000`. The score crashed to `0.216262`.
 *   **W9 (ARD Recalibration via Calculated Sacrifice):** To force the GP to shrink the length scale for $d_2$, we fed it a massive physical error. We locked $d_1$ at the peak (`0.712000`) and threw $d_2$ to `0.800000`.
     *   *W9 Submission:* `[0.712000, 0.800000]`
-    *   *Result:* Score dropped predictably to `0.449573`. The extreme loss gradient successfully forced the L-BFGS-B optimizer to un-blind $d_2$'s length scale for W10 calculations.
-*   **W10 (Exploiting the Unblinded GP):** The W9 ARD recalibration worked flawlessly. With $d_2$'s length scale finally un-blinded, the GP recognized a secondary, higher mountain in the high-$d_2$ space. We trusted the GP's native, aggressive leap to `[0.686454, 0.940097]` to exploit this new topology.
+    *   *Result:* Score dropped predictably to `0.449573`. The extreme loss gradient successfully forced the L-BFGS-B optimizer to un-blind the $d_2$ length scale for W10 calculations.
+*   **W10 (Exploiting the Unblinded GP):** The W9 ARD recalibration worked flawlessly. With the $d_2$ length scale finally un-blinded, the GP recognized a secondary, higher mountain in the high $d_2$ space. We trusted the GP's native, aggressive leap to `[0.686454, 0.940097]` to exploit this new topology.
 
 ## F3: 3D Drug Discovery
 *   **Topological Challenge:** A complex 3D surface where the GP repeatedly hallucinated a global maximum ("Valley of Death") on the boundaries due to high epistemic uncertainty in empty regions.
@@ -79,8 +79,8 @@ While the Gaussian Process (GP) is a powerful surrogate model, relying purely on
 *   **W8 (Competitor Intel):** External intelligence revealed a `1.96` global maximum achieved by pushing "dead" dimensions to the boundary (ARD Expansion).
 *   **W9 (The Intel Validation Test):** We actively tested this theory by pushing $d_3$ (a dimension assigned a massive length scale by the GP) to the absolute maximum.
     *   *W9 Submission:* `[0.000001, 0.602773, 0.999999, 0.289643, 0.393403, 0.810404]`
-    *   *Result:* Score crashed to `0.605418`. **Conclusion:** The `1.96` peak relies on an entirely different topological pocket, and our specific pocket requires $d_3 \approx 0.374$. This error successfully unblinded $d_3$'s length scale for future weeks.
-*   **W10 (Neural Network Exploitation):** The W9 sacrifice proved the boundary was a trap. The GP W10 suggested another boundary trap ($d_2 	o 0.0$). We trained a Shallow NN which fiercely rejected the GP's boundary hypothesis, instead anchoring perfectly on our best interior pocket (W5). We manually overrode the GP and locked in the NN's conservative micro-nudge `[0.000000, 0.261525, 0.365567, 0.306277, 0.388357, 0.823573]` to safely exploit the pocket.
+    *   *Result:* Score crashed to `0.605418`. **Conclusion:** The `1.96` peak relies on an entirely different topological pocket, and our specific pocket requires $d_3 \approx 0.374$. This error successfully unblinded the $d_3$ length scale for future weeks.
+*   **W10 (Neural Network Exploitation):** The W9 sacrifice proved the boundary was a trap. The GP W10 suggested another boundary trap ($d_2 \to 0.0$). We trained a Shallow NN which fiercely rejected the GP's boundary hypothesis, instead anchoring perfectly on our best interior pocket (W5). We manually overrode the GP and locked in the NN's conservative micro-nudge `[0.000000, 0.261525, 0.365567, 0.306277, 0.388357, 0.823573]` to safely exploit the pocket.
 
 ## F8: 8D ML Hyperparameters
 *   **Topological Challenge:** The curse of dimensionality. Optimizing 8 dimensions simultaneously with $<50$ data points mathematically guarantees GP failure without human intervention.

@@ -23,7 +23,7 @@ The architecture implemented in [`src/bbo_optimize.py`](../src/bbo_optimize.py) 
     *   Composite kernel $k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \, k_{\text{Matern}}(\mathbf{x}, \mathbf{x}'; \nu, \boldsymbol{\ell}) + \sigma_n^2 \delta(\mathbf{x}, \mathbf{x}')$ with **Automatic Relevance Determination (ARD)** length scales $\boldsymbol{\ell} = (\ell_1, \dots, \ell_d)$ optimised via multi-start L-BFGS-B marginal log-likelihood maximisation (`n_restarts_optimizer=10–25`).
     *   $\nu = 1.5$ (once-differentiable) for rugged landscapes ($F_4$); $\nu = 2.5$ (twice-differentiable) for smooth landscapes ($F_1, F_2, F_3, F_5, F_6, F_7, F_8$); explicit `WhiteKernel` noise regularisation for stochastic functions ($F_2, F_6$); and an RBF `SVC` active-subspace filter on $F_1$.
 2.  **Tier 2 — Secondary Shallow Neural Network Surrogate (`PyTorch`):**
-    *   A deterministic-seeded (`seed=42`) 2-hidden-layer Multi-Layer Perceptron (`d -> 64 -> ReLU -> 64 -> ReLU -> 1`) trained on $z$-score standardised targets using Adam (`lr=0.005`, `weight_decay=1e-4`, `800` epochs), followed by bounded L-BFGS input gradient ascent (`lr=0.05`, `20` steps) starting from the empirical incumbent best (`train_and_optimize_nn`).
+    *   A deterministic-seeded (`seed=42`) 2-hidden-layer Multi-Layer Perceptron (`d -> 64 -> ReLU -> 64 -> ReLU -> 1`) trained on z-score standardised targets using Adam (`lr=0.005`, `weight_decay=1e-4`, `800` epochs), followed by bounded L-BFGS input gradient ascent (`lr=0.05`, `20` steps) starting from the empirical incumbent best (`train_and_optimize_nn`).
 3.  **Tier 3 — Analytical Local Response Surfaces & Diagnostic Refinement (`compute_final_refinement`):**
     *   Applies local positive-basin pruning ($y > 0$ on $F_4$; $[0.62, 0.67]^2$ on $F_1$), 2D log-Gaussian secant calibration ($F_1$), 2nd-order Quadratic Response Surface Methodology ($F_8$), and inactive-dimension anchoring ($d_2 = 0.387$ on $F_2$; $(d_1, d_2) = (0.95, 0.40)$ on $F_3$).
 
@@ -55,14 +55,14 @@ The architecture implemented in [`src/bbo_optimize.py`](../src/bbo_optimize.py) 
 
 | Function | Dim ($d$) | Samples ($N$) | Baseline Best (W0) | Week 13 Return | **All-Time Best ($y^\ast$)** | Best Week | Total Gain ($\text{W0} \to \text{Best}$) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **$F_1$** (Sparse Needle) | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | **$+2.000000$** |
-| **$F_2$** (Noisy Sim) | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | **$+0.110665$** |
-| **$F_3$** (Drug Discovery) | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | **$+0.028790$** |
-| **$F_4$** (Warehouse) | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | **$+4.705523$** |
-| **$F_5$** (Chemical Yield) | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | **$+7573.6229$** |
-| **$F_6$** (Cake Recipe) | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | **$+0.623679$** |
-| **$F_7$** (ML Hyperparams) | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | **$+1.020627$** |
-| **$F_8$** (ML Hyperparams) | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | **$+0.388685$** |
+| **F1 ($F_1$)** (Sparse Needle) | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | $\mathbf{+2.000000}$ |
+| **F2 ($F_2$)** (Noisy Sim) | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | $\mathbf{+0.110665}$ |
+| **F3 ($F_3$)** (Drug Discovery) | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | $\mathbf{+0.028790}$ |
+| **F4 ($F_4$)** (Warehouse) | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | $\mathbf{+4.705523}$ |
+| **F5 ($F_5$)** (Chemical Yield) | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | $\mathbf{+7573.6229}$ |
+| **F6 ($F_6$)** (Cake Recipe) | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | $\mathbf{+0.623679}$ |
+| **F7 ($F_7$)** (ML Hyperparams) | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | $\mathbf{+1.020627}$ |
+| **F8 ($F_8$)** (ML Hyperparams) | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | $\mathbf{+0.388685}$ |
 
 ### Performance Summary Graphs (Weeks 1–13)
 

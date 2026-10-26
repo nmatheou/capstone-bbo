@@ -39,18 +39,18 @@ The dataset consists of eight separate black-box function benchmarks ($F_1$ thro
 
 | Function | Simulated Domain | Input Dim ($d$) | Initial Points ($n_0$) | Weekly Queries (W1–W13) | Final Dataset Size ($N$) | Surface & Noise Profile |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **$F_1$** | Contamination / Radiation Source Detection | 2D | 10 | +13 | **23** | Deterministic, sparse needle on flat-zero plane |
-| **$F_2$** | Noisy Physical / Dual-Peak Simulation | 2D | 10 | +13 | **23** | Stochastic ($\sigma_{\text{obs}} \approx 0.09$), inactive $d_2$ ridge |
-| **$F_3$** | Drug Discovery / Adverse Reaction Minimization | 3D | 15 | +13 | **28** | Multimodal boundary pockets, $y \le 0$ |
-| **$F_4$** | Warehouse Logistics / Dynamic Placement | 4D | 30 | +13 | **43** | Rugged ($\nu=1.5$), steep penalty cliffs to $-32.6$ |
-| **$F_5$** | Chemical Yield Maximisation | 4D | 16 | +13 | **29** | Smooth unimodal monotonic rise to $[1,1,1,1]$ corner |
-| **$F_6$** | Cake Recipe / Multi-Component Formulation | 5D | 20 | +13 | **33** | Noisy interior composite basin, $y \le 0$ |
-| **$F_7$** | 6D Machine Learning Hyperparameter Tuning | 6D | 30 | +13 | **43** | Smooth coupled ridge with boundary optimum $d_1=0$ |
-| **$F_8$** | 8D Machine Learning Hyperparameter Tuning | 8D | 40 | +13 | **53** | Smooth concave quadratic bowl ($d_2, d_6$ inactive) |
+| **F1 ($F_1$)** | Contamination / Radiation Source Detection | 2D | 10 | +13 | **23** | Deterministic, sparse needle on flat-zero plane |
+| **F2 ($F_2$)** | Noisy Physical / Dual-Peak Simulation | 2D | 10 | +13 | **23** | Stochastic ($\sigma_{\text{obs}} \approx 0.09$), inactive $d_2$ ridge |
+| **F3 ($F_3$)** | Drug Discovery / Adverse Reaction Minimization | 3D | 15 | +13 | **28** | Multimodal boundary pockets, $y \le 0$ |
+| **F4 ($F_4$)** | Warehouse Logistics / Dynamic Placement | 4D | 30 | +13 | **43** | Rugged ($\nu=1.5$), steep penalty cliffs to $-32.6$ |
+| **F5 ($F_5$)** | Chemical Yield Maximisation | 4D | 16 | +13 | **29** | Smooth unimodal monotonic rise to $[1,1,1,1]$ corner |
+| **F6 ($F_6$)** | Cake Recipe / Multi-Component Formulation | 5D | 20 | +13 | **33** | Noisy interior composite basin, $y \le 0$ |
+| **F7 ($F_7$)** | 6D Machine Learning Hyperparameter Tuning | 6D | 30 | +13 | **43** | Smooth coupled ridge with boundary optimum $d_1=0$ |
+| **F8 ($F_8$)** | 8D Machine Learning Hyperparameter Tuning | 8D | 40 | +13 | **53** | Smooth concave quadratic bowl ($d_2, d_6$ inactive) |
 
 ### Data Storage & Large Dataset Policy
 *   **Empirical BBO Datasets (`data/`):** Across all 8 functions and 13 rounds, the complete dataset contains **275 evaluated points** ($< 50\text{ KB}$ total). It is stored directly in this repository in both NumPy binary (`.npy`) and human-readable (`.csv`) formats under [`data/accumulated/`](data/accumulated/), alongside raw weekly return files in [`data/week_1_returns/`](data/week_1_returns/) through [`data/week_13_returns/`](data/week_13_returns/).
-*   **Large Candidate Search Grids (Generated On-Demand):** During each weekly run, the optimiser generates dense multi-dimensional candidate meshes ($10,000$-point Latin Hypercube Sampling matrices per function plus multi-start gradient trajectories). Following GitHub best practices, these large intermediate evaluation matrices are **not hosted directly on GitHub**; instead, they are deterministically generated in memory on demand via `scipy.stats.qmc.LatinHypercube(d, seed=42)` in [`src/bbo_optimize.py`](src/bbo_optimize.py).
+*   **Large Candidate Search Grids (Generated On-Demand):** During each weekly run, the optimiser generates dense multi-dimensional candidate meshes (10,000-point Latin Hypercube Sampling matrices per function plus multi-start gradient trajectories). Following GitHub best practices, these large intermediate evaluation matrices are **not hosted directly on GitHub**; instead, they are deterministically generated in memory on demand via `scipy.stats.qmc.LatinHypercube(d, seed=42)` in [`src/bbo_optimize.py`](src/bbo_optimize.py).
 *   **Relevant Citations:** The synthetic benchmark topologies reflect standard continuous optimisation test suites, notably the [**COCO / Black-Box Optimization Benchmarking (BBOB) Suite**](https://numbbo.github.io/coco/testsuites/bbob) (Hansen et al., 2021). Full dataset documentation is available in the [**Datasheet (`docs/datasheet.md`)**](docs/datasheet.md).
 
 ---
@@ -80,15 +80,15 @@ Hyperparameters in this project operate at two levels—**internal surrogate hyp
     *   Configured per function based on landscape roughness diagnostics: $\nu = 1.5$ (once-differentiable) for rugged, multi-modal $F_4$, and $\nu = 2.5$ (twice-differentiable) for smooth functions ($F_1, F_2, F_3, F_5, F_6, F_7, F_8$).
 2.  **ARD Length Scales ($\boldsymbol{\ell}$) & Bounds (`length_scale_bounds`):**
     *   Optimised automatically via marginal log-likelihood maximisation (`L-BFGS-B` with `n_restarts_optimizer=10–25`).
-    *   In Week 3, after [`src/length_scale_tracker.py`](src/length_scale_tracker.py) revealed premature length-scale saturation at `100.0`, I introduced function-specific upper bounds (`0.5` on $F_1$, `2.0` on $F_3$, `5.0` on $F_6/F_7$, `50.0` on $F_8$), while relaxing $F_2$'s bound back to `100.0` in Week 6 so the GP could naturally filter out its inactive dimension $d_2$ ($\ell_2 = 100.0$).
+    *   In Week 3, after [`src/length_scale_tracker.py`](src/length_scale_tracker.py) revealed premature length-scale saturation at `100.0`, I introduced function-specific upper bounds (`0.5` on $F_1$, `2.0` on $F_3$, `5.0` on $F_6/F_7$, `50.0` on $F_8$), while relaxing the $F_2$ bound back to `100.0` in Week 6 so the GP could naturally filter out its inactive dimension $d_2$ ($\ell_2 = 100.0$).
 3.  **Noise Regularisation (`alpha` & `WhiteKernel`):**
     *   Deterministic functions use a tight Cholesky nugget (`alpha = 1e-6`), while noisy functions ($F_2$ and $F_6$) include a learnable `WhiteKernel(noise_level=0.01–0.1, noise_level_bounds=(1e-5, 1.0))` to prevent noise-induced length-scale collapse.
 4.  **Acquisition Function Schedule ($\kappa$ for UCB, $\xi$ for EI):**
     *   Transitioned from broad exploration in Weeks 1–4 using Upper Confidence Bound ($\text{UCB} = \mu + \kappa \sigma$, with $\kappa \in [3.0, 4.0]$) to focused exploitation in Weeks 5–13 using Expected Improvement ($\text{EI}$ with exploration parameter $\xi$ annealed from `0.1` $\to$ `0.01` $\to$ `0.0001`).
 5.  **Adaptive Trust-Region Width (`tr_width`):**
-    *   To prevent boundary variance traps in $\ge 4\text{D}$ spaces ($F_4, F_6, F_7, F_8$), candidate generation was restricted to a local hyper-box around the incumbent best with width dynamically scaled to $1.5\times$ the coordinate spread of the top-3 historical points (`np.clip(spread * 1.5, 0.3, 1.0)`), tightening to $\pm 0.015\text{	ext{--}}0.05$ in Week 13.
+    *   To prevent boundary variance traps in $\ge 4\text{D}$ spaces ($F_4, F_6, F_7, F_8$), candidate generation was restricted to a local hyper-box around the incumbent best with width dynamically scaled to $1.5\times$ the coordinate spread of the top-3 historical points (`np.clip(spread * 1.5, 0.3, 1.0)`), tightening to $\pm 0.015 \text{ to } 0.05$ in Week 13.
 6.  **PyTorch Neural Network Hyperparameters:**
-    *   2 hidden layers (`64x64` ReLU), trained on $z$-score standardised targets using Adam (`lr = 0.005`, `weight_decay = 1e-4`, `epochs = 800`), followed by bounded L-BFGS input ascent (`lr = 0.05`, `max_iter = 20`).
+    *   2 hidden layers (`64x64` ReLU), trained on z-score standardised targets using Adam (`lr = 0.005`, `weight_decay = 1e-4`, `epochs = 800`), followed by bounded L-BFGS input ascent (`lr = 0.05`, `max_iter = 20`).
 
 ---
 
@@ -100,19 +100,19 @@ Across the 13-week campaign, **every single function achieved significant gains 
 
 | Function | Dim | Total Samples ($N$) | Initial Best (W0) | Final W13 Return | **All-Time Maximum** | Best Week | Campaign Gain ($\text{W0} \to \text{Max}$) | Optimal Input Vector $\mathbf{x}^\ast$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **$F_1$** | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | **$+2.000000$** | `[0.628541, 0.628541]` |
-| **$F_2$** | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | **$+0.110665$** | `[0.689600, 0.387000]` |
-| **$F_3$** | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | **$+0.028790$** | `[0.950000, 0.400000, 0.438611]` |
-| **$F_4$** | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | **$+4.705523$** | `[0.407968, 0.405671, 0.359691, 0.420080]` |
-| **$F_5$** | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | **$+7573.6229$** | `[1.000000, 1.000000, 1.000000, 1.000000]` |
-| **$F_6$** | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | **$+0.623679$** | `[0.450000, 0.300000, 0.662500, 0.750000, 0.087500]` |
-| **$F_7$** | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | **$+1.020627$** | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` |
-| **$F_8$** | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | **$+0.388685$** | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` |
+| **F1 ($F_1$)** | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | $\mathbf{+2.000000}$ | `[0.628541, 0.628541]` |
+| **F2 ($F_2$)** | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | $\mathbf{+0.110665}$ | `[0.689600, 0.387000]` |
+| **F3 ($F_3$)** | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | $\mathbf{+0.028790}$ | `[0.950000, 0.400000, 0.438611]` |
+| **F4 ($F_4$)** | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | $\mathbf{+4.705523}$ | `[0.407968, 0.405671, 0.359691, 0.420080]` |
+| **F5 ($F_5$)** | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | $\mathbf{+7573.6229}$ | `[1.000000, 1.000000, 1.000000, 1.000000]` |
+| **F6 ($F_6$)** | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | $\mathbf{+0.623679}$ | `[0.450000, 0.300000, 0.662500, 0.750000, 0.087500]` |
+| **F7 ($F_7$)** | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | $\mathbf{+1.020627}$ | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` |
+| **F8 ($F_8$)** | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | $\mathbf{+0.388685}$ | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` |
 
 ### Key Learnings from the Model & Results
 1.  **Data Geometry Dictates Difficulty More Than Dimensionality:** Counter-intuitively, 2D $F_1$ (a non-stationary needle surrounded by 98% flat zeros) was far harder for a standard GP to map than 8D $F_8$ (a smooth quadratic basin where ARD quickly isolated the 4 primary drivers $d_1, d_3, d_4, d_7$).
 2.  **Local Basin Pruning Overcomes Stationarity Failure:** Pruning extreme outer cliffs ($F_4$) and flat-zero planes ($F_1$) prevented global variance distortion and unlocked late-stage precision.
-3.  **Diagnostic De-Confounding Drives Breakthroughs:** Isolating individual coordinate effects allowed us to diagnose that $F_7$'s Week 12 dip (`2.1372`) was caused solely by moving $d_3$; restoring $d_3 = 0.305066$ while keeping the Week 12 shifts on $(d_2, d_4, d_5, d_6)$ produced our standout Week 13 finale record of **`2.385595`**.
+3.  **Diagnostic De-Confounding Drives Breakthroughs:** Isolating individual coordinate effects allowed us to diagnose that the $F_7$ Week 12 dip (`2.1372`) was caused solely by moving $d_3$; restoring $d_3 = 0.305066$ while keeping the Week 12 shifts on $(d_2, d_4, d_5, d_6)$ produced our standout Week 13 finale record of **`2.385595`**.
 
 ### Campaign Visualisations (Weeks 1–13)
 
