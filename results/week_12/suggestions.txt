@@ -1,0 +1,56 @@
+--- Function 1 ---
+Metrics -> GP Mean: 0.715860, GP Std: 0.048138, Acq Score: 0.022502
+Coordinate String: 0.625658-0.640844
+
+NN Metrics -> Predicted Max Score: 0.031640
+NN Coordinate String: 0.671393-0.620094
+
+--- Function 2 ---
+Metrics -> GP Mean: 0.591356, GP Std: 0.061756, Acq Score: 0.005394
+Coordinate String: 0.688157-0.050890
+
+NN Metrics -> Predicted Max Score: 0.621317
+NN Coordinate String: 0.706133-0.386944
+
+--- Function 3 ---
+Metrics -> GP Mean: -0.026442, GP Std: 0.055577, Acq Score: 0.013097
+Coordinate String: 0.050000-0.400000-0.444630
+
+NN Metrics -> Predicted Max Score: 0.042543
+NN Coordinate String: 1.000000-0.267680-0.689746
+
+--- Function 4 ---
+Metrics -> GP Mean: 0.642343, GP Std: 0.035322, Acq Score: 0.010931
+Coordinate String: 0.407968-0.405670-0.359691-0.420080
+
+NN Metrics -> Predicted Max Score: 0.400010
+NN Coordinate String: 0.403263-0.411278-0.363387-0.419826
+
+--- Function 5 ---
+Metrics -> GP Mean: 8662.344292, GP Std: 6.427329, Acq Score: 2.528934
+Coordinate String: 0.999999-0.999999-0.999999-0.999999
+
+NN Metrics -> Predicted Max Score: 8662.400391
+NN Coordinate String: 1.000000-1.000000-1.000000-1.000000
+
+--- Function 6 ---
+Metrics -> GP Mean: 0.057318, GP Std: 0.138727, Acq Score: 0.149593
+Coordinate String: 0.467245-0.296494-0.526078-0.736404-0.089793
+
+NN Metrics -> Predicted Max Score: -0.114666
+NN Coordinate String: 0.446447-0.303007-0.659222-0.752304-0.087151
+
+--- Function 7 ---
+Metrics -> GP Mean: 2.257489, GP Std: 0.055920, Acq Score: 0.052596
+Coordinate String: 0.000001-0.164907-0.161535-0.322832-0.327401-0.764117
+
+NN Metrics -> Predicted Max Score: 2.618458
+NN Coordinate String: 0.000000-0.128297-0.198731-0.171016-0.159108-1.000000
+
+--- Function 8 ---
+Metrics -> GP Mean: 9.973106, GP Std: 0.062242, Acq Score: 0.025605
+Coordinate String: 0.113382-0.147141-0.115203-0.127233-0.869703-0.471421-0.208817-0.000001
+
+NN Metrics -> Predicted Max Score: 9.974503
+NN Coordinate String: 0.111436-0.138172-0.104928-0.128918-1.000000-0.473866-0.215221-1.000000
+

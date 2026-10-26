@@ -1,0 +1,38 @@
+--- Function 1 ---
+  [skip] W3 point already in dataset
+  Dataset: 13 points | best y = 0.000000
+Metrics -> GP Mean: -0.000236, GP Std: 0.000970, Acq Score: 0.003158
+Coordinate String (GP suggestion): 0.693496-0.457189
+[MANUAL OVERRIDE] Targeting suspected needle region (0.38, 0.39) based on:
+  - Visual inspection of 3D surface plot (empty void ~0.4, 0.4)
+  - Rival team triangulation: strong source near (0.37, 0.38)
+Coordinate String: 0.380000-0.390000
+
+--- Function 2 ---
+Metrics -> GP Mean: 0.462654, GP Std: 0.173072, Acq Score: 1.068407
+Coordinate String: 0.750309-0.784174
+
+--- Function 3 ---
+Metrics -> GP Mean: -0.021906, GP Std: 0.028138, Acq Score: 0.018184
+Coordinate String: 0.900000-0.495997-0.384764
+
+--- Function 4 ---
+Metrics -> GP Mean: 0.371827, GP Std: 0.360215, Acq Score: 1.632578
+Coordinate String: 0.438156-0.398175-0.387517-0.433869
+
+--- Function 5 ---
+Metrics -> GP Mean: 3695.520154, GP Std: 734.756391, Acq Score: 59.599140
+Coordinate String: 0.999999-0.999999-0.999999-0.999999
+
+--- Function 6 ---
+Metrics -> GP Mean: -0.725859, GP Std: 0.319591, Acq Score: 0.392709
+Coordinate String: 0.481864-0.432251-0.999999-0.999999-0.000001
+
+--- Function 7 ---
+Metrics -> GP Mean: 1.365719, GP Std: 0.156131, Acq Score: 1.834111
+Coordinate String: 0.000001-0.480110-0.573333-0.187045-0.427761-0.999999
+
+--- Function 8 ---
+Metrics -> GP Mean: 9.963185, GP Std: 0.101728, Acq Score: 10.268368
+Coordinate String: 0.000001-0.245035-0.150001-0.000001-0.999999-0.401055-0.000001-0.999999
+

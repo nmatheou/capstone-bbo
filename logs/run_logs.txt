@@ -1,0 +1,737 @@
+
+--- Run Timestamp: 2026-08-19T07:12:30.664921 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+
+--- Run Timestamp: 2026-08-19T07:13:12.324710 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.5        0.02740813]
+  Suggestion: 0.712949-0.458517 | Acq Score: 0.003052
+
+Func 2: Dataset size: 14 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+
+--- Run Timestamp: 2026-08-19T07:13:28.920168 | Target Week: 5 ---
+Func 1: Dataset size: 14 | Best Y: 0.000000
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.5        0.02740813]
+  Suggestion: 0.712949-0.458517 | Acq Score: 0.003052
+
+Func 2: Dataset size: 14 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.04682281 4.60769776]
+  Suggestion: 0.698318-0.000001 | Acq Score: 0.020353
+
+Func 3: Dataset size: 19 | Best Y: -0.034835
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [1.15110633 1.54278182 0.25920346]
+  Suggestion: 0.471699-0.521043-0.421162 | Acq Score: 0.029300
+
+Func 4: Dataset size: 34 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.37267881 3.0702972  3.05421573 3.18145451]
+  Suggestion: 0.413842-0.453610-0.374447-0.418995 | Acq Score: 0.070431
+
+Func 5: Dataset size: 24 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [  0.36669064   1.67102528 100.          20.54932953]
+  Suggestion: 0.999999-0.999999-0.000001-0.000001 | Acq Score: 90.020440
+
+Func 6: Dataset size: 24 | Best Y: -0.714265
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.48854901 0.79975059 0.8914864  1.09419385 0.85873571]
+  Suggestion: 0.379348-0.000001-0.999999-0.000001-0.000001 | Acq Score: 0.278689
+
+Func 7: Dataset size: 34 | Best Y: 1.482614
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.11066333 2.63104482 5.         0.51886256 0.22408577 0.18980912]
+  Suggestion: 0.000001-0.269055-0.374113-0.312202-0.395631-0.822076 | Acq Score: 0.094336
+
+Func 8: Dataset size: 44 | Best Y: 9.900336
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 4.34416209  6.39429472  3.38854449  8.33862042 21.01761258  6.26002636
+  4.28924613 50.        ]
+  Suggestion: 0.158730-0.047156-0.156523-0.000001-0.999999-0.495016-0.257704-0.000001 | Acq Score: 0.166180
+
+
+--- Run Timestamp: 2026-08-19T15:13:24.386013 | Target Week: 6 ---
+Func 1: Dataset size: 15 | Best Y: 0.000000
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.549671-0.849996 | Acq Score: 0.002867
+
+Func 2: Dataset size: 15 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [4.47009413e-02 1.00000000e+02]
+  Suggestion: 0.710092-0.000001 | Acq Score: 0.003873
+
+Func 3: Dataset size: 20 | Best Y: -0.027656
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.85666279 0.29578621]
+  Suggestion: 0.950000-0.350000-0.550000 | Acq Score: 0.010705
+
+Func 4: Dataset size: 35 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.52776646 3.14034595 3.14191455 3.31135564]
+  Suggestion: 0.381503-0.392430-0.354062-0.432585 | Acq Score: 0.088595
+
+Func 5: Dataset size: 25 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [  2.78689948   1.46033403   0.51490282 100.        ]
+  Suggestion: 0.999999-0.999999-0.999999-0.000001 | Acq Score: 22.492470
+
+Func 6: Dataset size: 25 | Best Y: -0.209350
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.51063374 1.01156237 1.13111079 0.69514951 0.76785587]
+  Suggestion: 0.337977-0.000001-0.999999-0.380098-0.000001 | Acq Score: 0.600032
+
+Func 7: Dataset size: 35 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.06313051 0.6873442  5.         5.         0.20869422 0.17805519]
+  Suggestion: 0.000001-0.148655-0.312035-0.269920-0.423188-0.801399 | Acq Score: 0.111545
+
+Func 8: Dataset size: 45 | Best Y: 9.900336
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 5.03137564  7.28105972  4.06152723  8.07203437 12.03634139  7.14849483
+  5.19710943 50.        ]
+  Suggestion: 0.165119-0.109363-0.149738-0.062786-0.932392-0.493930-0.196677-0.000001 | Acq Score: 0.090669
+
+
+--- Run Timestamp: 2026-09-07T06:26:36.712132 | Target Week: 7 ---
+Func 1: Dataset size: 16 | Best Y: 0.002561
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.664562-0.655911 | Acq Score: 0.005004
+
+Func 2: Dataset size: 16 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.78435105e-02 1.00000000e+02]
+  Suggestion: 0.689062-0.999999 | Acq Score: 0.010889
+
+Func 3: Dataset size: 21 | Best Y: -0.022568
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.70461228 0.03102584]
+  Suggestion: 0.636465-0.350000-0.407955 | Acq Score: 0.031457
+
+Func 4: Dataset size: 36 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.63275032 3.18928244 3.20953095 3.3850004 ]
+  Suggestion: 0.396930-0.409785-0.356386-0.469081 | Acq Score: 0.063504
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 26 | Best Y: -0.127381
+  Acquisition: UCB | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.52478765 1.47035189 1.93894728 0.56907502 1.17910902]
+  Suggestion: 0.337151-0.000001-0.999999-0.455035-0.000001 | Acq Score: 0.970179
+
+Func 7: Dataset size: 36 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.07770961 3.04832214 5.         0.48753827 0.22360132 0.14397481]
+  Suggestion: 0.000001-0.000001-0.436219-0.374451-0.405680-0.809128 | Acq Score: 0.034619
+
+Func 8: Dataset size: 46 | Best Y: 9.945034
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 5.68844613  8.03562555  4.56978209  8.81765425 12.31170171  8.07128152
+  5.77666427 50.        ]
+  Suggestion: 0.144929-0.112877-0.128619-0.031170-0.824854-0.481490-0.180865-0.000001 | Acq Score: 0.042260
+
+
+--- Run Timestamp: 2026-09-09T10:45:54.800423 | Target Week: 7 ---
+Func 1: Dataset size: 16 | Best Y: 0.002561
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.663457-0.647102 | Acq Score: 0.000000
+
+Func 2: Dataset size: 16 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.78435105e-02 1.00000000e+02]
+  Suggestion: 0.689062-0.999999 | Acq Score: 0.010889
+
+Func 3: Dataset size: 21 | Best Y: -0.022568
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.70461228 0.03102584]
+  Suggestion: 0.648506-0.400000-0.407876 | Acq Score: 0.030625
+
+Func 4: Dataset size: 36 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.63275032 3.18928244 3.20953095 3.3850004 ]
+  Suggestion: 0.396929-0.409784-0.356387-0.469080 | Acq Score: 0.063504
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 26 | Best Y: -0.127381
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.52478765 1.47035189 1.93894728 0.56907502 1.17910902]
+  Suggestion: 0.448933-0.245806-0.846813-0.639731-0.000001 | Acq Score: 0.201172
+
+Func 7: Dataset size: 36 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.07770961 3.04832214 5.         0.48753827 0.22360132 0.14397481]
+  Suggestion: 0.000001-0.000001-0.436219-0.374451-0.405680-0.809128 | Acq Score: 0.034619
+
+Func 8: Dataset size: 46 | Best Y: 9.945034
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 5.68844613  8.03562555  4.56978209  8.81765425 12.31170171  8.07128152
+  5.77666427 50.        ]
+  Suggestion: 0.144929-0.112877-0.128619-0.031170-0.824854-0.481490-0.180865-0.000001 | Acq Score: 0.042260
+
+
+--- Run Timestamp: 2026-09-09T11:24:42.446229 | Target Week: 7 ---
+Func 1: Dataset size: 16 | Best Y: 0.002561
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.662030-0.660400 | Acq Score: 0.000126
+
+Func 2: Dataset size: 16 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.78435105e-02 1.00000000e+02]
+  Suggestion: 0.689062-0.999999 | Acq Score: 0.010889
+
+Func 3: Dataset size: 21 | Best Y: -0.022568
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.70461228 0.03102584]
+  Suggestion: 0.648506-0.400000-0.407876 | Acq Score: 0.030625
+
+Func 4: Dataset size: 36 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [3.63275032 3.18928244 3.20953095 3.3850004 ]
+  Suggestion: 0.396929-0.409784-0.356387-0.469080 | Acq Score: 0.063504
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 26 | Best Y: -0.127381
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.52478765 1.47035189 1.93894728 0.56907502 1.17910902]
+  Suggestion: 0.448933-0.245806-0.846813-0.639731-0.000001 | Acq Score: 0.201172
+
+Func 7: Dataset size: 36 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.07770961 3.04832214 5.         0.48753827 0.22360132 0.14397481]
+  Suggestion: 0.000001-0.000001-0.436219-0.374451-0.405680-0.809128 | Acq Score: 0.034619
+
+Func 8: Dataset size: 46 | Best Y: 9.945034
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 5.68844613  8.03562555  4.56978209  8.81765425 12.31170171  8.07128152
+  5.77666427 50.        ]
+  Suggestion: 0.144929-0.112877-0.128619-0.031170-0.824854-0.481490-0.180865-0.000001 | Acq Score: 0.042260
+
+
+--- Run Timestamp: 2026-09-17T06:50:40.935470 | Target Week: 8 ---
+Func 1: Dataset size: 17 | Best Y: 0.004384
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.663675-0.657483 | Acq Score: 0.000296
+
+Func 2: Dataset size: 17 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.0630272  8.23481123]
+  Suggestion: 0.689579-0.999999 | Acq Score: 0.010750
+
+Func 3: Dataset size: 22 | Best Y: -0.006152
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.54498755 0.03493317]
+  Suggestion: 0.050000-0.400000-0.405924 | Acq Score: 0.011665
+
+Func 4: Dataset size: 37 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.80755606 1.23914351 1.59539063 1.24849528]
+  Suggestion: 0.393916-0.405079-0.360578-0.394240 | Acq Score: 0.452662
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 27 | Best Y: -0.127381
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         0.25151083 0.61136928 0.4881688  0.27931985]
+  Suggestion: 0.237601-0.306902-0.602517-0.877241-0.075949 | Acq Score: 0.057860
+
+Func 7: Dataset size: 37 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.07888157 0.65937066 5.         5.         0.16429849 0.17050314]
+  Suggestion: 0.000001-0.229456-0.440652-0.892916-0.401360-0.802269 | Acq Score: 0.028970
+
+Func 8: Dataset size: 47 | Best Y: 9.945034
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 5.75606653  8.13541705  4.63519471  8.82517578 12.40698945  8.16672404
+  5.84084108 50.        ]
+  Suggestion: 0.140220-0.120220-0.130547-0.051253-0.819310-0.487614-0.185037-0.000001 | Acq Score: 0.037737
+
+
+--- Run Timestamp: 2026-09-23T11:05:24.001097 | Target Week: 9 ---
+Func 1: Dataset size: 18 | Best Y: 0.004384
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.658047-0.657219 | Acq Score: 0.002787
+
+Func 2: Dataset size: 18 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.06323878 5.58067402]
+  Suggestion: 0.689904-0.999999 | Acq Score: 0.011672
+
+Func 3: Dataset size: 23 | Best Y: -0.006152
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         0.75119566 0.03627363]
+  Suggestion: 0.909343-0.650000-0.407084 | Acq Score: 0.013661
+
+Func 4: Dataset size: 38 | Best Y: 0.483523
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.97010884 1.51482547 1.7310499  1.14344797]
+  Suggestion: 0.398209-0.410225-0.360683-0.421851 | Acq Score: 0.132220
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 28 | Best Y: -0.127381
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.65661617 0.640263   0.51813669 1.37410376 2.0541682 ]
+  Suggestion: 0.452291-0.396017-0.663057-0.999999-0.000001 | Acq Score: 0.226027
+
+Func 7: Dataset size: 38 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.06964953 5.         5.         0.30578514 0.2327383  0.14469295]
+  Suggestion: 0.000001-0.602773-0.999999-0.289643-0.393403-0.810404 | Acq Score: 0.017429
+
+Func 8: Dataset size: 48 | Best Y: 9.949525
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.07092906  8.55898904  4.91638882  9.11243423 12.94433433  8.58996298
+  6.12241372 50.        ]
+  Suggestion: 0.125802-0.138148-0.123865-0.093696-0.847598-0.482629-0.198718-0.000001 | Acq Score: 0.033681
+
+
+--- Run Timestamp: 2026-09-29T09:58:09.772702 | Target Week: 10 ---
+Func 1: Dataset size: 19 | Best Y: 0.012282
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.659911-0.652210 | Acq Score: 0.001806
+
+Func 2: Dataset size: 19 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [6.55509487e-02 1.00000000e+02]
+  Suggestion: 0.686454-0.940097 | Acq Score: 0.008609
+
+Func 3: Dataset size: 24 | Best Y: -0.006152
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.   2.   0.01]
+  Suggestion: 0.950000-0.400000-0.416489 | Acq Score: 0.016629
+
+Func 4: Dataset size: 39 | Best Y: 0.639193
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.05557411 1.58159367 1.8067079  1.20431547]
+  Suggestion: 0.414320-0.406353-0.346082-0.418955 | Acq Score: 0.018913
+
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+Func 6: Dataset size: 29 | Best Y: -0.127381
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.33692877 1.86806324 1.43943057 0.52638997 0.23080996]
+  Suggestion: 0.498453-0.152187-0.319612-0.793181-0.089398 | Acq Score: 0.095231
+
+Func 7: Dataset size: 39 | Best Y: 1.875426
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [1.05180698 5.         0.51954729 0.32084745 0.22408585 0.14973321]
+  Suggestion: 0.000001-0.000001-0.282741-0.318104-0.388991-0.813604 | Acq Score: 0.025386
+
+Func 8: Dataset size: 49 | Best Y: 9.958940
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.21831319  8.78409992  5.07195284  9.11260239 13.14755343  8.8091556
+  6.23389102 50.        ]
+  Suggestion: 0.113203-0.147122-0.115630-0.128826-0.867507-0.471155-0.209232-0.000001 | Acq Score: 0.026600
+
+
+--- Run Timestamp: 2026-10-05T05:39:28.727084 | Target Week: 11 ---
+  NN Suggestion: 0.671393-0.620094 | NN Pred: 0.031640
+Func 1: Dataset size: 20 | Best Y: 0.015352
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.661015-0.649387 | Acq Score: 0.004154
+
+  NN Suggestion: 0.712905-0.387764 | NN Pred: 0.627941
+Func 2: Dataset size: 20 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.00799416e-02 1.00000000e+02]
+  Suggestion: 0.687324-0.050893 | Acq Score: 0.005853
+
+  NN Suggestion: 0.389517-0.482634-0.466543 | NN Pred: -0.000055
+Func 3: Dataset size: 25 | Best Y: -0.006152
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.88940367 0.01      ]
+  Suggestion: 0.950000-0.400000-0.438611 | Acq Score: 0.009068
+
+  NN Suggestion: 0.401756-0.409406-0.357061-0.414692 | NN Pred: 0.532213
+Func 4: Dataset size: 40 | Best Y: 0.639193
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.18246436 1.67340755 1.89548676 1.26014658]
+  Suggestion: 0.396756-0.412806-0.348920-0.419994 | Acq Score: 0.011039
+
+  NN Suggestion: 1.000000-1.000000-1.000000-0.000000 | NN Pred: 4440.499023
+Func 5: Dataset size: 26 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.8814919  1.91178904 1.6807461  3.04183105]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.438495
+
+  NN Suggestion: 0.449677-0.299932-0.659228-0.751670-0.087092 | NN Pred: -0.109360
+Func 6: Dataset size: 30 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [0.53719347 1.65605601 5.         0.44207719 0.06140079]
+  Suggestion: 0.305916-0.265610-0.412557-0.869179-0.091328 | Acq Score: 0.088678
+
+  NN Suggestion: 0.000000-0.240604-0.345207-0.295691-0.377126-0.831362 | NN Pred: 1.986103
+Func 7: Dataset size: 40 | Best Y: 1.913037
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.77552881 0.54297854 0.91890992 0.33516008 0.21547416 0.24725626]
+  Suggestion: 0.000001-0.176724-0.283122-0.306983-0.353130-0.792087 | Acq Score: 0.153817
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-1.000000-0.000000-0.000000-1.000000 | NN Pred: 9.983584
+Func 8: Dataset size: 50 | Best Y: 9.961573
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.29030059  8.88168489  5.1311648   9.22617013 13.29170693  8.91184314
+  6.30360651 50.        ]
+  Suggestion: 0.113157-0.146946-0.115077-0.128362-0.869426-0.470603-0.209101-0.000001 | Acq Score: 0.025423
+
+
+--- Run Timestamp: 2026-10-05T05:40:19.182600 | Target Week: 11 ---
+  NN Suggestion: 0.671393-0.620094 | NN Pred: 0.031640
+Func 1: Dataset size: 20 | Best Y: 0.015352
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01 0.01]
+  Suggestion: 0.661015-0.649387 | Acq Score: 0.004154
+
+
+--- Run Timestamp: 2026-10-14T13:45:51.410690 | Target Week: 12 ---
+  NN Suggestion: 0.671393-0.620094 | NN Pred: 0.031640
+Func 1: Dataset size: 21 | Best Y: 0.709490
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.01972491 0.04630158]
+  Suggestion: 0.625658-0.640844 | Acq Score: 0.022502
+
+  NN Suggestion: 0.706133-0.386944 | NN Pred: 0.621317
+Func 2: Dataset size: 21 | Best Y: 0.641577
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.31118474e-02 1.00000000e+02]
+  Suggestion: 0.688157-0.050890 | Acq Score: 0.005394
+
+  NN Suggestion: 1.000000-0.267680-0.689746 | NN Pred: 0.042543
+Func 3: Dataset size: 26 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.87155091 0.01      ]
+  Suggestion: 0.050000-0.400000-0.444630 | Acq Score: 0.013097
+
+  NN Suggestion: 0.403263-0.411278-0.363387-0.419826 | NN Pred: 0.400010
+Func 4: Dataset size: 41 | Best Y: 0.639193
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27430057 1.75751277 1.98655105 1.31259627]
+  Suggestion: 0.407968-0.405670-0.359691-0.420080 | Acq Score: 0.010931
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8662.400391
+Func 5: Dataset size: 27 | Best Y: 8662.405001
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.91165712 1.82962354 1.87386469 3.02524758]
+  Suggestion: 0.999999-0.999999-0.999999-0.999999 | Acq Score: 2.528934
+
+  NN Suggestion: 0.446447-0.303007-0.659222-0.752304-0.087151 | NN Pred: -0.114666
+Func 6: Dataset size: 31 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         4.6523655  0.03540965 0.06096482]
+  Suggestion: 0.467245-0.296494-0.526078-0.736404-0.089793 | Acq Score: 0.149593
+
+  NN Suggestion: 0.000000-0.128297-0.198731-0.171016-0.159108-1.000000 | NN Pred: 2.618458
+Func 7: Dataset size: 41 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.78515737 0.5510048  1.14351104 0.34843142 0.25434754 0.30209453]
+  Suggestion: 0.000001-0.164907-0.161535-0.322832-0.327401-0.764117 | Acq Score: 0.052596
+
+  NN Suggestion: 0.111436-0.138172-0.104928-0.128918-1.000000-0.473866-0.215221-1.000000 | NN Pred: 9.974503
+Func 8: Dataset size: 51 | Best Y: 9.961573
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.33809621  8.94523948  5.16996181  9.29910871 13.39047195  8.97843039
+  6.35170577 50.        ]
+  Suggestion: 0.113382-0.147141-0.115203-0.127233-0.869703-0.471421-0.208817-0.000001 | Acq Score: 0.025605
+
+
+--- Run Timestamp: 2026-10-16T04:55:32.040069 | Target Week: 13 ---
+  NN Suggestion: 0.671393-0.620094 | NN Pred: 0.031640
+Func 1: Dataset size: 22 | Best Y: 2.000000
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.02957438 0.02441837]
+  Suggestion: 0.625571-0.623369 | Acq Score: 0.067200
+
+  NN Suggestion: 0.675102-0.406268 | NN Pred: 0.702081
+Func 2: Dataset size: 22 | Best Y: 0.721870
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.26019739e-02 1.00000000e+02]
+  Suggestion: 0.686200-0.031962 | Acq Score: 0.001235
+
+  NN Suggestion: 0.944399-0.175754-0.573803 | NN Pred: 0.021319
+Func 3: Dataset size: 27 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.83248184 0.01      ]
+  Suggestion: 0.050000-0.400000-0.434766 | Acq Score: 0.011635
+
+  NN Suggestion: 0.405537-0.408698-0.356221-0.415509 | NN Pred: 0.718944
+Func 4: Dataset size: 42 | Best Y: 0.679981
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27073597 1.78813648 2.01382974 1.33162267]
+  Suggestion: 0.410366-0.395058-0.361949-0.415773 | Acq Score: 0.003017
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8932.059570
+Func 5: Dataset size: 28 | Best Y: 8662.482500
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.86811173 1.78553061 1.84303776 2.96360935]
+  Suggestion: 1.000000-1.000000-1.000000-1.000000 | Acq Score: 2.135521
+
+  NN Suggestion: 0.442877-0.305426-0.654590-0.750464-0.084108 | NN Pred: -0.129027
+Func 6: Dataset size: 32 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         5.         0.01947743 0.01274785]
+  Suggestion: 0.451586-0.299945-0.678538-0.744596-0.082920 | Acq Score: 0.262522
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-0.000000-1.000000 | NN Pred: 2.217862
+Func 7: Dataset size: 42 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.79222083 0.58848003 0.71929891 0.34587361 0.2405683  0.29593042]
+  Suggestion: 0.000000-0.150568-0.326174-0.313526-0.330278-0.755470 | Acq Score: 0.039415
+
+  NN Suggestion: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 | NN Pred: 10.005514
+Func 8: Dataset size: 52 | Best Y: 9.987569
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.52083628  9.0999986   5.31050429  9.64072294 13.65735049  9.27022614
+  6.53853658 50.        ]
+  Suggestion: 0.112241-0.125436-0.110068-0.133537-0.878867-0.449678-0.209525-0.000000 | Acq Score: 0.009309
+
+
+--- Run Timestamp: 2026-10-21T14:19:01.714412 | Target Week: 13 ---
+  NN Suggestion: 0.671393-0.620094 | NN Pred: 0.031640
+Func 1: Dataset size: 22 | Best Y: 2.000000
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.02957438 0.02441837]
+  Suggestion: 0.625571-0.623369 | Acq Score: 0.067200
+
+  NN Suggestion: 0.675102-0.406268 | NN Pred: 0.702081
+Func 2: Dataset size: 22 | Best Y: 0.721870
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.26019739e-02 1.00000000e+02]
+  Suggestion: 0.686200-0.031962 | Acq Score: 0.001235
+
+  NN Suggestion: 0.944399-0.175754-0.573803 | NN Pred: 0.021319
+Func 3: Dataset size: 27 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.83248184 0.01      ]
+  Suggestion: 0.050000-0.400000-0.434766 | Acq Score: 0.011635
+
+  NN Suggestion: 0.405537-0.408698-0.356221-0.415509 | NN Pred: 0.718944
+Func 4: Dataset size: 42 | Best Y: 0.679981
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27073597 1.78813648 2.01382974 1.33162267]
+  Suggestion: 0.410366-0.395058-0.361949-0.415773 | Acq Score: 0.003017
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8932.059570
+Func 5: Dataset size: 28 | Best Y: 8662.482500
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.86811173 1.78553061 1.84303776 2.96360935]
+  Suggestion: 1.000000-1.000000-1.000000-1.000000 | Acq Score: 2.135521
+
+  NN Suggestion: 0.442877-0.305426-0.654590-0.750464-0.084108 | NN Pred: -0.129027
+Func 6: Dataset size: 32 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         5.         0.01947743 0.01274785]
+  Suggestion: 0.451586-0.299945-0.678538-0.744596-0.082920 | Acq Score: 0.262522
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-0.000000-1.000000 | NN Pred: 2.217862
+Func 7: Dataset size: 42 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.79222083 0.58848003 0.71929891 0.34587361 0.2405683  0.29593042]
+  Suggestion: 0.000000-0.150568-0.326174-0.313526-0.330278-0.755470 | Acq Score: 0.039415
+
+  NN Suggestion: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 | NN Pred: 10.005514
+Func 8: Dataset size: 52 | Best Y: 9.987569
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.52083628  9.0999986   5.31050429  9.64072294 13.65735049  9.27022614
+  6.53853658 50.        ]
+  Suggestion: 0.112241-0.125436-0.110068-0.133537-0.878867-0.449678-0.209525-0.000000 | Acq Score: 0.009309
+
+
+--- Run Timestamp: 2026-10-21T14:19:45.617604 | Target Week: 13 ---
+  NN Suggestion: 0.623928-0.612798 | NN Pred: 2.300483
+Func 1: Dataset size: 22 | Best Y: 2.000000
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.02957438 0.02441837]
+  Suggestion: 0.625571-0.623369 | Acq Score: 0.067200
+
+  NN Suggestion: 0.675102-0.406268 | NN Pred: 0.702081
+Func 2: Dataset size: 22 | Best Y: 0.721870
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.26019739e-02 1.00000000e+02]
+  Suggestion: 0.686200-0.031962 | Acq Score: 0.001235
+
+  NN Suggestion: 0.944399-0.175754-0.573803 | NN Pred: 0.021319
+Func 3: Dataset size: 27 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.83248184 0.01      ]
+  Suggestion: 0.050000-0.400000-0.434766 | Acq Score: 0.011635
+
+  NN Suggestion: 0.405537-0.408698-0.356221-0.415509 | NN Pred: 0.718944
+Func 4: Dataset size: 42 | Best Y: 0.679981
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27073597 1.78813648 2.01382974 1.33162267]
+  Suggestion: 0.410366-0.395058-0.361949-0.415773 | Acq Score: 0.003017
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8932.059570
+Func 5: Dataset size: 28 | Best Y: 8662.482500
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.86811173 1.78553061 1.84303776 2.96360935]
+  Suggestion: 1.000000-1.000000-1.000000-1.000000 | Acq Score: 2.135521
+
+  NN Suggestion: 0.442877-0.305426-0.654590-0.750464-0.084108 | NN Pred: -0.129027
+Func 6: Dataset size: 32 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         5.         0.01947743 0.01274785]
+  Suggestion: 0.451586-0.299945-0.678538-0.744596-0.082920 | Acq Score: 0.262522
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-0.000000-1.000000 | NN Pred: 2.217862
+Func 7: Dataset size: 42 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.79222083 0.58848003 0.71929891 0.34587361 0.2405683  0.29593042]
+  Suggestion: 0.000000-0.150568-0.326174-0.313526-0.330278-0.755470 | Acq Score: 0.039415
+
+  NN Suggestion: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 | NN Pred: 10.005514
+Func 8: Dataset size: 52 | Best Y: 9.987569
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.52083628  9.0999986   5.31050429  9.64072294 13.65735049  9.27022614
+  6.53853658 50.        ]
+  Suggestion: 0.112241-0.125436-0.110068-0.133537-0.878867-0.449678-0.209525-0.000000 | Acq Score: 0.009309
+
+
+--- Run Timestamp: 2026-10-22T07:55:24.130412 | Target Week: 13 ---
+  NN Suggestion: 0.623928-0.612798 | NN Pred: 2.300483
+  Final Submitted: 0.628542-0.628542 (Analytical Log-Gaussian Peak (+1e-6 Step) | GP Mean: 1.999944, Std: 0.001376)
+Func 1: Dataset size: 22 | Best Y: 2.000000
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.02957438 0.02441837]
+  Suggestion: 0.625571-0.623369 | Acq Score: 0.067200
+
+  NN Suggestion: 0.675102-0.406268 | NN Pred: 0.702081
+  Final Submitted: 0.688100-0.387000 (1D Ridge Posterior Mean Peak (d2 locked at 0.387000) | GP Mean: 0.613874, Std: 0.068809)
+Func 2: Dataset size: 22 | Best Y: 0.721870
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.26019739e-02 1.00000000e+02]
+  Suggestion: 0.686200-0.031962 | Acq Score: 0.001235
+
+  NN Suggestion: 0.944399-0.175754-0.573803 | NN Pred: 0.021319
+  Final Submitted: 0.950000-0.400000-0.434766 (Boundary Pocket Lock + Needle #2 Shoulder | GP Mean: -0.010878, Std: 0.029771)
+Func 3: Dataset size: 27 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.83248184 0.01      ]
+  Suggestion: 0.050000-0.400000-0.434766 | Acq Score: 0.011635
+
+  NN Suggestion: 0.405537-0.408698-0.356221-0.415509 | NN Pred: 0.718944
+  Final Submitted: 0.405930-0.406376-0.352329-0.422444 (Positive-Basin Local GP (nu=1.5, n=9) Mean Peak | Local GP Mean: 0.686766, Std: 0.026983)
+Func 4: Dataset size: 42 | Best Y: 0.679981
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27073597 1.78813648 2.01382974 1.33162267]
+  Suggestion: 0.410366-0.395058-0.361949-0.415773 | Acq Score: 0.003017
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8932.059570
+  Final Submitted: 1.000000-1.000000-1.000000-1.000000 (Unanimous GP + NN Hyper-Corner Summit | GP Mean: 8662.415054, Std: 5.449470)
+Func 5: Dataset size: 28 | Best Y: 8662.482500
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.86811173 1.78553061 1.84303776 2.96360935]
+  Suggestion: 1.000000-1.000000-1.000000-1.000000 | Acq Score: 2.135521
+
+  NN Suggestion: 0.442877-0.305426-0.654590-0.750464-0.084108 | NN Pred: -0.129027
+  Final Submitted: 0.458352-0.330000-0.648537-0.780000-0.060000 (Noisy GP (Matern 2.5 + WhiteKernel) Trust-Region Mean Peak | Noisy GP Mean: -0.081873, Std: 0.043261)
+Func 6: Dataset size: 32 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         5.         0.01947743 0.01274785]
+  Suggestion: 0.451586-0.299945-0.678538-0.744596-0.082920 | Acq Score: 0.262522
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-0.000000-1.000000 | NN Pred: 2.217862
+  Final Submitted: 0.000000-0.156068-0.305066-0.315590-0.335798-0.766358 (GP (nu=2.5) Trust-Region Posterior Mean Peak | GP Mean: 2.241241, Std: 0.043398)
+Func 7: Dataset size: 42 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.79222083 0.58848003 0.71929891 0.34587361 0.2405683  0.29593042]
+  Suggestion: 0.000000-0.150568-0.326174-0.313526-0.330278-0.755470 | Acq Score: 0.039415
+
+  NN Suggestion: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 | NN Pred: 10.005514
+  Final Submitted: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 (64-64 ReLU NN Surrogate Peak (Option C) | GP Mean: 9.985399, Std: 0.004806)
+Func 8: Dataset size: 52 | Best Y: 9.987569
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.52083628  9.0999986   5.31050429  9.64072294 13.65735049  9.27022614
+  6.53853658 50.        ]
+  Suggestion: 0.112241-0.125436-0.110068-0.133537-0.878867-0.449678-0.209525-0.000000 | Acq Score: 0.009309
+
+
+--- Run Timestamp: 2026-10-22T11:04:49.598918 | Target Week: 13 ---
+  NN Suggestion: 0.623928-0.612798 | NN Pred: 2.300483
+  Final Submitted: 0.628542-0.628542 (Analytical Log-Gaussian Peak (+1e-6 Step) | GP Mean: 1.999944, Std: 0.001376)
+Func 1: Dataset size: 22 | Best Y: 2.000000
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.0001
+  Length Scales: [0.02957438 0.02441837]
+  Suggestion: 0.625571-0.623369 | Acq Score: 0.067200
+
+  NN Suggestion: 0.675102-0.406268 | NN Pred: 0.702081
+  Final Submitted: 0.688100-0.387000 (1D Ridge Posterior Mean Peak (d2 locked at 0.387000) | GP Mean: 0.613874, Std: 0.068809)
+Func 2: Dataset size: 22 | Best Y: 0.721870
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [7.26019739e-02 1.00000000e+02]
+  Suggestion: 0.686200-0.031962 | Acq Score: 0.001235
+
+  NN Suggestion: 0.944399-0.175754-0.573803 | NN Pred: 0.021319
+  Final Submitted: 0.950000-0.400000-0.434766 (Boundary Pocket Lock + Needle #2 Shoulder | GP Mean: -0.010878, Std: 0.029771)
+Func 3: Dataset size: 27 | Best Y: -0.006045
+  Acquisition: EI | Kappa: 2.0 | Xi: 0.001
+  Length Scales: [2.         1.83248184 0.01      ]
+  Suggestion: 0.050000-0.400000-0.434766 | Acq Score: 0.011635
+
+  NN Suggestion: 0.405537-0.408698-0.356221-0.415509 | NN Pred: 0.718944
+  Final Submitted: 0.405930-0.406376-0.352329-0.422444 (Positive-Basin Local GP (nu=1.5, n=9) Mean Peak | Local GP Mean: 0.686766, Std: 0.026983)
+Func 4: Dataset size: 42 | Best Y: 0.679981
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [2.27073597 1.78813648 2.01382974 1.33162267]
+  Suggestion: 0.410366-0.395058-0.361949-0.415773 | Acq Score: 0.003017
+
+  NN Suggestion: 1.000000-1.000000-1.000000-1.000000 | NN Pred: 8932.059570
+  Final Submitted: 1.000000-1.000000-1.000000-1.000000 (Unanimous GP + NN Hyper-Corner Summit | GP Mean: 8662.415054, Std: 5.449470)
+Func 5: Dataset size: 28 | Best Y: 8662.482500
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [1.86811173 1.78553061 1.84303776 2.96360935]
+  Suggestion: 1.000000-1.000000-1.000000-1.000000 | Acq Score: 2.135521
+
+  NN Suggestion: 0.442877-0.305426-0.654590-0.750464-0.084108 | NN Pred: -0.129027
+  Final Submitted: 0.458352-0.330000-0.648537-0.780000-0.060000 (Noisy GP (Matern 2.5 + WhiteKernel) Trust-Box Corner Ascent | Noisy GP Mean: -0.081873, Std: 0.043261)
+Func 6: Dataset size: 32 | Best Y: -0.090586
+  Acquisition: EI | Kappa: 3.5 | Xi: 0.01
+  Length Scales: [5.         5.         5.         0.01947743 0.01274785]
+  Suggestion: 0.451586-0.299945-0.678538-0.744596-0.082920 | Acq Score: 0.262522
+
+  NN Suggestion: 0.000000-0.000000-0.000000-0.000000-0.000000-1.000000 | NN Pred: 2.217862
+  Final Submitted: 0.000000-0.156068-0.305066-0.315590-0.335798-0.766358 (GP (nu=2.5) Trust-Region Posterior Mean Peak | GP Mean: 2.241241, Std: 0.043398)
+Func 7: Dataset size: 42 | Best Y: 2.201316
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [0.79222083 0.58848003 0.71929891 0.34587361 0.2405683  0.29593042]
+  Suggestion: 0.000000-0.150568-0.326174-0.313526-0.330278-0.755470 | Acq Score: 0.039415
+
+  NN Suggestion: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 | NN Pred: 10.005514
+  Final Submitted: 0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012 (64-64 ReLU NN Surrogate Peak (Option C) | GP Mean: 9.985399, Std: 0.004806)
+Func 8: Dataset size: 52 | Best Y: 9.987569
+  Acquisition: EI | Kappa: 3.0 | Xi: 0.01
+  Length Scales: [ 6.52083628  9.0999986   5.31050429  9.64072294 13.65735049  9.27022614
+  6.53853658 50.        ]
+  Suggestion: 0.112241-0.125436-0.110068-0.133537-0.878867-0.449678-0.209525-0.000000 | Acq Score: 0.009309
+

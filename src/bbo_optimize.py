@@ -83,7 +83,7 @@ def train_and_optimize_nn(X, y, func_idx):
 
     # F1 Pruning Logic
     if func_idx == 1:
-        mask = (X[:, 0] >= 0.65) & (X[:, 0] <= 0.67) & (X[:, 1] >= 0.64) & (X[:, 1] <= 0.67)
+        mask = (X[:, 0] >= 0.62) & (X[:, 0] <= 0.67) & (X[:, 1] >= 0.62) & (X[:, 1] <= 0.67)
         if np.sum(mask) > 0:
             X_t = torch.tensor(X[mask], dtype=torch.float32)
             y_t = torch.tensor(y[mask], dtype=torch.float32).view(-1, 1)
@@ -136,6 +136,116 @@ def train_and_optimize_nn(X, y, func_idx):
         pred_y = pred_y_norm * y_std + y_mean
         
     return final_x.numpy(), pred_y.item()
+
+
+def compute_final_refinement(func_idx, X, y, gp, best_x, nn_best_x):
+    """
+    Computes the locked final-round (Week 13) exploitation refinement coordinate
+    for each function, resolving global variance inflation, nugget shrinkage,
+    and inactive-dimension drift.
+    """
+    x_best = X[np.argmax(y)]
+
+    if func_idx == 1:
+        # F1: Step +1e-6 along the diagonal from W12 record (0.628541, 0.628541)
+        # to test the unrounded analytical log-Gaussian center (0.6285414...).
+        final_x = np.round(x_best + 1e-6, 6)
+        mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"Analytical Log-Gaussian Peak (+1e-6 Step) | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 2:
+        # F2: Lock d2 at proven record slice (0.387000) to prevent ell_2=100 drift,
+        # and maximize GP posterior mean along d1 ridge.
+        d1_grid = np.linspace(0.65, 0.73, 801)
+        pts = np.column_stack([d1_grid, np.full_like(d1_grid, x_best[1])])
+        mu, std = gp.predict(pts, return_std=True)
+        idx = np.argmax(mu)
+        final_x = pts[idx]
+        return final_x, f"1D Ridge Posterior Mean Peak (d2 locked at 0.387000) | GP Mean: {mu[idx]:.6f}, Std: {std[idx]:.6f}"
+
+    elif func_idx == 3:
+        # F3: Lock (d1, d2) = (0.950000, 0.400000) at proven boundary pocket and
+        # use GP EI coordinate on Needle #2 left shoulder (d3 = 0.434766).
+        final_x = np.array([0.95, 0.40, best_x[2]])
+        mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"Boundary Pocket Lock + Needle #2 Shoulder | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 4:
+        # F4: Prune outer cliffs (keep y > 0 summit basin, n=9) to eliminate global
+        # variance inflation and nugget shrinkage; maximize Local GP (nu=1.5) mean.
+        mask = y > 0
+        k_loc = ConstantKernel(1.0) * Matern(
+            length_scale=np.ones(4) * 0.05,
+            length_scale_bounds=(0.01, 0.25),
+            nu=1.5
+        )
+        gp_loc = GaussianProcessRegressor(
+            kernel=k_loc, alpha=1e-6, normalize_y=True,
+            n_restarts_optimizer=30, random_state=42
+        )
+        gp_loc.fit(X[mask], y[mask])
+        res = minimize(
+            lambda x: -gp_loc.predict(x.reshape(1, -1))[0],
+            X[-1],
+            method='Nelder-Mead',
+            options={'xatol': 1e-7, 'fatol': 1e-7, 'maxiter': 5000}
+        )
+        final_x = np.clip(res.x, 0.0, 1.0)
+        mu, std = gp_loc.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"Positive-Basin Local GP (nu=1.5, n=9) Mean Peak | Local GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 5:
+        # F5: Unanimous GP EI + NN hyper-corner maximum.
+        final_x = best_x.copy()
+        mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"Unanimous GP + NN Hyper-Corner Summit | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 6:
+        # F6: Fit Noisy GP (Matern 2.5 + WhiteKernel) to absorb observation noise
+        # (preventing ell_5 collapse) and maximize posterior mean inside +/-0.03 trust box.
+        k_noisy = (
+            ConstantKernel(1.0) * Matern(
+                length_scale=np.ones(5),
+                length_scale_bounds=(0.05, 5.0),
+                nu=2.5
+            ) + WhiteKernel(noise_level=0.01, noise_level_bounds=(1e-4, 1.0))
+        )
+        gp_noisy = GaussianProcessRegressor(
+            kernel=k_noisy, alpha=1e-5, normalize_y=True,
+            n_restarts_optimizer=30, random_state=42
+        )
+        gp_noisy.fit(X, y)
+        tr_bnds = [(0.42, 0.48), (0.27, 0.33), (0.63, 0.68), (0.72, 0.78), (0.06, 0.12)]
+        res = minimize(
+            lambda x: -gp_noisy.predict(x.reshape(1, -1))[0],
+            x_best,
+            bounds=tr_bnds,
+            method='L-BFGS-B'
+        )
+        final_x = np.clip(res.x, 0.0, 1.0)
+        mu, std = gp_noisy.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"Noisy GP (Matern 2.5 + WhiteKernel) Trust-Box Corner Ascent | Noisy GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 7:
+        # F7: Maximize primary GP (nu=2.5) posterior mean inside trust region around W11/W12
+        # to preserve (d2, d4, d5, d6) gains while restoring d3 to 0.305066.
+        tr_bnds = [(0.0, 0.20), (0.10, 0.35), (0.15, 0.45), (0.20, 0.45), (0.25, 0.42), (0.65, 0.85)]
+        res = minimize(
+            lambda x: -gp.predict(x.reshape(1, -1))[0],
+            x_best,
+            bounds=tr_bnds,
+            method='L-BFGS-B'
+        )
+        final_x = np.clip(res.x, 0.0, 1.0)
+        mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"GP (nu=2.5) Trust-Region Posterior Mean Peak | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
+
+    elif func_idx == 8:
+        # F8: Select 64-64 ReLU Neural Network surrogate gradient-ascent peak (Option C),
+        # which continues the successful W10->W12 directional momentum around W12 record.
+        final_x = nn_best_x.copy()
+        mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
+        return final_x, f"64-64 ReLU NN Surrogate Peak (Option C) | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
 
 def run_bbo(week: int):
     output_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
@@ -193,6 +303,7 @@ def run_bbo(week: int):
     XI_F1         = config.get("XI_F1", 0.0001)
     LHS_SEED      = config.get("LHS_SEED", 42)
 
+    final_submissions = []
     with open(results_file, 'w') as f_out, open(log_file, 'a') as f_log:
         f_log.write(f"\n--- Run Timestamp: {datetime.now().isoformat()} | Target Week: {week} ---\n")
         for func_idx in range(1, 9):
@@ -235,8 +346,8 @@ def run_bbo(week: int):
 
             print(f"  Dataset: {X.shape[0]} points | best y = {np.max(y):.6f}")
 
-            # ── Trust Region Bounds (Functions 7 & 8) ─────────────────────────
-            base_bounds = [(1e-6, 0.999999) for _ in range(d)]
+            # ── Trust Region Bounds (Functions 4, 6, 7 & 8) ───────────────────
+            base_bounds = [(0.0, 1.0) for _ in range(d)]
             if func_idx in [4, 6, 7, 8]:
                 best_idx  = np.argmax(y)
                 x_best    = X[best_idx]
@@ -244,8 +355,8 @@ def run_bbo(week: int):
                 spread    = np.max(X[top3_idx], axis=0) - np.min(X[top3_idx], axis=0)
                 tr_width  = np.maximum(0.3, spread * 1.5)
                 base_bounds = [
-                    (max(1e-6,    x_best[i] - tr_width[i] / 2),
-                     min(0.999999, x_best[i] + tr_width[i] / 2))
+                    (max(0.0, x_best[i] - tr_width[i] / 2),
+                     min(1.0, x_best[i] + tr_width[i] / 2))
                     for i in range(d)
                 ]
 
@@ -333,7 +444,7 @@ def run_bbo(week: int):
             if func_idx == 3:
                 full_bounds = [(0.05, 0.95), (0.40, 0.65), (0.30, 0.50)]
             else:
-                full_bounds = [(1e-6, 0.999999) for _ in range(d)]
+                full_bounds = [(0.0, 1.0) for _ in range(d)]
 
             best_x   = None
             best_val = -np.inf
@@ -353,7 +464,7 @@ def run_bbo(week: int):
             if best_x is None:
                 best_x = top_X[-1]
 
-            best_x = np.clip(best_x, 1e-6, 0.999999)
+            best_x = np.clip(best_x, 0.0, 1.0)
 
             # ── Validation Metrics ────────────────────────────────────────────
             mean_val, std_val = gp.predict(best_x.reshape(1, -1), return_std=True)
@@ -372,6 +483,7 @@ def run_bbo(week: int):
             f_out.write(f"Coordinate String: {coord_str}\n\n")
 
             # --- Neural Network Validation ---
+            nn_best_x = best_x.copy()
             try:
                 nn_best_x, nn_pred_y = train_and_optimize_nn(X, y, func_idx)
                 nn_coord_str = "-".join([f"{x:.6f}" for x in nn_best_x])
@@ -382,6 +494,22 @@ def run_bbo(week: int):
             except Exception as e:
                 print(f"NN Training Failed: {e}")
                 f_log.write(f"  NN Training Failed: {e}\n")
+
+            # --- Final-Round (Week 13+) Exploitation Refinement ---
+            if week >= 13:
+                final_x, final_desc = compute_final_refinement(
+                    func_idx, X, y, gp, best_x, nn_best_x
+                )
+                final_coord_str = "-".join([f"{x:.6f}" for x in final_x])
+                final_str = (
+                    f"Final Refinement -> {final_desc}\n"
+                    f"Final Submitted Coordinate String: {final_coord_str}"
+                )
+                print(final_str + "\n")
+                f_out.write(final_str + "\n\n")
+                f_log.write(f"  Final Submitted: {final_coord_str} ({final_desc})\n")
+                final_submissions.append(final_coord_str)
+                best_x = final_x
             
             # --- Logging ---
             acq_name = 'EI'
@@ -440,6 +568,14 @@ def run_bbo(week: int):
             plot_file = os.path.join(plot_dir, f"plot_func{func_idx}.png")
             plt.savefig(plot_file, dpi=150, bbox_inches='tight')
             plt.close()
+
+    if week >= 13 and len(final_submissions) == 8:
+        sub_dir = os.path.join(output_dir, "submissions", f"week_{week}")
+        os.makedirs(sub_dir, exist_ok=True)
+        sub_file = os.path.join(sub_dir, "suggestions.txt")
+        with open(sub_file, "w") as f_sub:
+            f_sub.write("\n".join(final_submissions) + "\n")
+        print(f"  Saved locked final submissions to : submissions/week_{week}/suggestions.txt")
 
 
 if __name__ == '__main__':

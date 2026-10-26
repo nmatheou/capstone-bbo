@@ -1,16 +1,19 @@
 # Diagnostics & Manual Overrides
 
-Because Gaussian Processes perform poorly in high-dimensional spaces, a fully automated method is not adequate. This project therefore uses a hybrid approach.
+Because standard Gaussian Processes suffer from boundary artifacts, variance inflation, and ARD length-scale distortions in sparse high-dimensional spaces ($22 \le n \le 52$), a purely automated acquisition loop is insufficient. My project therefore uses a transparent Human-in-the-Loop Hybrid Surrogate architecture.
 
 ## Algorithmic Diagnostics
 
-*   **Coefficient of Variation (CV):** We monitor the standard deviation relative to the mean of past queries. A high CV suggests a highly irregular search space that requires exploration (UCB), while a low CV indicates a smoother space suitable for exploitation (Expected Improvement).
-*   **Length-Scale Tracking:** When a GP length-scale reaches its maximum limit (e.g., `100.0`), that dimension is marked as "irrelevant".
+*   **Coefficient of Variation (CV) & Noise Auditing:** I monitor local output variation across closely spaced queries (such as Week 10 vs. Week 12 on $F_6$, separated by $0.0017$ units with an $0.0829$ output delta) to distinguish true landscape cliffs from intrinsic observation noise ($\sigma_{\text{noise}} \approx 0.032$ on $F_6$ and $\approx 0.064$ on $F_2$), adding a learnable `WhiteKernel` when observation noise causes noise-free ARD length scales to collapse.
+*   **ARD Length-Scale Tracking:** When an ARD length scale saturates at its upper bound (e.g., $\ell_2 = 100.0$ on $F_2$, $\ell_1 = 2.0$ on $F_3$, $\ell_8 = 50.0$ on $F_8$), that dimension is diagnosed as locally invariant. Left unconstrained, Expected Improvement will drift along invariant axes purely to harvest tiny boundary variance differentials.
+*   **Global Variance Inflation & Nugget Shrinkage Detection:** When outer domain cliffs ($-32.63$ on $F_4$) inflate global output variance by $>100\times$ relative to the positive summit basin, global GP posterior means systematically under-predict the observed record ($\mu = 0.6596 < 0.679981$).
 
-## Manual Overrides
+## Manual Overrides & Final-Round Refinements (`compute_final_refinement`)
 
-When the surrogate model underperforms, human intervention becomes necessary:
+In `src/bbo_optimize.py`, all final-round (Week 13) human-in-the-loop refinements are explicitly codified in `compute_final_refinement(func_idx, X, y, gp, best_x, nn_best_x)` so that every override is deterministic and reproducible:
 
-*   **Multimodal Behaviour (e.g., F1):** When the GP becomes stuck in "background radiation" (flat zero outputs), physical domain reasoning is applied. For F1, an anomaly was interpreted as a radiation shield, and offset coordinates were manually tested to identify the true source.
-*   **Triangulation (e.g., F2, F6):** For dimensions with known peaks, the strongest historically performing coordinates are manually averaged (triangulated). In F6, information from a competing team was also incorporated into this triangulation.
-*   **Boundary Locking (e.g., F8):** In high-dimensional cases (8D), the GP is unable to accurately model linear slopes. In these situations, the algorithm is manually overridden, forcing linear dimensions directly to their boundary values (`0.0` or `1.0`), while only the truly interior dimensions are left for triangulation.
+*   **Analytical Log-Space Peak Calibration ($F_1$):** Because all 6 prior positive observations (#16–#21) sit strictly northeast of the Week 12 record (`0.628541-0.628541`, $y = 1.99999999$), both the GP and pruned NN extrapolate an unarrested upward slope toward the southwest. I override this one-sided bias with a $+10^{-6}$ step (`0.628542-0.628542`) to test the unrounded analytical Gaussian center ($0.6285414\dots$).
+*   **Inactive-Dimension Anchoring ($F_2, F_3$):** On $F_2$, $d_2$ is locked at the proven record slice ($0.387000$) while maximizing the GP posterior mean along $d_1$ (`0.688100-0.387000`). On $F_3$, $(d_1, d_2)$ are locked at the proven boundary pocket (`0.950000, 0.400000`) to prevent an $\ell_1 = 2.0$ flip to $d_1 = 0.05$, while targeting the GP EI coordinate on the left shoulder of Needle #2 ($d_3 = 0.434766$).
+*   **Positive-Basin Pruning ($F_4$):** To eliminate global variance inflation from outer cliffs, the training set is pruned to the $n = 9$ positive summit observations ($y > 0$) before fitting a Local Matérn-1.5 GP (`0.405930-0.406376-0.352329-0.422444`).
+*   **Trust-Region Posterior Mean Optimization ($F_6, F_7$):** On $F_6$, a `WhiteKernel` is added to restore smooth length scales and the posterior mean is maximized inside a $\pm 0.03$ trust box around the Week 10 record (`0.458352-0.330000-0.648537-0.780000-0.060000`, where $d_2, d_4, d_5$ reach the trust-box boundary along the ascending gradient). On $F_7$, maximizing the Matérn-2.5 GP posterior mean inside the local trust region restores $d_3 = 0.305066$ while preserving the Week 12 gains on $(d_2, d_4, d_5, d_6)$.
+*   **Neural Network Directional Continuation ($F_8$):** Because the global GP experiences sample-density pullback toward the 4-point Week 10 cluster, Week 13 selects the seeded 64-64 ReLU Neural Network L-BFGS ascent coordinate (`0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012`), which continues the winning Week 10 $\to$ Week 12 directional trajectory within a tight $0.0249$ Euclidean radius of the Week 12 record.

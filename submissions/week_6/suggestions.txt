@@ -1,0 +1,39 @@
+﻿--- Function 1 ---
+Metrics -> GP Mean: -0.000264, GP Std: 0.000895, Acq Score: 0.002867
+Coordinate String (GP suggestion): 0.549671-0.849996
+[MANUAL OVERRIDE] Tracking the shield edge. We moved up-left last week and the shield weakened. We will now probe down-right from the original hit to locate the true source.
+Coordinate String: 0.660000-0.664000
+
+--- Function 2 ---
+Metrics -> GP Mean: 0.627187, GP Std: 0.031202, Acq Score: 0.003873
+Coordinate String: 0.710092-0.000001
+
+--- Function 3 ---
+Metrics -> GP Mean: -0.043982, GP Std: 0.045272, Acq Score: 0.010705
+Coordinate String (GP suggestion): 0.950000-0.350000-0.550000
+[MANUAL OVERRIDE] GP is pushing the exploration bounds. We want to exploit the known peak near 0.47, 0.52, 0.42.
+Coordinate String: 0.470000-0.520000-0.420000
+
+--- Function 4 ---
+Metrics -> GP Mean: 0.512499, GP Std: 0.197381, Acq Score: 1.203331
+Coordinate String: 0.381503-0.392430-0.354062-0.432585
+
+--- Function 5 ---
+Metrics -> GP Mean: 8652.806883, GP Std: 67.742013, Acq Score: 22.492470
+Coordinate String: 0.999999-0.999999-0.999999-0.000001
+
+--- Function 6 ---
+Metrics -> GP Mean: -0.736280, GP Std: 0.381803, Acq Score: 0.600032
+Coordinate String (GP suggestion): 0.337977-0.000001-0.999999-0.380098-0.000001
+[MANUAL OVERRIDE] GP is ignoring our massive success at (-0.209) from our manual coordinate (0.450, 0.300, 0.600, 0.750, 0.150). Triangulating slightly from that success to climb the hill.
+Coordinate String: 0.450000-0.300000-0.650000-0.750000-0.100000
+
+--- Function 7 ---
+Metrics -> GP Mean: 1.992913, GP Std: 0.084366, Acq Score: 2.246011
+Coordinate String: 0.000001-0.148655-0.312035-0.269920-0.423188-0.801399
+
+--- Function 8 ---
+Metrics -> GP Mean: 9.996306, GP Std: 0.075028, Acq Score: 10.221392
+Coordinate String (GP suggestion): 0.165119-0.109363-0.149738-0.062786-0.932392-0.493930-0.196677-0.000001
+[MANUAL OVERRIDE] GP is ignoring d8 boundary. The data shows d1, d2, d3 are NOT 0, but d5 and d8 must be 1. Taking the GP's interior points and locking the boundaries.
+Coordinate String: 0.165119-0.109363-0.149738-0.062786-1.000000-0.493930-0.196677-1.000000

@@ -91,3 +91,39 @@ While the Gaussian Process (GP) is a powerful surrogate model, relying purely on
     *   *Result:* Yielded consecutive all-time bests (`9.949525` in W8 $\to$ **`9.958939`** in W9), asymptotically approaching the theoretical `10.0` ceiling.
 *   **W10 (GP Spliced Controlled Ascent):** We trained a Neural Network that natively verified our "Splicing Strategy"—pushing $d_5$ and $d_8$ to $1.0$ without any human prompting. While the NN suggested an aggressive sprint across the interior dimensions, we opted for the GP's controlled, mathematically flawless micro-gradient ascent on the interior dimensions (`[0.113203, 0.147122, 0.115630, 0.128826, 1.0, 0.471155, 0.209232, 1.0]`) to safely inch towards `10.0`.
 
+
+
+# Week 11 Submission Logic & Strategic Rationale
+
+## Function 1 (2D Sparse Needle)
+*   **Target Coordinate:** `0.628956-0.648865`
+*   **Rationale (Algebraic Deduction):** We learned from competitor intelligence that the theoretical peak is exactly `2.0` and the shape is a "Gaussian centre". By fixing the amplitude $A=2.0$ in the 2D Gaussian equation and using an ultra-precise L-BFGS-B numerical solver against our 5 historical positive data points, we mathematically reverse-engineered the exact geometric center of the pinhole. This bypassed the GP (which was trapped locally at `0.661`) and the NN (which wildly extrapolated to `0.620`).
+
+## Function 2 (2D Noisy Sim)
+*   **Target Coordinate:** `0.712905-0.387764`
+*   **Rationale (The 1D Illusion):** The competitor claimed $d_2$ is irrelevant and used a 1D quadratic fit to find a peak at `0.691`. However, our Neural Network (which optimizes in full 2D space) predicted the peak is at `0.712`, with $d_2$ at `0.387`. This aligns perfectly with our historical data (our all-time best query was `0.712, 0.386`). We are betting the competitor's `0.691` is an optical illusion caused by projecting a slightly diagonal 2D ridge onto a 1D plane. We are trusting the NN to out-engineer their 1D assumption.
+
+
+## Function 3 (3D Drug Discovery)
+*   **Target Coordinate:** `0.950000-0.400000-0.438611`
+*   **Rationale (Boundary Triangulation):** We previously abandoned our interior pocket (Index 21) because we suspected the ceiling was mathematically capped at `-0.006`. Our blind Week 10 boundary jump immediately scored `-0.0085`. The NN trust region analysis stayed glued to the W10 point, confirming a sharp local peak. We are following the GP's local triangulation, keeping $d_1$ and $d_2$ locked while micro-stepping $d_3$ to test the gradient of this new boundary pocket.
+
+## Function 4 (4D Warehouse)
+*   **Target Coordinate:** `0.396756-0.412806-0.348920-0.416600`
+*   **Rationale (Hybrid Triangulation):** Our standard GP and NN models underpredict the peak because they inherently "blur" extreme exponential cliffs. The models successfully triangulated $d_1, d_2, d_3$, but we lacked the high-altitude data to mathematically pinpoint $d_4$. The competitor expressly bracketed the $d_4$ dimension and mathematically calculated its vertex at `0.4166`. We are applying a hybridized strategy: using our GP's baseline for the first three dimensions, and injecting the competitor's calculated vertex for $d_4$ to bypass the blur.
+
+## Function 6 (5D Cake Composite)
+*   **Target Coordinate:** `0.449677-0.299932-0.659228-0.751670-0.087092`
+*   **Rationale (NN Mathematical Centering):** In Week 10, we executed a manual human bracket that completely avoided the GP's boundary hallucination and shattered our record score (`-0.0905`). For Week 11, the Neural Network—acting as an unconstrained 5D optimizer—organically settled on coordinates almost identical to our manual bracket (`0.45, 0.30, 0.75`). It successfully found the continuous, noise-averaged geometric center of our discrete human bracket. We are trusting the NN to pinpoint the exact 5D basin.
+
+## Function 7 (6D ML Hyperparams)
+*   **Target Coordinate:** `0.000001-0.176724-0.283122-0.306983-0.353130-0.792087`
+*   **Rationale (The GP Joint Leap):** We are trailing the competitor (`1.91` vs `2.30`). The competitor's notes explicitly proved that F7's landscape is highly compatible with the standard GP covariance matrix (their GP joint moves gained them massive points). Both our NN and GP agree on the direction, but the NN's step is too conservative to catch the competitor. We are rolling the dice and trusting the GP's massive joint leap to close the gap, using Week 12 as a fallback if it overshoots.
+
+## Function 8 (8D ML Hyperparams)
+*   **Target Coordinate:** `0.106904-0.151609-0.111512-0.146391-1.000000-0.465418-0.214489-1.000000`
+*   **Rationale (Gradient Half-Step):** We recognized that the linear gradient we have been riding for three weeks is suffering from diminishing returns (the gain per step dropped from `+0.009` to `+0.002`). A full extrapolated step risks overshooting the peak if the interior dimensions are finally converging. We are taking a conservative half-step to safely test if there is any gradient left, while keeping our iron-clad boundary constraints ($d_5$ and $d_8$) locked at `1.0`.
+
+## Function 5 (4D Alpine Landscape)
+*   **Target Coordinate:** `1.000000-1.000000-0.000000-1.000000`
+*   **Rationale (Competitor Boundary Correction):** We previously believed the absolute maximum was at the `(1,1,1,1)` corner (scoring `8662.405`). However, competitor intelligence revealed a coordinate `0.99, 0.99, 0.009, 0.99` scoring `8662.482`. They discovered that $d_3$ must actually be minimized to `0.0`, not maximized. We are pushing their fractional discovery to the absolute geometric limit to secure the maximum possible score.

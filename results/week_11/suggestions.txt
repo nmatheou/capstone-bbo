@@ -1,0 +1,11 @@
+--- Function 1 ---
+Metrics -> GP Mean: 0.019602, GP Std: 0.001686, Acq Score: 0.004154
+Coordinate String: 0.661015-0.649387
+
+NN Metrics -> Predicted Max Score: 0.031640
+NN Coordinate String: 0.671393-0.620094
+
+--- Function 2 ---
+Metrics -> GP Mean: 0.590027, GP Std: 0.064478, Acq Score: 0.005853
+Coordinate String: 0.687324-0.050893
+

@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *.class
@@ -21,11 +21,9 @@ agent/
 Archive/
 
 #Temp removal
-data/
-results/
-logs/
 Archive/
-submissions/
+scratch/
+inspect_f5.py
 src/bbo_optimize - Copy.py
 src/check_dups.py
 src/compare_models.py
