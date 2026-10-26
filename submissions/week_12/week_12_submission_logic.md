@@ -33,7 +33,7 @@ In Week 11, stepping $x_1$ down from $0.662000$ to $0.628956$ triggered an immed
 
 #### Step 2: Direct Secant-Slope Calibration of the Bell Curve Width ($\sigma$)
 1.  **Measuring the $x_2$ Flank Gradient (W9 $\rightarrow$ W10):** Between Week 9 and Week 10, $x_1$ was held strictly constant at $0.662000$ while $x_2$ stepped from $0.655000$ to $0.653500$ ($\Delta x_2 = -0.001500$). This yields an exact empirical log-slope at the midpoint $x_2 = 0.654250$:
-    * $\displaystyle \frac{\partial \ln y}{\partial x_2}\bigg\vert{}_{x_2 = 0.65425} \approx \frac{-4.1765 - (-4.3996)}{0.653500 - 0.655000} = \frac{0.2231}{-0.001500} = -148.73$
+    * $\displaystyle \left.\frac{\partial \ln y}{\partial x_2}\right\vert_{x_2 = 0.65425} \approx \frac{-4.1765 - (-4.3996)}{0.653500 - 0.655000} = \frac{0.2231}{-0.001500} = -148.73$
 2.  **Isolating the Pure $x_1$ Gain (W10 $\rightarrow$ W11):** Between Week 10 and Week 11, I moved $\Delta x_1 = -0.033044$ alongside a minor adjustment of $\Delta x_2 = -0.004635$. Accounting for the local $x_2$ slope contribution ($\approx +0.602$), the pure log-gain attributable to stepping onto the $x_1$ ridge is $\Delta \ln y_{x_1} \approx 3.231$.
 3.  **Solving for $\sigma^2$:** Using the radial displacement from the flank ($x_1 = 0.662000$) to the ridge crest ($x_1^\ast \approx 0.628541$, where $\Delta x_1 = 0.033459$):
     * $\displaystyle \frac{(\Delta x_1)^2}{2\sigma^2} = 3.231 \implies \sigma^2 = \frac{(0.033459)^2}{2 \times 3.231} = 0.0001732 \quad (\sigma \approx 0.01316)$
