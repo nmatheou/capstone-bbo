@@ -7,7 +7,7 @@
 
 ## Intended Use
 *   **What tasks is it suitable for?** 
-    This model is designed for high-cost, zero-derivative, severely budget-constrained black-box optimization tasks (e.g., physical sensor placement, experimental drug discovery, expensive ML hyperparameter tuning) where data sparsity is extreme ($22 \le n \le 52$ points) and dimensions range from 2D to 8D.
+    This model is designed for high-cost, zero-derivative, severely budget-constrained black-box optimization tasks (e.g., physical sensor placement, experimental drug discovery, expensive ML hyperparameter tuning) where data sparsity is extreme ($23 \le n \le 53$ points across 13 rounds, 275 total evaluations) and dimensions range from 2D to 8D.
 *   **What use cases should be avoided?** 
     It is unsuitable for generating globally calibrated topological maps across the entire domain, as the late-stage acquisition strategy is hyper-focused on local summit exploitation. Furthermore, it should be avoided in fully autonomous, non-stationary continuous deployment systems without human oversight, as small-sample surrogates require diagnostic intervention to prevent boundary and covariance failure modes.
 
