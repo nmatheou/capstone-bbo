@@ -86,8 +86,8 @@ My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to w
     *   #40 (W11): `(0.396756, 0.412806, 0.348920, 0.416600)` $\to y = 0.599653$
 *   **Method & Formal Bayesian Analysis:**
     1.  **Fitted Matérn-1.5 Surrogate:**
-        *   Fitted GP kernel: $2.39^2 \times \text{Matern}(\nu=1.5, \text{length\_scale}=[2.2743, 1.7575, 1.9866, 1.3126])$ with noise regularization $\alpha = 10^{-5}$.
-        *   Evaluating the posterior mean at my historical best point (#38) yields a smoothed baseline of $\mu_{\text{#38}} = 0.636334$ ($\sigma = 0.026395$).
+        *   Fitted GP kernel: $2.39^2 \times \text{Matern}(\nu=1.5, \text{length-scale}=[2.2743, 1.7575, 1.9866, 1.3126])$ with noise regularization $\alpha = 10^{-5}$.
+        *   Evaluating the posterior mean at my historical best point (#38) yields a smoothed baseline of $\mu_{38} = 0.636334$ ($\sigma = 0.026395$).
     2.  **The Constructive Covariance Peak (Smoothed Baseline Proof):**
         *   Option A (`0.407968, 0.405671, 0.359691, 0.420080`) achieves a GP posterior mean of **$\mu = 0.642345$** ($\sigma = 0.035321$).
         *   Because $\mu_{\text{Option A}} = 0.642345$ strictly exceeds both the smoothed posterior baseline ($0.636334$) and my raw observed lifetime record ($0.639193$), the GP has proven constructive covariance interference across the joint high-altitude corridor of Points #38 and #39, rather than mean-reversion.
