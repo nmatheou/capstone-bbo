@@ -47,7 +47,7 @@ Along a symmetric diagonal ($x_1^\ast = x_2^\ast$), this corresponds to a coordi
 3.  **1D Ridge Posterior Mean Optimization:**
     *   Incorporating the Week 12 record ($0.721870$ at $d_1 = 0.689600$) alongside Point #19 ($0.608505$ at $d_1 = 0.678791$) and Point #12 ($0.641577$ at $d_1 = 0.712094$) shifts the GP posterior mean summit slightly left from $0.689600$ to $\mathbf{d_1^\ast = 0.688100}$ ($\mu = \mathbf{0.613874}, \sigma = 0.068809$), in exact agreement with the 1D quadratic parabola vertex ($0.6881$).
     *   By contrast, the unregularized Neural Network (`0.675102-0.406268`, $\hat{y} = 0.702081$) shifts onto the lower left shoulder where the GP posterior mean drops to $0.5818$.
-*   **Predicted Score at Target:** GP Posterior Mean $\mathbf{\mu = 0.613874}$ ($\sigma_{\text{post}} = 0.068809$, total predictive $\sigma_{\text{obs}} \approx 0.094$).
+*   **Predicted Score at Target:** GP Posterior Mean $\mu = \mathbf{0.613874}$ ($\sigma_{\text{post}} = 0.068809$, total predictive $\sigma_{\text{obs}} \approx 0.094$).
 
 ---
 
@@ -68,7 +68,7 @@ Along a symmetric diagonal ($x_1^\ast = x_2^\ast$), this corresponds to a coordi
     *   Both the 27-point GP Expected Improvement optimizer (`best_x[2] = 0.434766`) and the 1D Matérn ($\ell_3 = 0.01$) profile curve along `(0.95, 0.40, d3)` converge on the left shoulder at $\mathbf{d_3 = 0.434766}$ (a tight $0.003845$ step from my Week 11 record).
 3.  **Anchoring $(d_1, d_2) = (0.950000, 0.400000)$:**
     *   In the 27-point GP, $\ell_1 = 2.000$ (hitting the upper cap), causing the unconstrained L-BFGS-B optimizer to flip $d_1$ from $0.950000$ to the opposite boundary $0.050000$ (`0.050000-0.400000-0.434766`) solely for unverified boundary uncertainty. Locking $(d_1, d_2) = (0.950000, 0.400000)$ preserves the proven high-performing pocket while targeting $d_3 = 0.434766$.
-*   **Predicted Score at Target:** GP Posterior Mean $\mathbf{\mu = -0.010878}$ ($\sigma = 0.029771$), targeting a new record $\mathbf{y > -0.006045}$ at the apex of Needle #2.
+*   **Predicted Score at Target:** GP Posterior Mean $\mu = \mathbf{-0.010878}$ ($\sigma = 0.029771$), targeting a new record  > \mathbf{-0.006045}$ at the apex of Needle #2.
 
 ---
 
@@ -89,9 +89,9 @@ When fitted across all 42 historical observations, every global GP specification
     *   This resolves local sensitivity across $(d_1, d_2, d_4)$ while treating $d_3$ ($\ell_3 = 0.250$) as a smoother ridge, and eliminates nugget shrinkage at my Week 12 coordinate ($\mu(\mathbf{x}_{42}) = \mathbf{0.679981}, \sigma = 0.000085$).
 2.  **Why $\nu = 1.5$ (Option A1) Is Preferred Over $\nu = 2.5$ (Option A2) and the NN:**
     *   Under a twice-differentiable Matérn-2.5 Local GP (Option A2), the smoother curvature assumption stretches the local length scales, causing its optimizer to slide farther away from the Week 12 cluster toward `0.402496-0.402546-0.363811-0.431731` ($\|\Delta \mathbf{x}\|_2 = 0.0139$, matching the 64-64 ReLU NN's global hyperplane tilt).
-    *   By contrast, the Matérn-1.5 Local GP (**Option A1**) locates an interior peak via Nelder-Mead optimization at **`0.405930-0.406376-0.352329-0.422444`**, within a very tight Euclidean step of $\mathbf{\|\Delta \mathbf{x}\|_2 = 0.008027}$ from my Week 12 record, achieving a local posterior mean of $\mathbf{\mu_{\text{local}} = 0.686766}$ ($\sigma_{\text{local}} = 0.026983$).
+    *   By contrast, the Matérn-1.5 Local GP (**Option A1**) locates an interior peak via Nelder-Mead optimization at **`0.405930-0.406376-0.352329-0.422444`**, within a very tight Euclidean step of $\|\Delta \mathbf{x}\|_2 = \mathbf{0.008027}$ from my Week 12 record, achieving a local posterior mean of $\mu_{\text{local}} = \mathbf{0.686766}$ ($\sigma_{\text{local}} = 0.026983$).
     *   *Calibration Note:* Because the Local GP is fitted on only $n = 9$ positive points, its leave-one-out cross-validation error is relatively high ($\text{LOO RMSE} = 0.1973$), so its raw normal-tail probability ($59.9\%$) should be treated as an optimistic surrogate indicator rather than a calibrated probability; crucially, the small Euclidean step ($0.0080$) keeps actual downside risk tightly bounded around the proven summit.
-*   **Predicted Score at Target:** Local GP Posterior Mean $\mathbf{\mu_{\text{local}} = 0.686766}$ ($\sigma_{\text{local}} = 0.026983$).
+*   **Predicted Score at Target:** Local GP Posterior Mean $\mu_{\text{local}} = \mathbf{0.686766}$ ($\sigma_{\text{local}} = 0.026983$).
 
 ---
 
@@ -120,8 +120,8 @@ When fitted across all 42 historical observations, every global GP specification
     *   *Boundary Geometry Note:* Inside this trust box, $d_1 = 0.458352$ and $d_3 = 0.648537$ settle at interior optima, whereas $d_2 = 0.330000$, $d_4 = 0.780000$, and $d_5 = 0.060000$ pin against the $\pm 0.03$ trust-box boundaries along the GP's positive gradient slope. The trust box intentionally caps this multi-dimensional step at $\pm 0.03$ per axis to harvest the ascending slope without over-extrapolating.
 3.  **Dominance Over Alternative Candidates:**
     *   Because the Noisy GP estimates that the Week 10 record ($-0.090586$) benefited from a favorable noise draw alongside nearby lower returns (Week 11: $-0.138856$, Week 12: $-0.173497$), re-querying the exact Week 10 coordinate yields a posterior mean of only $\mu_{\text{noisy}} = -0.147020$ ($\sigma = 0.035221$).
-    *   By contrast, climbing the multi-dimensional slope to **Option A** achieves a posterior mean of $\mathbf{\mu_{\text{noisy}} = -0.081873}$ ($\sigma_{\text{post}} = 0.043261$; $P(y_{\text{obs}} > -0.090586) = \mathbf{56.4\%}$ including observation noise $\sigma_{\text{noise}} \approx 0.0323$), making it the **only** candidate whose expected value surpasses my all-time record ($-0.090586$).
-*   **Predicted Score at Target:** Noisy GP Posterior Mean $\mathbf{\mu = -0.081873}$ ($\sigma_{\text{post}} = 0.043261$).
+    *   By contrast, climbing the multi-dimensional slope to **Option A** achieves a posterior mean of $\mu_{\text{noisy}} = \mathbf{-0.081873}$ ($\sigma_{\text{post}} = 0.043261$; $P(y_{\text{obs}} > -0.090586) = \mathbf{56.4\%}$ including observation noise $\sigma_{\text{noise}} \approx 0.0323$), making it the **only** candidate whose expected value surpasses my all-time record ($-0.090586$).
+*   **Predicted Score at Target:** Noisy GP Posterior Mean $\mu = \mathbf{-0.081873}$ ($\sigma_{\text{post}} = 0.043261$).
 
 ---
 
@@ -140,7 +140,7 @@ When fitted across all 42 historical observations, every global GP specification
     *   Crucially, the 42-point GP confirms that the Week 12 adjustments on $(d_2, d_4, d_5, d_6)$ were **beneficial**: combining the Week 12 coordinates on $(d_2, d_4, d_5, d_6)$ with the restored $d_3 \approx 0.305$ ridge crest increases the GP posterior mean from $2.201311$ (at Week 11) to $\mathbf{2.241241}$ ($+0.0399$ above my all-time record).
     *   Maximizing the primary GP ($\nu=2.5$) posterior mean via `L-BFGS-B` inside the trust region `[(0.0, 0.20), (0.10, 0.35), (0.15, 0.45), (0.20, 0.45), (0.25, 0.42), (0.65, 0.85)]` yields an interior peak (with only $d_1 = 0.000000$ anchored at its physical boundary) at **`0.000000-0.156068-0.305066-0.315590-0.335798-0.766358`** ($\mu = \mathbf{2.241241}, \sigma = 0.043398$, noiseless GP posterior $P(y > 2.201316) = \mathbf{82.1\%}$).
     *   By contrast, raw GP Expected Improvement (`0.000000-0.150568-0.326174-0.313526-0.330278-0.755470`, $\mu = 2.234728$) sacrifices $+0.0065$ of expected return to chase outer-flank variance on $d_3$, while the unconstrained Neural Network (`0.000000-0.000000-0.000000-0.000000-0.000000-1.000000`) extrapolates into a severe boundary penalty cliff.
-*   **Predicted Score at Target:** GP Posterior Mean $\mathbf{\mu = 2.241241}$ ($\sigma = 0.043398$).
+*   **Predicted Score at Target:** GP Posterior Mean $\mu = \mathbf{2.241241}$ ($\sigma = 0.043398$).
 
 ---
 
@@ -168,7 +168,7 @@ Comparing the coordinate delta that produced the $+0.0260$ breakthrough ($\Delta
     *   Because 4 prior queries (Weeks 8–11) are tightly clustered near the Week 10 coordinate `(0.113, 0.147, 0.116, 0.129, 1.0, 0.471, 0.209, 1.0)` while Week 12 (`9.987569`) is a single isolated observation at the new interior position, the GP's broad length scales ($\boldsymbol{\ell} \in [2.8, 50.0]$) experience **sample-density gravity** toward the 4-point Week 10 cluster. Consequently, Option A reverses **all 8 directional changes** made in Week 12 (and even overshoots backward past Week 10 on $d_1, d_3, d_6$).
 2.  **Coordinated Local Refinement via Option C (`0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012`):**
     *   Unlike the GP, the 64-64 ReLU Neural Network (`train_and_optimize_nn`) initiates L-BFGS gradient ascent directly from the Week 12 record (`best_idx = 51`) and follows the learned directional slope without sample-count shrinkage.
-    *   Option C stays within a tight Euclidean radius of $\mathbf{\|\Delta \mathbf{x}\|_2 = 0.0249}$ around Week 12 (nearly $8\times$ closer than Option A's $0.1961$), continuing the winning trajectory on $d_1$ ($+0.0121$), $d_4$ ($-0.0073$), and $d_7$ ($-0.0005$) while gently trimming $d_2, d_3,$ and $d_6$ to settle into the local quadratic bowl.
+    *   Option C stays within a tight Euclidean radius of $\|\Delta \mathbf{x}\|_2 = \mathbf{0.0249}$ around Week 12 (nearly $8\times$ closer than Option A's $0.1961$), continuing the winning trajectory on $d_1$ ($+0.0121$), $d_4$ ($-0.0073$), and $d_7$ ($-0.0005$) while gently trimming $d_2, d_3,$ and $d_6$ to settle into the local quadratic bowl.
 3.  **Multi-Surrogate Cross-Validation & Risk Bounds:**
     *   **64-64 ReLU Neural Network:** $\hat{y}_{\text{NN}} = \mathbf{10.005514}$ (slightly exceeding the assumed $10.0$ benchmark ceiling due to piecewise-linear ReLU extrapolation along the ascending gradient).
     *   **2nd-Order Ridge Quadratic RSM (fitted on top points $y > 9.5$):** $\hat{y}_{\text{RSM}} = \mathbf{10.000186}$.
@@ -182,10 +182,10 @@ Comparing the coordinate delta that produced the $+0.0260$ breakthrough ($\Delta
 | Function | Dim | Locked Week 13 Coordinate | Selected Strategy | Current Best ($y^\ast$) | Predicted Return |
 | :---: | :---: | :--- | :--- | :---: | :---: |
 | **F1 ($F_1$)** | 2D | `0.628542-0.628542` | **Option B:** Analytical log-Gaussian unrounded peak ($+10^{-6}$ step) | $1.99999999$ (W12) | $\mathbf{2.000000}$ ($\mu = 1.999944$) |
-| **F2 ($F_2$)** | 2D | `0.688100-0.387000` | **Option A:** 1D GP posterior mean peak along $d_1$ ($d_2 = 0.387$ locked) | $0.721870$ (W12) | $\mathbf{\mu = 0.613874}$ ($\sigma = 0.0688$) |
-| **F3 ($F_3$)** | 3D | `0.950000-0.400000-0.434766` | **Option B:** GP EI Needle #2 left-shoulder apex ($(d_1, d_2)$ locked) | $-0.006045$ (W11) | $\mathbf{\mu = -0.010878}$ ($\sigma = 0.0298$) |
-| **F4 ($F_4$)** | 4D | `0.405930-0.406376-0.352329-0.422444` | **Option A1:** Positive-basin Local GP ($\nu=1.5, n=9$) mean peak | $0.679981$ (W12) | $\mathbf{\mu_{\text{loc}} = 0.686766}$ ($\sigma = 0.0270$) |
+| **F2 ($F_2$)** | 2D | `0.688100-0.387000` | **Option A:** 1D GP posterior mean peak along $d_1$ ($d_2 = 0.387$ locked) | $0.721870$ (W12) | $\mu = \mathbf{0.613874}$ ($\sigma = 0.0688$) |
+| **F3 ($F_3$)** | 3D | `0.950000-0.400000-0.434766` | **Option B:** GP EI Needle #2 left-shoulder apex ($(d_1, d_2)$ locked) | $-0.006045$ (W11) | $\mu = \mathbf{-0.010878}$ ($\sigma = 0.0298$) |
+| **F4 ($F_4$)** | 4D | `0.405930-0.406376-0.352329-0.422444` | **Option A1:** Positive-basin Local GP ($\nu=1.5, n=9$) mean peak | $0.679981$ (W12) | $\mu_{\text{loc}} = \mathbf{0.686766}$ ($\sigma = 0.0270$) |
 | **F5 ($F_5$)** | 4D | `1.000000-1.000000-1.000000-1.000000` | **Unanimous GP + NN:** Exact mathematical hyper-corner summit | $8662.482500$ (W12) | $\mathbf{8662.482500}$ ($\mu = 8662.42$) |
-| **F6 ($F_6$)** | 5D | `0.458352-0.330000-0.648537-0.780000-0.060000` | **Option A:** Noisy GP (`Matérn 2.5 + WhiteKernel`) trust-box corner ascent | $-0.090586$ (W10) | $\mathbf{\mu_{\text{noisy}} = -0.081873}$ ($\sigma = 0.0433$) |
-| **F7 ($F_7$)** | 6D | `0.000000-0.156068-0.305066-0.315590-0.335798-0.766358` | **Option A:** Primary GP ($\nu=2.5$) trust-region mean peak ($d_3$ restored) | $2.201316$ (W11) | $\mathbf{\mu = 2.241241}$ ($\sigma = 0.0434$) |
-| **F8 ($F_8$)** | 8D | `0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012` | **Option C:** 64-64 ReLU NN local ascent peak ($\text{W10}\to\text{W12}$ continuation) | $9.987569$ (W12) | $\mathbf{\hat{y}_{\text{RSM}} = 10.0002}$ ($\mu_{\text{GP}} = 9.9854$) |
+| **F6 ($F_6$)** | 5D | `0.458352-0.330000-0.648537-0.780000-0.060000` | **Option A:** Noisy GP (`Matérn 2.5 + WhiteKernel`) trust-box corner ascent | $-0.090586$ (W10) | $\mu_{\text{noisy}} = \mathbf{-0.081873}$ ($\sigma = 0.0433$) |
+| **F7 ($F_7$)** | 6D | `0.000000-0.156068-0.305066-0.315590-0.335798-0.766358` | **Option A:** Primary GP ($\nu=2.5$) trust-region mean peak ($d_3$ restored) | $2.201316$ (W11) | $\mu = \mathbf{2.241241}$ ($\sigma = 0.0434$) |
+| **F8 ($F_8$)** | 8D | `0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012` | **Option C:** 64-64 ReLU NN local ascent peak ($\text{W10}\to\text{W12}$ continuation) | $9.987569$ (W12) | $\hat{y}_{\text{RSM}} = \mathbf{10.0002}$ ($\mu_{\text{GP}} = 9.9854$) |

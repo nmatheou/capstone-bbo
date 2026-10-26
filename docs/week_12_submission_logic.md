@@ -101,7 +101,7 @@ My independent $x_2$ gradient projection ($x_2^\ast \approx 0.6285$) converges t
         *   Fitted GP kernel: $2.39^2 \times \text{Matern}(\nu=1.5, \text{length-scale}=[2.2743, 1.7575, 1.9866, 1.3126])$ with noise regularization $\alpha = 10^{-5}$.
         *   Evaluating the posterior mean at my historical best point (#38) yields a smoothed baseline of $\mu_{38} = 0.636334$ ($\sigma = 0.026395$).
     2.  **The Constructive Covariance Peak (Smoothed Baseline Proof):**
-        *   Option A (`0.407968, 0.405671, 0.359691, 0.420080`) achieves a GP posterior mean of $\mathbf{\mu = 0.642345}$ ($\sigma = 0.035321$).
+        *   Option A (`0.407968, 0.405671, 0.359691, 0.420080`) achieves a GP posterior mean of $\mu = \mathbf{0.642345}$ ($\sigma = 0.035321$).
         *   Because $\mu_{\text{Option A}} = 0.642345$ strictly exceeds both the smoothed posterior baseline ($0.636334$) and my raw observed lifetime record ($0.639193$), the GP has proven constructive covariance interference across the joint high-altitude corridor of Points #38 and #39, rather than mean-reversion.
     3.  **Evaluation Against Alternative Proposals:**
         *   **Option B (Neural Network Pipeline, `0.403263-0.411278-0.363387-0.419826`):** While following the local piecewise slope of $d_3$, evaluating Option B on the 41-point GP posterior reveals a drop in expected mean to $\mu = 0.632862$ ($\sigma = 0.034556$). The broader dataset imposes negative spatial curvature in the outer $d_3 > 0.363$ corridor that the over-parameterized ReLU network ignores.
