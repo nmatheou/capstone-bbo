@@ -1,9 +1,5 @@
 # Model Card: Human-in-the-Loop Hybrid Surrogate Optimizer (HitL-HSO)
 
-See the [example Google model cards](https://modelcards.withgoogle.com/model-reports) for inspiration.
-
----
-
 ## Overview
 *   **Name of approach:** Human-in-the-Loop Hybrid Surrogate Optimizer (HitL-HSO)
 *   **Type:** Sequential Black-Box Optimization (BBO) ensemble, combining Gaussian Process Regression (GPR), Shallow Neural Networks (PyTorch `64x64` ReLU MLP), Response Surface Methodology (RSM), and Human-in-the-Loop Diagnostics.
