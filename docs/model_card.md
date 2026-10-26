@@ -15,12 +15,12 @@
 
 **Output:**
 *   **Predictive Posterior Distribution ($\mu(\mathbf{x}), \sigma(\mathbf{x})$):** Continuous mean and epistemic uncertainty predictions across the candidate space $[0, 1]^d$ from the Gaussian Process surrogate, paired with point predictions $\hat{y}_{\text{NN}}(\mathbf{x})$ from the PyTorch Neural Network surrogate.
-*   **Next Sequential Query Coordinate ($\mathbf{x}_{t+1}^* \in [0, 1]^d$):** A single 6-decimal-formatted coordinate vector (`x1-x2-...-xd`) per function maximising the acquisition/refinement objective, written to `submissions/week_<N>/suggestions.txt`.
+*   **Next Sequential Query Coordinate ($\mathbf{x}_{t+1}^\ast \in [0, 1]^d$):** A single 6-decimal-formatted coordinate vector (`x1-x2-...-xd`) per function maximising the acquisition/refinement objective, written to `submissions/week_<N>/suggestions.txt`.
 
 **Model Architecture:**
 The architecture implemented in [`src/bbo_optimize.py`](../src/bbo_optimize.py) is a three-tier hybrid surrogate pipeline:
 1.  **Tier 1 — Anisotropic Gaussian Process Regressor (`scikit-learn`):**
-    *   Composite kernel $k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \, k_{\text{Matérn}}(\mathbf{x}, \mathbf{x}'; \nu, \boldsymbol{\ell}) + \sigma_n^2 \delta(\mathbf{x}, \mathbf{x}')$ with **Automatic Relevance Determination (ARD)** length scales $\boldsymbol{\ell} = (\ell_1, \dots, \ell_d)$ optimised via multi-start L-BFGS-B marginal log-likelihood maximisation (`n_restarts_optimizer=10–25`).
+    *   Composite kernel $k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \, k_{\text{Matern}}(\mathbf{x}, \mathbf{x}'; \nu, \boldsymbol{\ell}) + \sigma_n^2 \delta(\mathbf{x}, \mathbf{x}')$ with **Automatic Relevance Determination (ARD)** length scales $\boldsymbol{\ell} = (\ell_1, \dots, \ell_d)$ optimised via multi-start L-BFGS-B marginal log-likelihood maximisation (`n_restarts_optimizer=10–25`).
     *   $\nu = 1.5$ (once-differentiable) for rugged landscapes ($F_4$); $\nu = 2.5$ (twice-differentiable) for smooth landscapes ($F_1, F_2, F_3, F_5, F_6, F_7, F_8$); explicit `WhiteKernel` noise regularisation for stochastic functions ($F_2, F_6$); and an RBF `SVC` active-subspace filter on $F_1$.
 2.  **Tier 2 — Secondary Shallow Neural Network Surrogate (`PyTorch`):**
     *   A deterministic-seeded (`seed=42`) 2-hidden-layer Multi-Layer Perceptron (`d -> 64 -> ReLU -> 64 -> ReLU -> 1`) trained on $z$-score standardised targets using Adam (`lr=0.005`, `weight_decay=1e-4`, `800` epochs), followed by bounded L-BFGS input gradient ascent (`lr=0.05`, `20` steps) starting from the empirical incumbent best (`train_and_optimize_nn`).
@@ -48,12 +48,12 @@ The architecture implemented in [`src/bbo_optimize.py`](../src/bbo_optimize.py) 
 ## Performance
 
 ### Evaluation Methodology & Analysed Datasets
-*   **How performance is measured:** Primary performance is evaluated by the **cumulative maximum oracle output** ($y^* = \max_{t \in \{0..13\}} y_t$) achieved on each of the 8 hidden functions over 13 sequential weekly queries, supplemented by GP posterior calibration ($\mu \pm \sigma$), normalised exploitation index ($\mu / \sigma$), and leave-one-out cross-validation ($\text{LOO RMSE}$).
+*   **How performance is measured:** Primary performance is evaluated by the **cumulative maximum oracle output** ($y^\ast = \max_{t \in \{0..13\}} y_t$) achieved on each of the 8 hidden functions over 13 sequential weekly queries, supplemented by GP posterior calibration ($\mu \pm \sigma$), normalised exploitation index ($\mu / \sigma$), and leave-one-out cross-validation ($\text{LOO RMSE}$).
 *   **Datasets analysed:** Evaluated across the 8 Imperial College BBO Capstone datasets (`data/accumulated/function_1` through `function_8`, comprising 23, 23, 28, 43, 29, 33, 43, and 53 points respectively; 275 total oracle evaluations).
 
 ### Final Campaign Metrics (Weeks 0–13)
 
-| Function | Dim ($d$) | Samples ($N$) | Baseline Best (W0) | Week 13 Return | **All-Time Best ($y^*$)** | Best Week | Total Gain ($\text{W0} \to \text{Best}$) |
+| Function | Dim ($d$) | Samples ($N$) | Baseline Best (W0) | Week 13 Return | **All-Time Best ($y^\ast$)** | Best Week | Total Gain ($\text{W0} \to \text{Best}$) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **$F_1$** (Sparse Needle) | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | **$+2.000000$** |
 | **$F_2$** (Noisy Sim) | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | **$+0.110665$** |

@@ -91,8 +91,6 @@ While the Gaussian Process (GP) is a powerful surrogate model, relying purely on
     *   *Result:* Yielded consecutive all-time bests (`9.949525` in W8 $\to$ **`9.958939`** in W9), asymptotically approaching the theoretical `10.0` ceiling.
 *   **W10 (GP Spliced Controlled Ascent):** We trained a Neural Network that natively verified our "Splicing Strategy"—pushing $d_5$ and $d_8$ to $1.0$ without any human prompting. While the NN suggested an aggressive sprint across the interior dimensions, we opted for the GP's controlled, mathematically flawless micro-gradient ascent on the interior dimensions (`[0.113203, 0.147122, 0.115630, 0.128826, 1.0, 0.471155, 0.209232, 1.0]`) to safely inch towards `10.0`.
 
-
-
 # Week 11 Submission Logic & Strategic Rationale
 
 ## Function 1 (2D Sparse Needle)
@@ -102,7 +100,6 @@ While the Gaussian Process (GP) is a powerful surrogate model, relying purely on
 ## Function 2 (2D Noisy Sim)
 *   **Target Coordinate:** `0.712905-0.387764`
 *   **Rationale (The 1D Illusion):** The competitor claimed $d_2$ is irrelevant and used a 1D quadratic fit to find a peak at `0.691`. However, our Neural Network (which optimizes in full 2D space) predicted the peak is at `0.712`, with $d_2$ at `0.387`. This aligns perfectly with our historical data (our all-time best query was `0.712, 0.386`). We are betting the competitor's `0.691` is an optical illusion caused by projecting a slightly diagonal 2D ridge onto a 1D plane. We are trusting the NN to out-engineer their 1D assumption.
-
 
 ## Function 3 (3D Drug Discovery)
 *   **Target Coordinate:** `0.950000-0.400000-0.438611`

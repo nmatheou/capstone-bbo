@@ -62,7 +62,7 @@ To optimise 8 heterogeneous functions under extreme sample sparsity ($23 \le N \
 
 1.  **Primary Probabilistic Surrogate — Anisotropic Gaussian Process Regressor (`scikit-learn`):**
     *   **Why chosen:** Unlike point-estimate regressors, a Gaussian Process natively outputs a full predictive distribution $\mathcal{N}(\mu(\mathbf{x}), \sigma^2(\mathbf{x}))$ at any candidate coordinate. This uncertainty quantification is essential for driving sequential acquisition functions (UCB and Expected Improvement) that balance exploration and exploitation.
-    *   **Covariance Structure:** Uses a composite kernel $k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \, k_{\text{Matérn}}(\mathbf{x}, \mathbf{x}'; \nu, \boldsymbol{\ell}) + \sigma_n^2 \delta(\mathbf{x}, \mathbf{x}')$ with **Automatic Relevance Determination (ARD)** length scales $\boldsymbol{\ell} = (\ell_1, \dots, \ell_d)$ to identify active versus nuisance dimensions automatically.
+    *   **Covariance Structure:** Uses a composite kernel $k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \, k_{\text{Matern}}(\mathbf{x}, \mathbf{x}'; \nu, \boldsymbol{\ell}) + \sigma_n^2 \delta(\mathbf{x}, \mathbf{x}')$ with **Automatic Relevance Determination (ARD)** length scales $\boldsymbol{\ell} = (\ell_1, \dots, \ell_d)$ to identify active versus nuisance dimensions automatically.
 2.  **Secondary Verification Surrogate — Shallow Neural Network (`PyTorch`):**
     *   **Why chosen:** In higher dimensions ($6\text{D } F_7, 8\text{D } F_8$) or near sharp non-stationary peaks ($2\text{D } F_1$), stationary Matérn kernels can suffer from sample-density pullback toward old clusters. I integrated a seeded 2-layer (`64x64` ReLU) Multi-Layer Perceptron (`train_and_optimize_nn`) trained with Adam and queried via L-BFGS input gradient ascent from the incumbent best point to cross-audit GP proposals.
 3.  **Analytical Local Response Surfaces & Diagnostic Guardrails (`compute_final_refinement`):**
@@ -86,7 +86,7 @@ Hyperparameters in this project operate at two levels—**internal surrogate hyp
 4.  **Acquisition Function Schedule ($\kappa$ for UCB, $\xi$ for EI):**
     *   Transitioned from broad exploration in Weeks 1–4 using Upper Confidence Bound ($\text{UCB} = \mu + \kappa \sigma$, with $\kappa \in [3.0, 4.0]$) to focused exploitation in Weeks 5–13 using Expected Improvement ($\text{EI}$ with exploration parameter $\xi$ annealed from `0.1` $\to$ `0.01` $\to$ `0.0001`).
 5.  **Adaptive Trust-Region Width (`tr_width`):**
-    *   To prevent boundary variance traps in $\ge 4\text{D}$ spaces ($F_4, F_6, F_7, F_8$), candidate generation was restricted to a local hyper-box around the incumbent best with width dynamically scaled to $1.5\times$ the coordinate spread of the top-3 historical points (`np.clip(spread * 1.5, 0.3, 1.0)`), tightening to $\pm 0.015\text{–}0.05$ in Week 13.
+    *   To prevent boundary variance traps in $\ge 4\text{D}$ spaces ($F_4, F_6, F_7, F_8$), candidate generation was restricted to a local hyper-box around the incumbent best with width dynamically scaled to $1.5\times$ the coordinate spread of the top-3 historical points (`np.clip(spread * 1.5, 0.3, 1.0)`), tightening to $\pm 0.015\text{	ext{--}}0.05$ in Week 13.
 6.  **PyTorch Neural Network Hyperparameters:**
     *   2 hidden layers (`64x64` ReLU), trained on $z$-score standardised targets using Adam (`lr = 0.005`, `weight_decay = 1e-4`, `epochs = 800`), followed by bounded L-BFGS input ascent (`lr = 0.05`, `max_iter = 20`).
 
@@ -98,7 +98,7 @@ Hyperparameters in this project operate at two levels—**internal surrogate hyp
 
 Across the 13-week campaign, **every single function achieved significant gains over its initial baseline**, with **7 of the 8 functions achieving their all-time record in Weeks 11–13** (and all 8 between Weeks 10 and 13):
 
-| Function | Dim | Total Samples ($N$) | Initial Best (W0) | Final W13 Return | **All-Time Maximum** | Best Week | Campaign Gain ($\text{W0} \to \text{Max}$) | Optimal Input Vector $\mathbf{x}^*$ |
+| Function | Dim | Total Samples ($N$) | Initial Best (W0) | Final W13 Return | **All-Time Maximum** | Best Week | Campaign Gain ($\text{W0} \to \text{Max}$) | Optimal Input Vector $\mathbf{x}^\ast$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
 | **$F_1$** | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | **$+2.000000$** | `[0.628541, 0.628541]` |
 | **$F_2$** | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | **$+0.110665$** | `[0.689600, 0.387000]` |

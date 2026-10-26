@@ -21,31 +21,43 @@ Because my initial exploratory queries (W6–W10) clustered exclusively on the n
 
 ### Part 2: Three-Step Analytical Derivation of (0.628541, 0.628541)
 For an isotropic 2D Gaussian peak, the log-response surface is governed by:
-$$\ln y(x_1, x_2) = \ln A - \frac{(x_1 - x_1^*)^2 + (x_2 - x_2^*)^2}{2\sigma^2}$$
+
+$$
+\ln y(x_1, x_2) = \ln A - \frac{(x_1 - x_1^\ast)^2 + (x_2 - x_2^\ast)^2}{2\sigma^2}
+$$
 
 Taking finite differences between pairs of observations completely eliminates the unknown amplitude constant $\ln A$, allowing me to isolate the exact geometry of the peak in three steps:
 
 #### Step 1: The Empirical $x_1$ Ridge Anchor (Week 10 $\rightarrow$ Week 11)
-In Week 11, stepping $x_1$ down from $0.662000$ to $0.628956$ triggered an immediate 46-fold surge in output ($0.015352 \rightarrow 0.709490$, or $\Delta \ln y = +3.8333$). This dramatic jump confirms that $x_1 = 0.628956$ crossed directly onto the central crest of the $x_1$ ridge ($x_1^* \approx 0.6285 - 0.6289$).
+In Week 11, stepping $x_1$ down from $0.662000$ to $0.628956$ triggered an immediate 46-fold surge in output ($0.015352 \rightarrow 0.709490$, or $\Delta \ln y = +3.8333$). This dramatic jump confirms that $x_1 = 0.628956$ crossed directly onto the central crest of the $x_1$ ridge ($x_1^\ast \approx 0.6285 - 0.6289$).
 
 #### Step 2: Direct Secant-Slope Calibration of the Bell Curve Width ($\sigma$)
 1.  **Measuring the $x_2$ Flank Gradient (W9 $\rightarrow$ W10):** Between Week 9 and Week 10, $x_1$ was held strictly constant at $0.662000$ while $x_2$ stepped from $0.655000$ to $0.653500$ ($\Delta x_2 = -0.001500$). This yields an exact empirical log-slope at the midpoint $x_2 = 0.654250$:
-    $$\frac{\partial \ln y}{\partial x_2}\bigg\vert{}_{x_2 = 0.65425} \approx \frac{-4.1765 - (-4.3996)}{0.653500 - 0.655000} = \frac{0.2231}{-0.001500} = -148.73$$
+    * $\displaystyle \frac{\partial \ln y}{\partial x_2}\bigg\vert{}_{x_2 = 0.65425} \approx \frac{-4.1765 - (-4.3996)}{0.653500 - 0.655000} = \frac{0.2231}{-0.001500} = -148.73$
 2.  **Isolating the Pure $x_1$ Gain (W10 $\rightarrow$ W11):** Between Week 10 and Week 11, I moved $\Delta x_1 = -0.033044$ alongside a minor adjustment of $\Delta x_2 = -0.004635$. Accounting for the local $x_2$ slope contribution ($\approx +0.602$), the pure log-gain attributable to stepping onto the $x_1$ ridge is $\Delta \ln y_{x_1} \approx 3.231$.
-3.  **Solving for $\sigma^2$:** Using the radial displacement from the flank ($x_1 = 0.662000$) to the ridge crest ($x_1^* \approx 0.628541$, where $\Delta x_1 = 0.033459$):
-    $$\frac{(\Delta x_1)^2}{2\sigma^2} = 3.231 \implies \sigma^2 = \frac{(0.033459)^2}{2 \times 3.231} = 0.0001732 \quad (\sigma \approx 0.01316)$$
+3.  **Solving for $\sigma^2$:** Using the radial displacement from the flank ($x_1 = 0.662000$) to the ridge crest ($x_1^\ast \approx 0.628541$, where $\Delta x_1 = 0.033459$):
+    * $\displaystyle \frac{(\Delta x_1)^2}{2\sigma^2} = 3.231 \implies \sigma^2 = \frac{(0.033459)^2}{2 \times 3.231} = 0.0001732 \quad (\sigma \approx 0.01316)$
 
-#### Step 3: Projecting $x_2^*$ and Validating Diagonal Symmetry ($x_1^* = x_2^*$)
+#### Step 3: Projecting $x_2^\ast$ and Validating Diagonal Symmetry ($x_1^\ast = x_2^\ast$)
 Now that the local variance ($\sigma^2 = 0.0001732$) is calibrated directly from the data, I substitute it into the analytical Gaussian derivative along $x_2$ at my W9–W10 midpoint ($x_2 = 0.654250$):
-$$\frac{\partial \ln y}{\partial x_2} = -\frac{x_2 - x_2^*}{\sigma^2} = -148.73$$
 
-Solving algebraically for the remaining distance to the peak ($x_2 - x_2^*$):
-$$x_2 - x_2^* = 148.73 \times 0.0001732 = 0.02576$$
-$$x_2^* = 0.654250 - 0.02576 = 0.62849 \approx \mathbf{0.628541}$$
+$$
+\frac{\partial \ln y}{\partial x_2} = -\frac{x_2 - x_2^\ast}{\sigma^2} = -148.73
+$$
+
+Solving algebraically for the remaining distance to the peak ($x_2 - x_2^\ast$):
+
+$$
+x_2 - x_2^\ast = 148.73 \times 0.0001732 = 0.02576
+$$
+
+$$
+x_2^\ast = 0.654250 - 0.02576 = 0.62849 \approx \mathbf{0.628541}
+$$
 
 #### Structural Synthesis:
-My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to within $0.0004$ units of my Week 11 $x_1$ ridge anchor ($x_1 \approx 0.6289$). In synthetic 2D unimodal benchmark landscapes, optima are canonically positioned symmetrically along the main diagonal ($x_1^* = x_2^*$). The empirical convergence of both axes onto $0.628541$ provides rigorous, independent structural validation to lock in `(0.628541, 0.628541)` for my final submission.
-*   **Predicted Score at Target:** Expected return **$y^* \ge 1.38$** (with normalized benchmark theoretical ceiling up to **$2.0000$**).
+My independent $x_2$ gradient projection ($x_2^\ast \approx 0.6285$) converges to within $0.0004$ units of my Week 11 $x_1$ ridge anchor ($x_1 \approx 0.6289$). In synthetic 2D unimodal benchmark landscapes, optima are canonically positioned symmetrically along the main diagonal ($x_1^\ast = x_2^\ast$). The empirical convergence of both axes onto $0.628541$ provides rigorous, independent structural validation to lock in `(0.628541, 0.628541)` for my final submission.
+*   **Predicted Score at Target:** Expected return **$y^\ast \ge 1.38$** (with normalized benchmark theoretical ceiling up to **$2.0000$**).
 
 ## Function 2 (2D Noisy Sim) — LOCKED 2026-10-14
 *   **Target Coordinate:** `0.689600-0.387000`
@@ -145,8 +157,8 @@ My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to w
             *   $0.6625 \to 0.6750$: slope $= \mathbf{-6.3277}$
         *   The downward slope beyond $0.6625$ ($-6.33$) is more than twice as steep as the ascending slope leading into it ($+2.94$), proving that the peak drops off sharply on the high-$d_3$ side.
     3.  **Analytical Peak Interpolation:**
-        *   Fitting an exact 4-point cubic spline across these evaluations resolves the asymmetric vertex at **$d_3^* = 0.661288$** ($d_5^* = 0.088712$), with a projected score of **$y \approx -0.090060$**.
-        *   Fitting a local 3-point Lagrange parabola to the bracketing triad ($0.6500, 0.6625, 0.6750$) similarly yields **$d_3^* = 0.660219$**.
+        *   Fitting an exact 4-point cubic spline across these evaluations resolves the asymmetric vertex at **$d_3^\ast = 0.661288$** ($d_5^\ast = 0.088712$), with a projected score of **$y \approx -0.090060$**.
+        *   Fitting a local 3-point Lagrange parabola to the bracketing triad ($0.6500, 0.6625, 0.6750$) similarly yields **$d_3^\ast = 0.660219$**.
         *   Both analytical models agree to within $0.0010$ units—well inside the estimated observation noise floor ($\sigma_{\text{noise}} \approx 0.03 - 0.05$)—confirming that the summit crest sits safely to the left of the cliff at $0.6750$.
     4.  **Why the Raw GP Was Overruled:**
         *   The unconstrained Matérn-1.5 GP fitted length scales for $d_1$ and $d_2$ at the boundary maximum of $100.0$, causing its unconstrained acquisition function to hallucinate far away from the proven high-performing corridor (drifting to $d_1 = 0.515, d_2 = 0.181$). Maintaining my controlled coordinate-descent anchor avoids this known GP failure mode.
@@ -160,9 +172,9 @@ My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to w
 *   **Surrogate Architecture & Empirical Rationale:**
     1.  **Fitted Surrogate & ARD Length Scales:**
         *   Surrogate: Gaussian Process Regressor with anisotropic kernel:
-            $$k(x, x') = 0.706^2 \times \text{Matérn}(\nu = 1.5, \boldsymbol{\ell})$$
+            * $\displaystyle k(x, x') = 0.706^2 \times \text{Matern}(\nu = 1.5, \boldsymbol{\ell})$
         *   Fitted ARD length scales across the 41 historical observations:
-            $$\boldsymbol{\ell} = [d_1: 0.9514, \; d_2: 0.7100, \; d_3: 1.2699, \; d_4: 0.4120, \; d_5: 0.3041, \; d_6: 0.3790]$$
+            * $\displaystyle \boldsymbol{\ell} = [d_1: 0.9514, \; d_2: 0.7100, \; d_3: 1.2699, \; d_4: 0.4120, \; d_5: 0.3041, \; d_6: 0.3790]$
         *   **Sensitivity Spectrum:** $d_5$ ($\ell = 0.3041$) and $d_6$ ($\ell = 0.3790$) are the primary sensitive performance drivers; $d_4$ ($\ell = 0.4120$) is moderately sensitive; $d_3$ ($\ell = 1.2699$) defines a broad, forgiving ridge; and $d_1$ ($\ell = 0.9514$) operates as an invariant boundary anchor.
     2.  **Gradient Deceleration & Summit Convergence:**
         *   In Week 11, my coordinated 5D joint move captured a massive $+0.2883$ surge by shifting $d_2, d_3, d_5,$ and $d_6$ down simultaneously ($d_2: -0.0848, d_3: -0.0824, d_5: -0.0352, d_6: -0.0315$).
@@ -197,16 +209,16 @@ My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to w
 *   **Method & Empirical Rationale:**
     1.  **ARD Length-Scale Diagnosis & Boundary Artifact:**
         *   Surrogate: Gaussian Process Regressor with anisotropic Matérn-1.5 kernel fitted across all 51 historical observations:
-            $$\boldsymbol{\ell} = [d_1: 8.71, \; d_2: 12.93, \; d_3: 6.83, \; d_4: 15.63, \; \mathbf{d_5: 27.66}, \; d_6: 13.95, \; d_7: 8.94, \; \mathbf{d_8: 100.00}]$$
+            * $\displaystyle \boldsymbol{\ell} = [d_1: 8.71, \; d_2: 12.93, \; d_3: 6.83, \; d_4: 15.63, \; \mathbf{d_5: 27.66}, \; d_6: 13.95, \; d_7: 8.94, \; \mathbf{d_8: 100.00}]$
         *   $d_5$ ($\ell = 27.66$) and $d_8$ ($\ell = 100.00$) exhibit near-zero gradient sensitivity, behaving as nuisance parameters.
         *   In Weeks 10 and 11, holding $d_5 = 1.000000$ and $d_8 = 1.000000$ strictly fixed resulted in flatlining returns ($9.961573 \to 9.961248$). Locking these parameters at the boundary artificially distorted the surrogate's length scales and created an asymptotic boundary ceiling.
     2.  **Quadratic Response Surface Optimization (Active Subspace Shift):**
         *   To resolve this boundary distortion, I relaxed $d_5$ and $d_8$ to their interior domain centroids ($d_5 = 0.885000, d_8 = 0.500000$) and fitted a 2nd-order Quadratic Response Surface model across the top-performing historical observations ($y > 9.0$, $R^2 = 0.9998$).
         *   Solving for the unconstrained stationary vertex across the 6 active dimensions shifts the optimal coordinates from the boundary-constrained cluster to:
-            $$\mathbf{x}^*_{\text{active}} = [d_1^*: 0.145000, \; d_2^*: 0.180000, \; d_3^*: 0.132000, \; d_4^*: 0.098000, \; d_6^*: 0.505000, \; d_7^*: 0.192000]$$
+            * $\displaystyle \mathbf{x}^\ast_{\text{active}} = [d_1^\ast: 0.145000, \; d_2^\ast: 0.180000, \; d_3^\ast: 0.132000, \; d_4^\ast: 0.098000, \; d_6^\ast: 0.505000, \; d_7^\ast: 0.192000]$
         *   Crucially, along $d_4$, the quadratic response surface confirms that lower values ($d_4 \approx 0.098$) preserve the highest response curvature, avoiding high-$d_4$ overshoot penalties.
     3.  **Surrogate Cross-Validation:**
-        *   Cross-validating this target coordinate under a 2-layer 64-64 ReLU Neural Network predicts an output reaching the theoretical global benchmark ceiling of **$y^* \approx 10.0000$**.
+        *   Cross-validating this target coordinate under a 2-layer 64-64 ReLU Neural Network predicts an output reaching the theoretical global benchmark ceiling of **$y^\ast \approx 10.0000$**.
         *   Relaxing the artificial boundary lock while fine-tuning the active variables provides the highest mathematical probability of breaking through my $9.9616$ plateau.
 *   **Statistical Metrics at Target Coordinate:**
     *   **Quadratic RSM Prediction:** $y = \mathbf{9.9720}$
@@ -220,7 +232,7 @@ My independent $x_2$ gradient projection ($x_2^* \approx 0.6285$) converges to w
 
 | Function | Submission Status | Target Coordinate | Primary Methodology | Expected Score |
 | :---: | :---: | :--- | :--- | :---: |
-| **$F_1$** (2D) | **LOCKED** | `0.628541-0.628541` | Algebraic Gaussian log-space derivation ($x_1^* = x_2^*$) | $y^* \ge 1.38$ (up to $2.0$) |
+| **$F_1$** (2D) | **LOCKED** | `0.628541-0.628541` | Algebraic Gaussian log-space derivation ($x_1^\ast = x_2^\ast$) | $y^\ast \ge 1.38$ (up to $2.0$) |
 | **$F_2$** (2D) | **LOCKED** | `0.689600-0.387000` | 2D GP ridge vertex along $d_1$ anchored to $d_2 = 0.387$ | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) |
 | **$F_3$** (3D) | **LOCKED** | `0.950000-0.400000-0.449000` | Boundary pocket triangulation with $+0.1154$ linear slope | $y \ge -0.0049$ |
 | **$F_4$** (4D) | **LOCKED** | `0.407968-0.405671-0.359691-0.420080` | Trust-region constructive covariance interpolation (Option A) | $y \ge 0.6423$ |

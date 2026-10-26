@@ -26,7 +26,7 @@
 ### $F_1$ (2D Sparse Needle): Exact Analytical Peak Bracketed (`1.9999999542`)
 * **Hypothesis Tested:** Stepping $+10^{-6}$ along the main diagonal from Week 12's `(0.628541, 0.628541)` to `(0.628542, 0.628542)` to test the unrounded log-Gaussian center while avoiding the one-sided southwest extrapolation of the raw GP (`0.625571, 0.623369`) and NN (`0.623928, 0.612798`).
 * **Oracle Return:** **`1.9999999542236284`** (vs. Week 12's **`1.9999999865499047`**).
-* **Post-Mortem:** Using the two 8-significant-figure observations at $x = 0.628541$ ($1 - y/2 = 6.725 \times 10^{-9}$) and $x = 0.628542$ ($1 - y/2 = 2.289 \times 10^{-8}$), the distance ratio from the true peak is $\sqrt{22.89 / 6.725} = 1.845$, which pinpoints the exact continuous optimum at **$x_1^* = x_2^* = 0.6285408\dots$**—confirming that our Week 12 coordinate `0.628541-0.628541` is the single closest 6-decimal grid coordinate in the entire domain!
+* **Post-Mortem:** Using the two 8-significant-figure observations at $x = 0.628541$ ($1 - y/2 = 6.725 \times 10^{-9}$) and $x = 0.628542$ ($1 - y/2 = 2.289 \times 10^{-8}$), the distance ratio from the true peak is $\sqrt{22.89 / 6.725} = 1.845$, which pinpoints the exact continuous optimum at **$x_1^\ast = x_2^\ast = 0.6285408\dots$**—confirming that our Week 12 coordinate `0.628541-0.628541` is the single closest 6-decimal grid coordinate in the entire domain!
 
 ### $F_2$ (2D Noisy Simulation): Stochastic Realization on the Ridge (`0.482805`)
 * **Hypothesis Tested:** Querying the 22-point GP posterior mean peak `(0.688100, 0.387000)` ($\mu = 0.6139, \sigma_{\text{obs}} \approx 0.094$), just $0.0015$ left of the Week 12 record (`0.689600, 0.387000`, $y = 0.721870$).

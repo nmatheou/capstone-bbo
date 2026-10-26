@@ -9,7 +9,7 @@
 
 | Function | Week 12 Query | Predicted / Target | Actual W12 Return | Previous Best | Final Best | Final Round Gain ($\Delta$) | Final Outcome |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **$F_1$** (2D Sparse Needle) | `[0.628541, 0.628541]` | $y^* = 2.0000$ | **`1.99999999`** | `0.709490` | **`2.000000`** | **$+1.290510$** | 🏆 **EXACT GLOBAL SUMMIT** |
+| **$F_1$** (2D Sparse Needle) | `[0.628541, 0.628541]` | $y^\ast = 2.0000$ | **`1.99999999`** | `0.709490` | **`2.000000`** | **$+1.290510$** | 🏆 **EXACT GLOBAL SUMMIT** |
 | **$F_2$** (2D Noisy Sim) | `[0.689600, 0.387000]` | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) | **`0.721870`** | `0.641577` | **`0.721870`** | **$+0.080294$** | 🚀 **NEW ALL-TIME RECORD** |
 | **$F_3$** (3D Drug Discovery) | `[0.950000, 0.400000, 0.449000]` | $\approx -0.00484$ (linear) | `-0.031509` | `-0.006045` | **`-0.006045`** | $+0.000000$ | 🛡️ **W11 Record Retained** |
 | **$F_4$** (4D Warehouse) | `[0.407968, 0.405671, 0.359691, 0.420080]` | $y \ge 0.6423$ | **`0.679981`** | `0.639193` | **`0.679981`** | **$+0.040788$** | 🚀 **NEW ALL-TIME RECORD** |
@@ -37,9 +37,9 @@
 ## 3. Function-by-Function Post-Mortem Analysis
 
 ### $F_1$ (2D Sparse Needle): Exact Theoretical Summit (`1.99999998655`)
-* **Hypothesis Tested:** By transforming the 6 positive observations into log-space ($\ln y$) and enforcing diagonal symmetry ($x_1^* = x_2^*$), I derived the exact analytical Gaussian apex at `(0.628541, 0.628541)`.
+* **Hypothesis Tested:** By transforming the 6 positive observations into log-space ($\ln y$) and enforcing diagonal symmetry ($x_1^\ast = x_2^\ast$), I derived the exact analytical Gaussian apex at `(0.628541, 0.628541)`.
 * **Oracle Return:** **`1.9999999865499047`** — within $1.3 \times 10^{-8}$ of the exact theoretical ceiling of `2.00000000`!
-* **Post-Mortem:** In Week 11, my query at `(0.628956, 0.648865)` had already nailed $x_1^*$ to within $0.0004$, leaving only the $x_2$ offset (`0.648865` vs. `0.628541`). Enforcing $x_1^* = x_2^*$ eliminated the 2D collinearity in the 5-parameter Gaussian fit and hit the bullseye to 8 significant figures.
+* **Post-Mortem:** In Week 11, my query at `(0.628956, 0.648865)` had already nailed $x_1^\ast$ to within $0.0004$, leaving only the $x_2$ offset (`0.648865` vs. `0.628541`). Enforcing $x_1^\ast = x_2^\ast$ eliminated the 2D collinearity in the 5-parameter Gaussian fit and hit the bullseye to 8 significant figures.
 
 ### $F_2$ (2D Noisy Simulation): Breaking the 9-Week Record (`0.721870`)
 * **Hypothesis Tested:** Anchoring $d_2 = 0.387000$ at the empirical noise-stabilized slice and stepping $d_1$ slightly left to the GP posterior ridge peak at `0.689600`.

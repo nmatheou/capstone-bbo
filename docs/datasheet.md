@@ -74,8 +74,8 @@ Across 13 sequential rounds (Weeks 1–13), **1 new coordinate per function per 
 ### 3. Does the function include noise or randomness?
 *   **Deterministic Functions ($F_1, F_5, F_7, F_8$):** Repeated or adjacent queries at $10^{-6}$ separation confirmed zero stochastic noise. Most notably, querying `(1, 1, 1, 1)` on $F_5$ in both Week 12 and Week 13 returned the exact same value (`8662.4825000000008`), and querying `(0.628541, 0.628541)` vs. `(0.628542, 0.628542)` on $F_1$ matched an exact deterministic 2D Gaussian to 8 significant figures.
 *   **Noisy / Stochastic Functions ($F_2, F_6$, and mild boundary noise on $F_3$):**
-    *   **$F_2$:** Repeated queries along the $d_1 \approx 0.69\text{–}0.70$ ridge produced stochastic fluctuations with standard deviation $\sigma_{\text{obs}} \approx 0.094$ (e.g., `0.6416` in W3 vs. `0.5567` in W11 at $\Delta = 0.0028$; `0.7219` in W12 vs. `0.4828` in W13 at $\Delta = 0.0015$).
-    *   **$F_6$:** Exhibited evaluation noise ($\sigma_{\text{obs}} \approx 0.06\text{–}0.09$) that caused an unregularised GP's $\ell_5$ length scale to collapse to `0.0127` until we added a `WhiteKernel`.
+    *   **$F_2$:** Repeated queries along the $d_1 \approx 0.69\text{	ext{--}}0.70$ ridge produced stochastic fluctuations with standard deviation $\sigma_{\text{obs}} \approx 0.094$ (e.g., `0.6416` in W3 vs. `0.5567` in W11 at $\Delta = 0.0028$; `0.7219` in W12 vs. `0.4828` in W13 at $\Delta = 0.0015$).
+    *   **$F_6$:** Exhibited evaluation noise ($\sigma_{\text{obs}} \approx 0.06\text{	ext{--}}0.09$) that caused an unregularised GP's $\ell_5$ length scale to collapse to `0.0127` until we added a `WhiteKernel`.
 
 ### 4. Unimodal, multimodal, noisy, or smooth classification
 *   **$F_1$ (2D):** **Non-stationary unimodal needle** with a negative "radiation shield" trough (`-0.0036` at `[0.65, 0.68]`) bordering a narrow isotropic Gaussian peak (`2.0` at `[0.628541, 0.628541]`) and flat zero everywhere else.
@@ -109,7 +109,7 @@ I designed a **Human-in-the-Loop Hybrid Surrogate Optimizer** combining:
 ### 3. How did you balance exploration and exploitation?
 *   **Weeks 1–4 (Exploration):** Used global Latin Hypercube Sampling and UCB ($\kappa \in [3.0, 4.0]$) with capped ARD length scales to force exploration of under-sampled dimensions.
 *   **Weeks 5–9 (Transition to Local Exploitation):** Shifted all functions to Expected Improvement ($\xi$ reduced from `0.1` $\to$ `0.01` $\to$ `0.0001`) inside adaptive trust regions around the top-3 points.
-*   **Weeks 10–13 (Precision Summit Exploitation & Directed Ridge Stepping):** Used posterior-mean maximisation ($\mu(\mathbf{x})$), analytical response surfaces, and neural network gradient ascent within tight local radii ($\pm 0.015\text{–}0.05$).
+*   **Weeks 10–13 (Precision Summit Exploitation & Directed Ridge Stepping):** Used posterior-mean maximisation ($\mu(\mathbf{x})$), analytical response surfaces, and neural network gradient ascent within tight local radii ($\pm 0.015\text{	ext{--}}0.05$).
 
 ### 4. Did your strategy change over the weeks? Why?
 Yes, substantially:
@@ -173,7 +173,7 @@ Each weekly return acted as a structural diagnostic:
 
 ### 1 & 2. Best output values achieved and exact input vectors
 
-| Function | Best Output Achieved ($y^*$) | Best Week | Exact Input Vector $\mathbf{x}^*$ Producing Best Output | Confidence Near Global Max |
+| Function | Best Output Achieved ($y^\ast$) | Best Week | Exact Input Vector $\mathbf{x}^\ast$ Producing Best Output | Confidence Near Global Max |
 | :--- | :---: | :---: | :--- | :---: |
 | **$F_1$ (2D)** | **`1.99999999`** | W12 | `0.628541-0.628541` | **Virtually 100%** (Within $1.35 \times 10^{-8}$ of exact $2.0$ ceiling) |
 | **$F_2$ (2D)** | **`0.721870`** | W12 | `0.689600-0.387000` | **High** (At exact $d_1 \approx 0.69$ ridge peak + $+1.2\sigma$ noise draw) |
@@ -185,7 +185,7 @@ Each weekly return acted as a structural diagnostic:
 | **$F_8$ (8D)** | **`9.987569`** | W12 | `0.145000-0.180000-0.132000-0.098000-0.885000-0.505000-0.192000-0.500000` | **99.9%** (Within $0.0124$ of $10.0$ theoretical ceiling) |
 
 ### 3. How confident are you that these are near the global maximum, and why?
-*   **Exact Theoretical Ceilings Reached ($F_1, F_5, F_8$):** On $F_1$ (`1.99999999 / 2.0`), $F_5$ (`8662.4825` at `[1,1,1,1]`), and $F_8$ (`9.9876 / 10.0`), both analytical derivations and Week 13 bracketing queries confirm we are within $0.00\%\text{–}0.12\%$ of the true analytical optimum.
+*   **Exact Theoretical Ceilings Reached ($F_1, F_5, F_8$):** On $F_1$ (`1.99999999 / 2.0`), $F_5$ (`8662.4825` at `[1,1,1,1]`), and $F_8$ (`9.9876 / 10.0`), both analytical derivations and Week 13 bracketing queries confirm we are within $0.00\%\text{	ext{--}}0.12\%$ of the true analytical optimum.
 *   **Bracketed Summit Ridges ($F_2, F_3, F_4, F_6, F_7$):** On $F_3$ and $F_6$, scores reached `-0.0060` and `-0.0906` against a non-positive ceiling ($y \le 0$), while on $F_4$ (`0.6800`) and $F_7$ (`2.3856`), tight local trust-region probes confirmed high-altitude summit plateaus with low GP posterior standard deviation ($\sigma \le 0.043$).
 
 ### 4. Did your results align with expectations based on the problem descriptions?
@@ -217,7 +217,7 @@ Future users must beware of four silent GP failure modes documented in this repo
 ## Module 21 Datasheet Reference Summary (Motivation, Composition, Collection, Preprocessing & Maintenance)
 
 *   **Motivation:** Iterative empirical dataset generation to characterise and maximise 8 unknown black-box functions under a 13-week sequential budget.
-*   **Composition:** 8 subsets ($F_1$–$F_8$, $2\text{D}\text{–}8\text{D}$), containing 23, 23, 28, 43, 29, 33, 43, and 53 observations respectively (**275 total evaluations**), stored in `.npy` and `.csv` formats under [`data/accumulated/`](../data/accumulated/) and raw `.txt` files under [`data/week_<1..13>_returns/`](../data/).
+*   **Composition:** 8 subsets ($F_1$–$F_8$, $2\text{D}\text{	ext{--}}8\text{D}$), containing 23, 23, 28, 43, 29, 33, 43, and 53 observations respectively (**275 total evaluations**), stored in `.npy` and `.csv` formats under [`data/accumulated/`](../data/accumulated/) and raw `.txt` files under [`data/week_<1..13>_returns/`](../data/).
 *   **Collection Process:** Sequential active learning (1 query/function/week across Weeks 1–13) evolving from global UCB/EI GP exploration to trust-region GP, PyTorch `64x64` ReLU NN, and analytical response-surface exploitation.
 *   **Pre-processing & Uses:** Target $z$-score standardisation (`normalize_y=True`), active-box pruning on $F_1$ (`[0.62, 0.67]^2`), and positive-basin filtering on $F_4$ ($y > 0$). Intended strictly for sequential active-learning benchmarking and local surrogate modelling around high-performing basins.
 *   **Distribution & Maintenance:** Stored and maintained in this repository ([`data/`](../data/), [`results/`](../results/), [`submissions/`](../submissions/)) under Imperial College Capstone academic guidelines.
