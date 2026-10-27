@@ -232,11 +232,11 @@ My independent $x_2$ gradient projection ($x_2^\ast \approx 0.6285$) converges t
 
 | Function | Submission Status | Target Coordinate | Primary Methodology | Expected Score |
 | :---: | :---: | :--- | :--- | :---: |
-| **F1 ($F_1$)** (2D) | **LOCKED** | `0.628541-0.628541` | Algebraic Gaussian log-space derivation ($x_1^\ast = x_2^\ast$) | $y^\ast \ge 1.38$ (up to $2.0$) |
-| **F2 ($F_2$)** (2D) | **LOCKED** | `0.689600-0.387000` | 2D GP ridge vertex along $d_1$ anchored to $d_2 = 0.387$ | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) |
-| **F3 ($F_3$)** (3D) | **LOCKED** | `0.950000-0.400000-0.449000` | Boundary pocket triangulation with $+0.1154$ linear slope | $y \ge -0.0049$ |
-| **F4 ($F_4$)** (4D) | **LOCKED** | `0.407968-0.405671-0.359691-0.420080` | Trust-region constructive covariance interpolation (Option A) | $y \ge 0.6423$ |
-| **F5 ($F_5$)** (4D) | **LOCKED** | `1.000000-1.000000-1.000000-1.000000` | Hyper-corner boundary summit (truncation elimination) | $y \ge 8662.41$ |
-| **F6 ($F_6$)** (5D) | **LOCKED** | `0.450000-0.300000-0.661288-0.750000-0.088712` | 1D coordinate descent slice with asymmetric cubic spline vertex | $y \approx -0.0901$ |
-| **F7 ($F_7$)** (6D) | **LOCKED** | `0.000000-0.149707-0.154230-0.316634-0.332356-0.774035` | GP Trust-Region Expected Improvement with gradient braking | $y \ge 2.2145$ |
-| **F8 ($F_8$)** (8D) | **LOCKED** | `0.145000-0.180000-0.132000-0.098000-0.885000-0.505000-0.192000-0.500000` | Quadratic Response Surface (RSM) on active subspace | $y \ge 9.9700$ |
+| **F1** (2D) | **LOCKED** | `0.628541-0.628541` | Algebraic Gaussian log-space derivation ($x_1^\ast = x_2^\ast$) | $y^\ast \ge 1.38$ (up to $2.0$) |
+| **F2** (2D) | **LOCKED** | `0.689600-0.387000` | 2D GP ridge vertex along $d_1$ anchored to $d_2 = 0.387$ | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) |
+| **F3** (3D) | **LOCKED** | `0.950000-0.400000-0.449000` | Boundary pocket triangulation with $+0.1154$ linear slope | $y \ge -0.0049$ |
+| **F4** (4D) | **LOCKED** | `0.407968-0.405671-0.359691-0.420080` | Trust-region constructive covariance interpolation (Option A) | $y \ge 0.6423$ |
+| **F5** (4D) | **LOCKED** | `1.000000-1.000000-1.000000-1.000000` | Hyper-corner boundary summit (truncation elimination) | $y \ge 8662.41$ |
+| **F6** (5D) | **LOCKED** | `0.450000-0.300000-0.661288-0.750000-0.088712` | 1D coordinate descent slice with asymmetric cubic spline vertex | $y \approx -0.0901$ |
+| **F7** (6D) | **LOCKED** | `0.000000-0.149707-0.154230-0.316634-0.332356-0.774035` | GP Trust-Region Expected Improvement with gradient braking | $y \ge 2.2145$ |
+| **F8** (8D) | **LOCKED** | `0.145000-0.180000-0.132000-0.098000-0.885000-0.505000-0.192000-0.500000` | Quadratic Response Surface (RSM) on active subspace | $y \ge 9.9700$ |

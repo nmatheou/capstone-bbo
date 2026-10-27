@@ -9,27 +9,27 @@
 
 | Function | Week 12 Query | Predicted / Target | Actual W12 Return | Previous Best | Final Best | Final Round Gain ($\Delta$) | Final Outcome |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **F1 ($F_1$)** (2D Sparse Needle) | `[0.628541, 0.628541]` | $y^\ast = 2.0000$ | **`1.99999999`** | `0.709490` | **`2.000000`** | $\mathbf{+1.290510}$ | 🏆 **EXACT GLOBAL SUMMIT** |
-| **F2 ($F_2$)** (2D Noisy Sim) | `[0.689600, 0.387000]` | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) | **`0.721870`** | `0.641577` | **`0.721870`** | $\mathbf{+0.080294}$ | 🚀 **NEW ALL-TIME RECORD** |
-| **F3 ($F_3$)** (3D Drug Discovery) | `[0.950000, 0.400000, 0.449000]` | $\approx -0.00484$ (linear) | `-0.031509` | `-0.006045` | **`-0.006045`** | $+0.000000$ | 🛡️ **W11 Record Retained** |
-| **F4 ($F_4$)** (4D Warehouse) | `[0.407968, 0.405671, 0.359691, 0.420080]` | $y \ge 0.6423$ | **`0.679981`** | `0.639193` | **`0.679981`** | $\mathbf{+0.040788}$ | 🚀 **NEW ALL-TIME RECORD** |
-| **F5 ($F_5$)** (4D Chemical Yield) | `[1.000000, 1.000000, 1.000000, 1.000000]` | $y \ge 8662.41$ | **`8662.482500`** | `8662.405001` | **`8662.482500`** | $\mathbf{+0.077499}$ | 🏆 **EXACT CORNER SUMMIT** |
-| **F6 ($F_6$)** (5D Cake Composite) | `[0.450000, 0.300000, 0.661288, 0.750000, 0.088712]` | $y \approx -0.0901$ | `-0.173497` | `-0.090586` | **`-0.090586`** | $+0.000000$ | 🛡️ **W10 Record Retained** |
-| **F7 ($F_7$)** (6D ML Hyperparams) | `[0.000000, 0.149707, 0.154230, 0.316634, 0.332356, 0.774035]` | $y \ge 2.2145$ | `2.137196` | `2.201316` | **`2.201316`** | $+0.000000$ | 🛡️ **W11 Record Retained (2nd Best)** |
-| **F8 ($F_8$)** (8D ML Hyperparams) | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` | $y \ge 9.9700$ | **`9.987569`** | `9.961573` | **`9.987569`** | $\mathbf{+0.025996}$ | 🏆 **MAJOR BREAKTHROUGH RECORD** |
+| **F1** (2D Sparse Needle) | `[0.628541, 0.628541]` | $y^\ast = 2.0000$ | **`1.99999999`** | `0.709490` | **`2.000000`** | $\mathbf{+1.290510}$ | 🏆 **EXACT GLOBAL SUMMIT** |
+| **F2** (2D Noisy Sim) | `[0.689600, 0.387000]` | $\mu = 0.5916$ ($P > 0.6416$: $20.8\%$) | **`0.721870`** | `0.641577` | **`0.721870`** | $\mathbf{+0.080294}$ | 🚀 **NEW ALL-TIME RECORD** |
+| **F3** (3D Drug Discovery) | `[0.950000, 0.400000, 0.449000]` | $\approx -0.00484$ (linear) | `-0.031509` | `-0.006045` | **`-0.006045`** | $+0.000000$ | 🛡️ **W11 Record Retained** |
+| **F4** (4D Warehouse) | `[0.407968, 0.405671, 0.359691, 0.420080]` | $y \ge 0.6423$ | **`0.679981`** | `0.639193` | **`0.679981`** | $\mathbf{+0.040788}$ | 🚀 **NEW ALL-TIME RECORD** |
+| **F5** (4D Chemical Yield) | `[1.000000, 1.000000, 1.000000, 1.000000]` | $y \ge 8662.41$ | **`8662.482500`** | `8662.405001` | **`8662.482500`** | $\mathbf{+0.077499}$ | 🏆 **EXACT CORNER SUMMIT** |
+| **F6** (5D Cake Composite) | `[0.450000, 0.300000, 0.661288, 0.750000, 0.088712]` | $y \approx -0.0901$ | `-0.173497` | `-0.090586` | **`-0.090586`** | $+0.000000$ | 🛡️ **W10 Record Retained** |
+| **F7** (6D ML Hyperparams) | `[0.000000, 0.149707, 0.154230, 0.316634, 0.332356, 0.774035]` | $y \ge 2.2145$ | `2.137196` | `2.201316` | **`2.201316`** | $+0.000000$ | 🛡️ **W11 Record Retained (2nd Best)** |
+| **F8** (8D ML Hyperparams) | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` | $y \ge 9.9700$ | **`9.987569`** | `9.961573` | **`9.987569`** | $\mathbf{+0.025996}$ | 🏆 **MAJOR BREAKTHROUGH RECORD** |
 
 ---
 
 ## 2. Visual Tracker Dashboards (Weeks 0–12)
 
 ````carousel
-![Trajectory Dashboard — Weeks 0 to 12](C:/Users/NtecD/.gemini/antigravity/brain/882b4bca-a5a9-465c-b715-8550be7c8401/trajectory_dashboard_week12.png)
+![Trajectory Dashboard — Weeks 0 to 12](../results/week_12/progress/trajectory_dashboard_week12.png)
 <!-- slide -->
-![Normalized Metrics Dashboard — Weeks 0 to 12](C:/Users/NtecD/.gemini/antigravity/brain/882b4bca-a5a9-465c-b715-8550be7c8401/metrics_dashboard_normalized_week12.png)
+![Normalized Metrics Dashboard — Weeks 0 to 12](../results/week_12/progress/metrics_dashboard_normalized_week12.png)
 <!-- slide -->
-![Raw Metrics Dashboard — Weeks 0 to 12](C:/Users/NtecD/.gemini/antigravity/brain/882b4bca-a5a9-465c-b715-8550be7c8401/metrics_dashboard_week12.png)
+![Raw Metrics Dashboard — Weeks 0 to 12](../results/week_12/progress/metrics_dashboard_week12.png)
 <!-- slide -->
-![GP ARD Length-Scale Evolution — Weeks 0 to 12](C:/Users/NtecD/.gemini/antigravity/brain/882b4bca-a5a9-465c-b715-8550be7c8401/length_scale_dashboard_week12.png)
+![GP ARD Length-Scale Evolution — Weeks 0 to 12](../results/week_12/progress/length_scale_dashboard_week12.png)
 ````
 
 ---

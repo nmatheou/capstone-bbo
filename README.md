@@ -39,14 +39,14 @@ The dataset consists of eight separate black-box function benchmarks ($F_1$ thro
 
 | Function | Simulated Domain | Input Dim ($d$) | Initial Points ($n_0$) | Weekly Queries (W1–W13) | Final Dataset Size ($N$) | Surface & Noise Profile |
 | :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **F1 ($F_1$)** | Contamination / Radiation Source Detection | 2D | 10 | +13 | **23** | Deterministic, sparse needle on flat-zero plane |
-| **F2 ($F_2$)** | Noisy Physical / Dual-Peak Simulation | 2D | 10 | +13 | **23** | Stochastic ($\sigma_{\text{obs}} \approx 0.09$), inactive $d_2$ ridge |
-| **F3 ($F_3$)** | Drug Discovery / Adverse Reaction Minimization | 3D | 15 | +13 | **28** | Multimodal boundary pockets, $y \le 0$ |
-| **F4 ($F_4$)** | Warehouse Logistics / Dynamic Placement | 4D | 30 | +13 | **43** | Rugged ($\nu=1.5$), steep penalty cliffs to $-32.6$ |
-| **F5 ($F_5$)** | Chemical Yield Maximisation | 4D | 16 | +13 | **29** | Smooth unimodal monotonic rise to $[1,1,1,1]$ corner |
-| **F6 ($F_6$)** | Cake Recipe / Multi-Component Formulation | 5D | 20 | +13 | **33** | Noisy interior composite basin, $y \le 0$ |
-| **F7 ($F_7$)** | 6D Machine Learning Hyperparameter Tuning | 6D | 30 | +13 | **43** | Smooth coupled ridge with boundary optimum $d_1=0$ |
-| **F8 ($F_8$)** | 8D Machine Learning Hyperparameter Tuning | 8D | 40 | +13 | **53** | Smooth concave quadratic bowl ($d_2, d_6$ inactive) |
+| **F1** | Contamination / Radiation Source Detection | 2D | 10 | +13 | **23** | Deterministic, sparse needle on flat-zero plane |
+| **F2** | Noisy Physical / Dual-Peak Simulation | 2D | 10 | +13 | **23** | Stochastic ($\sigma_{\text{obs}} \approx 0.09$), inactive $d_2$ ridge |
+| **F3** | Drug Discovery / Adverse Reaction Minimization | 3D | 15 | +13 | **28** | Multimodal boundary pockets, $y \le 0$ |
+| **F4** | Warehouse Logistics / Dynamic Placement | 4D | 30 | +13 | **43** | Rugged ($\nu=1.5$), steep penalty cliffs to $-32.6$ |
+| **F5** | Chemical Yield Maximisation | 4D | 16 | +13 | **29** | Smooth unimodal monotonic rise to $[1,1,1,1]$ corner |
+| **F6** | Cake Recipe / Multi-Component Formulation | 5D | 20 | +13 | **33** | Noisy interior composite basin, $y \le 0$ |
+| **F7** | 6D Machine Learning Hyperparameter Tuning | 6D | 30 | +13 | **43** | Smooth coupled ridge with boundary optimum $d_1=0$ |
+| **F8** | 8D Machine Learning Hyperparameter Tuning | 8D | 40 | +13 | **53** | Smooth concave quadratic bowl ($d_2, d_6$ inactive) |
 
 ### Data Storage & Large Dataset Policy
 *   **Empirical BBO Datasets (`data/`):** Across all 8 functions and 13 rounds, the complete dataset contains **275 evaluated points** ($< 50\text{ KB}$ total). It is stored directly in this repository in both NumPy binary (`.npy`) and human-readable (`.csv`) formats under [`data/accumulated/`](data/accumulated/), alongside raw weekly return files in [`data/week_1_returns/`](data/week_1_returns/) through [`data/week_13_returns/`](data/week_13_returns/).
@@ -100,14 +100,14 @@ Across the 13-week campaign, **every single function achieved significant gains 
 
 | Function | Dim | Total Samples ($N$) | Initial Best (W0) | Final W13 Return | **All-Time Maximum** | Best Week | Campaign Gain ($\text{W0} \to \text{Max}$) | Optimal Input Vector $\mathbf{x}^\ast$ |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **F1 ($F_1$)** | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | $\mathbf{+2.000000}$ | `[0.628541, 0.628541]` |
-| **F2 ($F_2$)** | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | $\mathbf{+0.110665}$ | `[0.689600, 0.387000]` |
-| **F3 ($F_3$)** | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | $\mathbf{+0.028790}$ | `[0.950000, 0.400000, 0.438611]` |
-| **F4 ($F_4$)** | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | $\mathbf{+4.705523}$ | `[0.407968, 0.405671, 0.359691, 0.420080]` |
-| **F5 ($F_5$)** | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | $\mathbf{+7573.6229}$ | `[1.000000, 1.000000, 1.000000, 1.000000]` |
-| **F6 ($F_6$)** | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | $\mathbf{+0.623679}$ | `[0.450000, 0.300000, 0.662500, 0.750000, 0.087500]` |
-| **F7 ($F_7$)** | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | $\mathbf{+1.020627}$ | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` |
-| **F8 ($F_8$)** | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | $\mathbf{+0.388685}$ | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` |
+| **F1** | 2D | 23 | `0.000000` | `1.99999995` | **`1.99999999`** | W12 | $\mathbf{+2.000000}$ | `[0.628541, 0.628541]` |
+| **F2** | 2D | 23 | `0.611205` | `0.482805` | **`0.721870`** | W12 | $\mathbf{+0.110665}$ | `[0.689600, 0.387000]` |
+| **F3** | 3D | 28 | `-0.034835` | `-0.017169` | **`-0.006045`** | W11 | $\mathbf{+0.028790}$ | `[0.950000, 0.400000, 0.438611]` |
+| **F4** | 4D | 43 | `-4.025542` | `0.641291` | **`0.679981`** | W12 | $\mathbf{+4.705523}$ | `[0.407968, 0.405671, 0.359691, 0.420080]` |
+| **F5** | 4D | 29 | `1088.8596` | **`8662.482500`** | **`8662.482500`** | W12 & W13 | $\mathbf{+7573.6229}$ | `[1.000000, 1.000000, 1.000000, 1.000000]` |
+| **F6** | 5D | 33 | `-0.714265` | `-0.242430` | **`-0.090586`** | W10 | $\mathbf{+0.623679}$ | `[0.450000, 0.300000, 0.662500, 0.750000, 0.087500]` |
+| **F7** | 6D | 43 | `1.364968` | **`2.385595`** | **`2.385595`** | **W13** | $\mathbf{+1.020627}$ | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` |
+| **F8** | 8D | 53 | `9.598884` | `9.983502` | **`9.987569`** | W12 | $\mathbf{+0.388685}$ | `[0.145000, 0.180000, 0.132000, 0.098000, 0.885000, 0.505000, 0.192000, 0.500000]` |
 
 ### Key Learnings from the Model & Results
 1.  **Data Geometry Dictates Difficulty More Than Dimensionality:** Counter-intuitively, 2D $F_1$ (a non-stationary needle surrounded by 98% flat zeros) was far harder for a standard GP to map than 8D $F_8$ (a smooth quadratic basin where ARD quickly isolated the 4 primary drivers $d_1, d_3, d_4, d_7$).

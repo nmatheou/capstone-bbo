@@ -17,12 +17,12 @@ python src/bbo_optimize.py --week 13
 ```
 
 *Note:*
-* Running `python src/bbo_optimize.py --week 13` reads `data/week_12_returns/inputs.txt` and `outputs.txt`, verifies that all Week 12 observations are present in `data/accumulated/function_<1..8>/`, fits the seeded Gaussian Process (`random_state=42`) and PyTorch 64-64 ReLU Neural Network (`torch.manual_seed(42)`), executes `compute_final_refinement` for all 8 functions, and writes the exact 8 locked submission coordinates to `submissions/week_13/suggestions.txt` and `results/week_13/suggestions.txt`.
-* To regenerate the Week 12 progress and length-scale dashboards:
+* Running `python src/bbo_optimize.py --week 13` reads `data/week_12_returns/inputs.txt` and `outputs.txt`, verifies that all Week 12 observations are present in `data/accumulated/function_<1..8>/`, fits the seeded Gaussian Process (`random_state=42`) and PyTorch 64-64 ReLU Neural Network (`torch.manual_seed(42)`), executes `compute_final_refinement` for all 8 functions, and writes the exact 8 locked submission coordinates to `submissions/week_13/suggestions.txt` (with the full GP / NN / refinement diagnostic log in `results/week_13/suggestions.txt`).
+* To regenerate the final Week 13 progress and length-scale dashboards:
   ```bash
-  python src/progress_tracker.py --week 12
-  python src/plot_normalized_metrics.py --week 12
-  python src/length_scale_tracker.py --week 12
+  python src/progress_tracker.py --week 13
+  python src/plot_normalized_metrics.py --week 13
+  python src/length_scale_tracker.py --week 13
   ```
 
 ## 3. Modifying Parameters

@@ -1,6 +1,6 @@
 # Diagnostics & Manual Overrides
 
-Because standard Gaussian Processes suffer from boundary artifacts, variance inflation, and ARD length-scale distortions in sparse high-dimensional spaces ($22 \le n \le 52$), a purely automated acquisition loop is insufficient. My project therefore uses a transparent Human-in-the-Loop Hybrid Surrogate architecture.
+Because standard Gaussian Processes suffer from boundary artifacts, variance inflation, and ARD length-scale distortions in sparse high-dimensional spaces ($23 \le n \le 53$), a purely automated acquisition loop is insufficient. My project therefore uses a transparent Human-in-the-Loop Hybrid Surrogate architecture.
 
 ## Algorithmic Diagnostics
 

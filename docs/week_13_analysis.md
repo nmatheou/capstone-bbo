@@ -2,7 +2,7 @@
 
 > [!IMPORTANT]
 > **Campaign Finale Highlights — Breakthrough All-Time Record on $F_7$ (`2.385595`) & Exact Summit Confirmation Across $F_1, F_4, F_5, F_8$:**
-> In the final round (Week 13), restoring $d_3 = 0.305066$ while preserving the Week 12 directional gains on $(d_2, d_4, d_5, d_6)$ propelled **F7 ($F_7$)** to a massive new all-time record of **`2.385595`** ($+0.184279$ above Week 11's `2.201316` and $+0.248399$ above Week 12's `2.137196`, outperforming the GP mean prediction of `2.2412` by $+3.3\sigma$). Meanwhile, **F5 ($F_5$)** (`8662.482500`) matched its exact theoretical corner maximum, **F1 ($F_1$)** (`1.9999999542`) confirmed the exact analytical Gaussian summit (`1.9999999865` in Week 12), and **F4 ($F_4$)** (`0.641291`) and **F8 ($F_8$)** (`9.983502`) delivered the **second-highest scores in history** on both functions, validating the tight local refinement radius around their Week 12 records.
+> In the final round (Week 13), restoring $d_3 = 0.305066$ while preserving the Week 12 directional gains on $(d_2, d_4, d_5, d_6)$ propelled **F7** to a massive new all-time record of **`2.385595`** ($+0.184279$ above Week 11's `2.201316` and $+0.248399$ above Week 12's `2.137196`, outperforming the GP mean prediction of `2.2412` by $+3.3\sigma$). Meanwhile, **F5** (`8662.482500`) matched its exact theoretical corner maximum, **F1** (`1.9999999542`) confirmed the exact analytical Gaussian summit (`1.9999999865` in Week 12), and **F4** (`0.641291`) and **F8** (`9.983502`) delivered the **second-highest scores in history** on both functions, validating the tight local refinement radius around their Week 12 records.
 
 ---
 
@@ -10,14 +10,14 @@
 
 | Function | Initial Best (W0) | Week 13 Query | Predicted (W13) | Actual W13 Return | Prior Best (W1–W12) | **Final All-Time Best** | Total Campaign Gain ($\text{W0} \to \text{Best}$) | Week 13 Outcome |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **F1 ($F_1$)** (2D Sparse Needle) | `0.000000` | `[0.628542, 0.628542]` | $\approx 2.000000$ | `1.99999995` | `1.99999999` (W12) | **`1.99999999`** | $\mathbf{+2.000000}$ | 🏆 **Exact Summit Bracketed (#2 All-Time)** |
-| **F2 ($F_2$)** (2D Noisy Sim) | `0.611205` | `[0.688100, 0.387000]` | $\mu = 0.6139 \pm 0.094$ | `0.482805` | `0.721870` (W12) | **`0.721870`** | $\mathbf{+0.110665}$ | 🛡️ **W12 Record Retained (Noisy Draw)** |
-| **F3 ($F_3$)** (3D Drug Discovery) | `-0.034835` | `[0.950000, 0.400000, 0.434766]` | $\mu = -0.0109 \pm 0.030$ | `-0.017169` | `-0.006045` (W11) | **`-0.006045`** | $\mathbf{+0.028790}$ | 🛡️ **W11 Record Retained ($+0.0143$ over W12)** |
-| **F4 ($F_4$)** (4D Warehouse) | `-4.025542` | `[0.405930, 0.406376, 0.352329, 0.422444]` | $\mu_{\text{loc}} = 0.6868$ | `0.641291` | `0.679981` (W12) | **`0.679981`** | $\mathbf{+4.705523}$ | 🥈 **#2 All-Time (Beat W9 Record `0.6392`)** |
-| **F5 ($F_5$)** (4D Chemical Yield) | `1088.8596` | `[1.000000, 1.000000, 1.000000, 1.000000]` | $8662.4825$ | **`8662.482500`** | `8662.482500` (W12) | **`8662.482500`** | $\mathbf{+7573.6229}$ | 🏆 **Exact Corner Maximum Matched** |
-| **F6 ($F_6$)** (5D Cake Composite) | `-0.714265` | `[0.458352, 0.330000, 0.648537, 0.780000, 0.060000]` | $\mu_{\text{noisy}} = -0.0819$ | `-0.242430` | `-0.090586` (W10) | **`-0.090586`** | $\mathbf{+0.623679}$ | 🛡️ **W10 Record Retained (Box-Edge Drop)** |
-| **F7 ($F_7$)** (6D ML Hyperparams) | `1.364968` | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` | $\mu = 2.2412 \pm 0.043$ | **`2.385595`** | `2.201316` (W11) | **`2.385595`** | $\mathbf{+1.020627}$ | 🚀 **NEW ALL-TIME RECORD ($+0.1843$)** |
-| **F8 ($F_8$)** (8D ML Hyperparams) | `9.598884` | `[0.157119, 0.175371, 0.120105, 0.090651, 0.893686, 0.492256, 0.191545, 0.504012]` | $\mu_{\text{GP}} = 9.9854$ | `9.983502` | `9.987569` (W12) | **`9.987569`** | $\mathbf{+0.388685}$ | 🥈 **#2 All-Time (Within $0.0019$ of GP Mean)** |
+| **F1** (2D Sparse Needle) | `0.000000` | `[0.628542, 0.628542]` | $\approx 2.000000$ | `1.99999995` | `1.99999999` (W12) | **`1.99999999`** | $\mathbf{+2.000000}$ | 🏆 **Exact Summit Bracketed (#2 All-Time)** |
+| **F2** (2D Noisy Sim) | `0.611205` | `[0.688100, 0.387000]` | $\mu = 0.6139 \pm 0.094$ | `0.482805` | `0.721870` (W12) | **`0.721870`** | $\mathbf{+0.110665}$ | 🛡️ **W12 Record Retained (Noisy Draw)** |
+| **F3** (3D Drug Discovery) | `-0.034835` | `[0.950000, 0.400000, 0.434766]` | $\mu = -0.0109 \pm 0.030$ | `-0.017169` | `-0.006045` (W11) | **`-0.006045`** | $\mathbf{+0.028790}$ | 🛡️ **W11 Record Retained ($+0.0143$ over W12)** |
+| **F4** (4D Warehouse) | `-4.025542` | `[0.405930, 0.406376, 0.352329, 0.422444]` | $\mu_{\text{loc}} = 0.6868$ | `0.641291` | `0.679981` (W12) | **`0.679981`** | $\mathbf{+4.705523}$ | 🥈 **#2 All-Time (Beat W9 Record `0.6392`)** |
+| **F5** (4D Chemical Yield) | `1088.8596` | `[1.000000, 1.000000, 1.000000, 1.000000]` | $8662.4825$ | **`8662.482500`** | `8662.482500` (W12) | **`8662.482500`** | $\mathbf{+7573.6229}$ | 🏆 **Exact Corner Maximum Matched** |
+| **F6** (5D Cake Composite) | `-0.714265` | `[0.458352, 0.330000, 0.648537, 0.780000, 0.060000]` | $\mu_{\text{noisy}} = -0.0819$ | `-0.242430` | `-0.090586` (W10) | **`-0.090586`** | $\mathbf{+0.623679}$ | 🛡️ **W10 Record Retained (Box-Edge Drop)** |
+| **F7** (6D ML Hyperparams) | `1.364968` | `[0.000000, 0.156068, 0.305066, 0.315590, 0.335798, 0.766358]` | $\mu = 2.2412 \pm 0.043$ | **`2.385595`** | `2.201316` (W11) | **`2.385595`** | $\mathbf{+1.020627}$ | 🚀 **NEW ALL-TIME RECORD ($+0.1843$)** |
+| **F8** (8D ML Hyperparams) | `9.598884` | `[0.157119, 0.175371, 0.120105, 0.090651, 0.893686, 0.492256, 0.191545, 0.504012]` | $\mu_{\text{GP}} = 9.9854$ | `9.983502` | `9.987569` (W12) | **`9.987569`** | $\mathbf{+0.388685}$ | 🥈 **#2 All-Time (Within $0.0019$ of GP Mean)** |
 
 ---
 

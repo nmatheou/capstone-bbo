@@ -181,11 +181,11 @@ Comparing the coordinate delta that produced the $+0.0260$ breakthrough ($\Delta
 
 | Function | Dim | Locked Week 13 Coordinate | Selected Strategy | Current Best ($y^\ast$) | Predicted Return |
 | :---: | :---: | :--- | :--- | :---: | :---: |
-| **F1 ($F_1$)** | 2D | `0.628542-0.628542` | **Option B:** Analytical log-Gaussian unrounded peak ($+10^{-6}$ step) | $1.99999999$ (W12) | 2.000000 ($\mu = 1.999944$) |
-| **F2 ($F_2$)** | 2D | `0.688100-0.387000` | **Option A:** 1D GP posterior mean peak along $d_1$ ($d_2 = 0.387$ locked) | $0.721870$ (W12) | 0.613874 ($\mu$, $\sigma = 0.0688$) |
-| **F3 ($F_3$)** | 3D | `0.950000-0.400000-0.434766` | **Option B:** GP EI Needle #2 left-shoulder apex ($(d_1, d_2)$ locked) | $-0.006045$ (W11) | -0.010878 ($\mu$, $\sigma = 0.0298$) |
-| **F4 ($F_4$)** | 4D | `0.405930-0.406376-0.352329-0.422444` | **Option A1:** Positive-basin Local GP ($\nu=1.5, n=9$) mean peak | $0.679981$ (W12) | 0.686766 ($\mu_{\text{loc}}$, $\sigma = 0.0270$) |
-| **F5 ($F_5$)** | 4D | `1.000000-1.000000-1.000000-1.000000` | **Unanimous GP + NN:** Exact mathematical hyper-corner summit | $8662.482500$ (W12) | 8662.482500 ($\mu = 8662.42$) |
-| **F6 ($F_6$)** | 5D | `0.458352-0.330000-0.648537-0.780000-0.060000` | **Option A:** Noisy GP (`Matern 2.5 + WhiteKernel`) trust-box corner ascent | $-0.090586$ (W10) | -0.081873 ($\mu_{\text{noisy}}$, $\sigma = 0.0433$) |
-| **F7 ($F_7$)** | 6D | `0.000000-0.156068-0.305066-0.315590-0.335798-0.766358` | **Option A:** Primary GP ($\nu=2.5$) trust-region mean peak ($d_3$ restored) | $2.201316$ (W11) | 2.241241 ($\mu$, $\sigma = 0.0434$) |
-| **F8 ($F_8$)** | 8D | `0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012` | **Option C:** 64-64 ReLU NN local ascent peak ($\text{W10}\to\text{W12}$ continuation) | $9.987569$ (W12) | 10.0002 ($\hat{y}_{\text{RSM}}$) / 9.9854 ($\mu_{\text{GP}}$) |
+| **F1** | 2D | `0.628542-0.628542` | **Option B:** Analytical log-Gaussian unrounded peak ($+10^{-6}$ step) | $1.99999999$ (W12) | 2.000000 ($\mu = 1.999944$) |
+| **F2** | 2D | `0.688100-0.387000` | **Option A:** 1D GP posterior mean peak along $d_1$ ($d_2 = 0.387$ locked) | $0.721870$ (W12) | 0.613874 ($\mu$, $\sigma = 0.0688$) |
+| **F3** | 3D | `0.950000-0.400000-0.434766` | **Option B:** GP EI Needle #2 left-shoulder apex ($(d_1, d_2)$ locked) | $-0.006045$ (W11) | -0.010878 ($\mu$, $\sigma = 0.0298$) |
+| **F4** | 4D | `0.405930-0.406376-0.352329-0.422444` | **Option A1:** Positive-basin Local GP ($\nu=1.5, n=9$) mean peak | $0.679981$ (W12) | 0.686766 ($\mu_{\text{loc}}$, $\sigma = 0.0270$) |
+| **F5** | 4D | `1.000000-1.000000-1.000000-1.000000` | **Unanimous GP + NN:** Exact mathematical hyper-corner summit | $8662.482500$ (W12) | 8662.482500 ($\mu = 8662.42$) |
+| **F6** | 5D | `0.458352-0.330000-0.648537-0.780000-0.060000` | **Option A:** Noisy GP (`Matern 2.5 + WhiteKernel`) trust-box corner ascent | $-0.090586$ (W10) | -0.081873 ($\mu_{\text{noisy}}$, $\sigma = 0.0433$) |
+| **F7** | 6D | `0.000000-0.156068-0.305066-0.315590-0.335798-0.766358` | **Option A:** Primary GP ($\nu=2.5$) trust-region mean peak ($d_3$ restored) | $2.201316$ (W11) | 2.241241 ($\mu$, $\sigma = 0.0434$) |
+| **F8** | 8D | `0.157119-0.175371-0.120105-0.090651-0.893686-0.492256-0.191545-0.504012` | **Option C:** 64-64 ReLU NN local ascent peak ($\text{W10}\to\text{W12}$ continuation) | $9.987569$ (W12) | 10.0002 ($\hat{y}_{\text{RSM}}$) / 9.9854 ($\mu_{\text{GP}}$) |
