@@ -16,7 +16,7 @@ All project files—including code, data, presentation materials, and governance
 
 *   **Interactive Presentation Notebook:** [**`bbo_capstone_presentation.ipynb`**](bbo_capstone_presentation.ipynb) — Jupyter Notebook presenting the methodology, well-commented code implementation, 13-week progression table, and embedded visual dashboards.
 *   **Datasheet & Model Card:**
-    *   [**Datasheet (`docs/datasheet.md`)**](docs/datasheet.md) (also available at [**`docs/data_sheet.md`**](docs/data_sheet.md))
+    *   [**Datasheet (`docs/datasheet.md`)**](docs/datasheet.md)
     *   [**Model Card (`docs/model_card.md`)**](docs/model_card.md)
 *   **Core Codebase (`src/` & `configs/`):**
     *   [`src/bbo_optimize.py`](src/bbo_optimize.py): Main CLI optimization engine (Gaussian Processes, PyTorch NN surrogate, UCB/EI acquisition, and `compute_final_refinement`).
