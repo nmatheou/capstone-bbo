@@ -22,9 +22,8 @@ All project files—including code, data, presentation materials, and governance
     *   [`src/bbo_optimize.py`](src/bbo_optimize.py): Main CLI optimization engine (Gaussian Processes, PyTorch NN surrogate, UCB/EI acquisition, and `compute_final_refinement`).
     *   [`src/progress_tracker.py`](src/progress_tracker.py), [`src/plot_normalized_metrics.py`](src/plot_normalized_metrics.py), [`src/length_scale_tracker.py`](src/length_scale_tracker.py), [`src/pca_analysis.py`](src/pca_analysis.py): Diagnostic and visualisation scripts.
     *   [`configs/hyperparameters.json`](configs/hyperparameters.json): Externalised hyperparameter configuration.
-*   **Technical & Weekly Decision Documentation (`docs/`):**
+*   **Technical & Supporting Documentation (`docs/`):**
     *   [**Architecture Flow (`docs/architecture.md`)**](docs/architecture.md) | [**Reproducibility Guide (`docs/reproducibility.md`)**](docs/reproducibility.md) | [**Diagnostics & Overrides (`docs/diagnostics_and_overrides.md`)**](docs/diagnostics_and_overrides.md) | [**Challenges & Future Improvements (`docs/challenges_and_improvements.md`)**](docs/challenges_and_improvements.md)
-    *   [**Weeks 1–11 Submission Logic**](docs/submission_logic_w1_to_w11.md) | [**Week 12 Submission Logic**](docs/week_12_submission_logic.md) | [**Week 12 Analysis**](docs/week_12_analysis.md) | [**Week 13 Final Submission Logic**](docs/week_13_submission_logic.md) | [**Week 13 Final Post-Mortem Analysis**](docs/week_13_analysis.md)
 *   **Datasets, Submissions & Visual Outputs:**
     *   [**Accumulated Datasets (`data/accumulated/`)**](data/accumulated/) & [**Weekly Oracle Returns (`data/week_<1..13>_returns/`)**](data/)
     *   [**Weekly Submissions (`submissions/week_<1..13>/`)**](submissions/) & [**Visual Dashboards (`results/week_<1..13>/`)**](results/)
