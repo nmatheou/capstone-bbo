@@ -73,7 +73,8 @@ def obj_func_ei(x, gp, f_best, xi):
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def run_bbo(week: int):
-    output_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    output_dir = os.environ.get("BBO_OUTPUT_DIR") or repo_root
     data_dir   = os.path.join(output_dir, "data", "accumulated")
     dims       = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 

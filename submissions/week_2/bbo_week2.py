@@ -36,8 +36,10 @@ def obj_func_ei(x, gp, f_best, xi):
     return -ei(x, gp, f_best, xi).item()
 
 def run_bbo():
-    base_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/M12/Data/M12"
-    output_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    base_dir = os.path.join(repo_root, "data", "accumulated")
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+    output_dir = os.environ.get("BBO_OUTPUT_DIR") or repo_root
     results_file = os.path.join(output_dir, "results_week2.txt")
     dims = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 

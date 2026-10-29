@@ -31,12 +31,18 @@ plt.style.use("dark_background")
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--week', type=int, required=True, help="Target week (e.g. 5)")
+parser.add_argument('--output-dir', type=str, default=None, help="Base directory for project outputs")
 args, unknown = parser.parse_known_args()
 TARGET_WEEK = args.week
 
-BASE_DIR   = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/M12/Data/M12"
-OUTPUT_DIR = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
-WEEKS_DIRS = {w: os.path.join(OUTPUT_DIR, "data", f"week_{w}_returns") for w in range(1, TARGET_WEEK + 1)}
+_SRC = os.path.dirname(os.path.abspath(__file__))
+if _SRC not in sys.path:
+    sys.path.insert(0, _SRC)
+from paths import get_output_dir, validate_project_structure, load_initial, week_returns_dir  # noqa: E402
+
+OUTPUT_DIR = get_output_dir(cli_arg=args.output_dir, prompt_if_first_run=True)
+validate_project_structure(OUTPUT_DIR, week=TARGET_WEEK)
+WEEKS_DIRS = {w: week_returns_dir(w, OUTPUT_DIR) for w in range(1, TARGET_WEEK + 1)}
 
 DIMS = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 FUNC_NAMES = {
@@ -84,8 +90,12 @@ def build_kernel(func_idx, d):
     elif func_idx == 2:
         return (ConstantKernel(1.0) *
                 Matern(length_scale=np.ones(d),
-                       length_scale_bounds=(1e-2, 0.5), nu=2.5) +
+                       length_scale_bounds=(1e-2, 1e2), nu=2.5) +
                 WhiteKernel(noise_level=1.0, noise_level_bounds=(1e-3, 10.0)))
+    elif func_idx == 3:
+        return (ConstantKernel(1.0) *
+                Matern(length_scale=np.ones(d),
+                       length_scale_bounds=(1e-2, 2.0), nu=2.5))
     elif func_idx == 4:
         return (ConstantKernel(1.0) *
                 Matern(length_scale=np.ones(d),
@@ -149,9 +159,7 @@ def main():
 
     for fi in range(1, 9):
         d = DIMS[fi]
-        f_dir = os.path.join(BASE_DIR, f"function_{fi}")
-        X0 = np.load(os.path.join(f_dir, "initial_inputs.npy"))
-        y0 = np.load(os.path.join(f_dir, "initial_outputs.npy"))
+        X0, y0 = load_initial(fi, OUTPUT_DIR)
 
         snapshots[fi] = {0: (X0.copy(), y0.copy())}
         X_acc, y_acc = X0.copy(), y0.copy()

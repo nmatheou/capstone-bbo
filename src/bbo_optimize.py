@@ -32,9 +32,20 @@ import json
 from datetime import datetime
 import numpy as np
 import os
+import sys
 import re
 import ast
 import matplotlib.pyplot as plt
+
+_SRC = os.path.dirname(os.path.abspath(__file__))
+if _SRC not in sys.path:
+    sys.path.insert(0, _SRC)
+from paths import (
+    REPO_ROOT,
+    get_output_dir,
+    get_config_path,
+    validate_project_structure,
+)
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import Matern, WhiteKernel, ConstantKernel
 from sklearn.svm import SVC
@@ -247,8 +258,11 @@ def compute_final_refinement(func_idx, X, y, gp, best_x, nn_best_x):
         mu, std = gp.predict(final_x.reshape(1, -1), return_std=True)
         return final_x, f"64-64 ReLU NN Surrogate Peak (Option C) | GP Mean: {mu[0]:.6f}, Std: {std[0]:.6f}"
 
-def run_bbo(week: int):
-    output_dir = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
+def run_bbo(week: int, dry_run: bool = False, output_dir: str | None = None):
+    output_dir = get_output_dir(cli_arg=output_dir, prompt_if_first_run=True)
+    warnings = validate_project_structure(output_dir, week=week)
+    for w in warnings:
+        print(f"  [Notice] {w}")
     data_dir   = os.path.join(output_dir, "data", "accumulated")
     dims       = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
 
@@ -260,13 +274,17 @@ def run_bbo(week: int):
     logs_dir         = os.path.join(output_dir, "logs")
     log_file         = os.path.join(logs_dir, "run_logs.txt")
 
-    os.makedirs(results_dir, exist_ok=True)
-    os.makedirs(logs_dir, exist_ok=True)
+    if not dry_run:
+        os.makedirs(results_dir, exist_ok=True)
+        os.makedirs(logs_dir, exist_ok=True)
 
     print(f"\n{'='*60}")
     print(f"  BBO Optimize - generating Week {week} coordinates")
     print(f"  Reading oracle returns from : data/week_{prev_week}_returns/")
-    print(f"  Writing suggestions to      : results/week_{week}/suggestions.txt")
+    if dry_run:
+        print("  Dry-run: no writes to accumulated data, results, logs, or submissions")
+    else:
+        print(f"  Writing suggestions to      : results/week_{week}/suggestions.txt")
     print(f"{'='*60}\n")
 
     # -- Parse previous week's oracle returns ----------------------------------
@@ -291,7 +309,7 @@ def run_bbo(week: int):
     os.makedirs(data_dir, exist_ok=True)
 
     # -- Load Hyperparameters --------------------------------------------------
-    config_path = os.path.join(output_dir, "configs", "hyperparameters.json")
+    config_path = get_config_path(output_dir)
     with open(config_path, "r") as f:
         config = json.load(f)
     
@@ -304,7 +322,9 @@ def run_bbo(week: int):
     LHS_SEED      = config.get("LHS_SEED", 42)
 
     final_submissions = []
-    with open(results_file, 'w') as f_out, open(log_file, 'a') as f_log:
+    results_target = os.devnull if dry_run else results_file
+    log_target = os.devnull if dry_run else log_file
+    with open(results_target, 'w') as f_out, open(log_target, 'a') as f_log:
         f_log.write(f"\n--- Run Timestamp: {datetime.now().isoformat()} | Target Week: {week} ---\n")
         for func_idx in range(1, 9):
             print(f"--- Function {func_idx} ---")
@@ -338,9 +358,12 @@ def run_bbo(week: int):
             if not already_present:
                 X = np.vstack((X, np.atleast_2d(new_x)))
                 y = np.append(y, new_y)
-                os.makedirs(func_data_dir, exist_ok=True)
-                np.save(os.path.join(func_data_dir, "initial_inputs.npy"), X)
-                np.save(os.path.join(func_data_dir, "initial_outputs.npy"), y)
+                if dry_run:
+                    print(f"  [dry-run] would append W{prev_week} point (not saved)")
+                else:
+                    os.makedirs(func_data_dir, exist_ok=True)
+                    np.save(os.path.join(func_data_dir, "initial_inputs.npy"), X)
+                    np.save(os.path.join(func_data_dir, "initial_outputs.npy"), y)
             else:
                 print(f"  [skip] W{prev_week} point already in dataset")
 
@@ -537,13 +560,9 @@ def run_bbo(week: int):
             if d > 1:
                 grid_d[:, 1] = grid_pts[:, 1]
 
-            if func_idx in [2, 3, 4, 5, 7, 8]:
-                f_best_plot = np.max(y)
-                acq_grid    = ei(grid_d, gp, f_best_plot, xi).reshape(n_grid, n_grid)
-                acq_label   = 'EI Acquisition Score'
-            else:
-                acq_grid    = ucb(grid_d, gp, kappa).reshape(n_grid, n_grid)
-                acq_label   = 'UCB Acquisition Score'
+            f_best_plot = np.max(y)
+            acq_grid    = ei(grid_d, gp, f_best_plot, xi).reshape(n_grid, n_grid)
+            acq_label   = 'EI Acquisition Score'
 
             fig, ax = plt.subplots(figsize=(8, 6))
             contour = ax.contourf(X1, X2, acq_grid, levels=50, cmap='viridis')
@@ -563,19 +582,24 @@ def run_bbo(week: int):
             ax.set_ylabel("Dimension 2")
             ax.legend(loc='upper right', fontsize='small')
 
-            plot_dir = os.path.join(results_dir, "plots")
-            os.makedirs(plot_dir, exist_ok=True)
-            plot_file = os.path.join(plot_dir, f"plot_func{func_idx}.png")
-            plt.savefig(plot_file, dpi=150, bbox_inches='tight')
+            if not dry_run:
+                plot_dir = os.path.join(results_dir, "plots")
+                os.makedirs(plot_dir, exist_ok=True)
+                plot_file = os.path.join(plot_dir, f"plot_func{func_idx}.png")
+                plt.savefig(plot_file, dpi=150, bbox_inches='tight')
             plt.close()
 
     if week >= 13 and len(final_submissions) == 8:
-        sub_dir = os.path.join(output_dir, "submissions", f"week_{week}")
-        os.makedirs(sub_dir, exist_ok=True)
-        sub_file = os.path.join(sub_dir, "suggestions.txt")
-        with open(sub_file, "w") as f_sub:
-            f_sub.write("\n".join(final_submissions) + "\n")
-        print(f"  Saved locked final submissions to : submissions/week_{week}/suggestions.txt")
+        if dry_run:
+            print("  [dry-run] skipping write of submissions/week_"
+                  f"{week}/suggestions.txt")
+        else:
+            sub_dir = os.path.join(output_dir, "submissions", f"week_{week}")
+            os.makedirs(sub_dir, exist_ok=True)
+            sub_file = os.path.join(sub_dir, "suggestions.txt")
+            with open(sub_file, "w") as f_sub:
+                f_sub.write("\n".join(final_submissions) + "\n")
+            print(f"  Saved locked final submissions to : submissions/week_{week}/suggestions.txt")
 
 
 if __name__ == '__main__':
@@ -584,9 +608,15 @@ if __name__ == '__main__':
     parser.add_argument(
         "--week", type=int, required=True,
         help="The week number to generate coordinates FOR (e.g. --week 4 reads W3 results)")
+    parser.add_argument(
+        "--output-dir", type=str, default=None,
+        help="Base directory for project outputs (default: prompt on first run, cached in configs/runtime_config.json)")
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Fit and print suggestions without writing accumulated .npy or locked submissions")
     args = parser.parse_args()
 
     if args.week < 2:
         print("ERROR: --week must be >= 2 (Week 1 used the original bbo_week1.py)")
     else:
-        run_bbo(args.week)
+        run_bbo(args.week, dry_run=args.dry_run, output_dir=args.output_dir)

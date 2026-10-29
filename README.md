@@ -127,10 +127,13 @@ Across the 13-week campaign, **every single function achieved significant gains 
 
 *   **Core Stack:** `numpy`, `scipy` (`scipy.stats.qmc`, `scipy.optimize.minimize`), `scikit-learn` (`GaussianProcessRegressor`, `Matern`, `WhiteKernel`, `SVC`), `torch` (PyTorch `64x64` ReLU MLP), and `matplotlib`.
 *   **Literature References:** Rasmussen & Williams (*Gaussian Processes for Machine Learning*, 2006); Srinivas et al. (*GP-UCB*, ICML 2010); Jones et al. (*Efficient Global Optimization / EI*, JGO 1998); Eriksson et al. (*TuRBO*, NeurIPS 2019).
-*   **How to Run:**
-    1. Place oracle return files in `data/week_<N-1>_returns/inputs.txt` and `outputs.txt`.
-    2. Run `python src/bbo_optimize.py --week 13` to update accumulated datasets, fit GP and NN surrogates, apply final refinements, and write `submissions/week_13/suggestions.txt`.
-    3. Run `python src/progress_tracker.py --week 13`, `python src/plot_normalized_metrics.py --week 13`, and `python src/length_scale_tracker.py --week 13` to regenerate all dashboards, or open [`bbo_capstone_presentation.ipynb`](bbo_capstone_presentation.ipynb).
+*   **Detailed Reproducibility Guide & Directory Specification:** See [**`docs/reproducibility.md`**](docs/reproducibility.md) for full filesystem hierarchy, execution checklist, and troubleshooting steps.
+*   **How to Run Without Errors:**
+    1. **Environment Setup:** Install requirements via `pip install numpy scipy scikit-learn matplotlib torch`.
+    2. **First-Run Configuration:** On first execution, the system auto-detects the repository root and prompts for output path confirmation (or defaults cleanly to repo root when non-interactive). You can also pass `--output-dir <path>` explicitly.
+    3. **Verify Integrity:** Run `python src/test_paths.py` to confirm directory and dataset integrity.
+    4. **Generate Suggestions:** Run `python src/bbo_optimize.py --week 13` (or add `--dry-run` to inspect without modifying files) to fit surrogates and output final coordinates to `submissions/week_13/suggestions.txt`.
+    5. **Regenerate Dashboards:** Run `python src/progress_tracker.py --week 13`, `python src/plot_normalized_metrics.py --week 13`, `python src/length_scale_tracker.py --week 13`, and `python src/dim_sensitivity_sweep.py --week 13`, or launch [`bbo_capstone_presentation.ipynb`](bbo_capstone_presentation.ipynb).
 
 ---
 

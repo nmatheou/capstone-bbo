@@ -29,12 +29,18 @@ plt.style.use("dark_background")
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--week', type=int, required=True, help="Target week (e.g. 5)")
+parser.add_argument('--output-dir', type=str, default=None, help="Base directory for project outputs")
 args, unknown = parser.parse_known_args()
 TARGET_WEEK = args.week
 
-BASE_DIR   = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/M12/Data/M12"
-OUTPUT_DIR = "C:/Users/NtecD/OneDrive/AI/Imperial/Capstone/antigravity"
-WEEKS_DIRS = {w: os.path.join(OUTPUT_DIR, "data", f"week_{w}_returns") for w in range(1, TARGET_WEEK + 1)}
+_SRC = os.path.dirname(os.path.abspath(__file__))
+if _SRC not in sys.path:
+    sys.path.insert(0, _SRC)
+from paths import get_output_dir, validate_project_structure, load_initial, week_returns_dir  # noqa: E402
+
+OUTPUT_DIR = get_output_dir(cli_arg=args.output_dir, prompt_if_first_run=True)
+validate_project_structure(OUTPUT_DIR, week=TARGET_WEEK)
+WEEKS_DIRS = {w: week_returns_dir(w, OUTPUT_DIR) for w in range(1, TARGET_WEEK + 1)}
 RESULTS_FILES = {w: os.path.join(OUTPUT_DIR, "submissions", f"week_{w}", f"results_week{w}.txt" if w < 5 else "suggestions.txt") for w in range(1, TARGET_WEEK + 1)}
 
 DIMS = {1: 2, 2: 2, 3: 3, 4: 4, 5: 4, 6: 5, 7: 6, 8: 8}
@@ -105,9 +111,7 @@ def build_history(func_idx):
     initial_y  : np.ndarray   — initial data outputs
     weekly_y   : dict         — {week: actual returned y value} for each completed week
     """
-    # Initial data
-    f_dir = os.path.join(BASE_DIR, f"function_{func_idx}")
-    initial_y = np.load(os.path.join(f_dir, "initial_outputs.npy"))
+    _, initial_y = load_initial(func_idx, OUTPUT_DIR)
 
     weekly_y = {}
     for week, week_dir in WEEKS_DIRS.items():
